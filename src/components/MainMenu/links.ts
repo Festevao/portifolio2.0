@@ -7,15 +7,15 @@ export type MenuLink = {
 export const menuLinks: MenuLink[] = [
   {
     label: 'Base de conhecimento',
-    href: '',
+    href: 'knowledge',
   },
   {
     label: 'Blog pessoal',
-    href: '',
+    href: '/blog',
   },
   {
     label: 'Sobre mim',
-    href: '',
+    href: '/about',
   },
   {
     label: 'Exxperiencia',

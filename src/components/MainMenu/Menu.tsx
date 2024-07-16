@@ -38,11 +38,11 @@ const Menu = () => {
 
   return (
     <div
+      ref={menuRef}
       className='relative flex flex-col min-w-[30vw] max-w-[30%] w-full aspect-square'
     >
       <div
-        ref={menuRef}
-        className="relative flex items-center justify-center w-full aspect-square rounded-full bg-black"
+        className="relative flex items-center justify-center left-[-5%] h-[110%] w-[110%] rounded-full bg-black"
         style={{
           zIndex: 9999,
           overflow: 'hidden'
@@ -50,10 +50,6 @@ const Menu = () => {
       >
         <div
           className="absolute w-full h-full inset-0 rounded-full bg-black shadow-inner-white-gradient"
-          style={{
-            zIndex: 9999,
-            overflow: 'hidden'
-          }}
         >
         </div>
       </div>
