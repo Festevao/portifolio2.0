@@ -106,6 +106,7 @@ const Option: React.FC<Props> = ({
           paddingLeft: index % 2 === 0 ? '10%' : 'unset',
           paddingRight: index % 2 === 0 ? 'unset' : '10%',
           fontSize: (menuSize.width * 0.04).toString() + 'px',
+          textDecoration: 'underline',
         }}
       >
         {children}
