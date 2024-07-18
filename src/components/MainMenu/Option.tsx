@@ -7,8 +7,6 @@ type Props = {
   index: number,
   href: string,
   menuSize: { width: number, height: number },
-  onHover?: (...args: any) => void;
-  onDisHover?: (...args: any) => void;
 }
 
 const Option: React.FC<Props> = ({
@@ -17,8 +15,6 @@ const Option: React.FC<Props> = ({
   index,
   href,
   menuSize,
-  onHover,
-  onDisHover,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -83,14 +79,8 @@ const Option: React.FC<Props> = ({
         top: top.toString() + 'px',
         transition: 'width 1s ease',
       }}
-      onMouseEnter={() => {
-        setIsHovered(true);
-        onHover && onHover();
-      }}
-      onMouseLeave={() => {
-        setIsHovered(false)
-        onDisHover && onDisHover();
-      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <Link
         href={href}
