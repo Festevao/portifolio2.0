@@ -72,19 +72,19 @@ const Option: React.FC<Props> = ({
       ? {
         borderTopLeftRadius: radius.borderTop,
         borderBottomLeftRadius: radius.borderBottom,
-        borderLeft: '8px solid black',
+        borderLeft: '8px solid gray',
       }
       : {
         borderTopRightRadius: radius.borderTop,
         borderBottomRightRadius: radius.borderBottom,
-        borderRight: '8px solid black',
+        borderRight: '8px solid gray',
       };
   }
 
   return (
     <div 
       className={`\ 
-        \ absolute bg-slate-400 text-black
+        \ absolute bg-gray-300 text-black
       `}
       style={{
         left: '50%',
