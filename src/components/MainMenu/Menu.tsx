@@ -15,7 +15,7 @@ const Menu = () => {
       href: '/knowledge',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgImage('https://placehold.co/400x200?text=Hello+1');
+        setBgImage('https://placehold.co/415x200?text=Hello+1');
       },
     },
     {
@@ -23,7 +23,7 @@ const Menu = () => {
       href: '/blog',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgImage('https://placehold.co/400x200?text=Hello+2');
+        setBgImage('https://placehold.co/415x200?text=Hello+2');
       },
     },
     {
@@ -31,31 +31,31 @@ const Menu = () => {
       href: '/about',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgImage('https://placehold.co/400x200?text=Hello+3');
+        setBgImage('https://placehold.co/415x200?text=Hello+3');
       },
     },
     {
-      label: 'Exxperiencia',
-      href: '',
+      label: 'Experiência',
+      href: '/professional-experience',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgImage('https://placehold.co/400x200?text=Hello+4');
+        setBgImage('https://placehold.co/415x200?text=Hello+4');
       },
     },
     {
       label: 'Formação',
-      href: '',
+      href: 'education',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgImage('https://placehold.co/400x200?text=Hello+5');
+        setBgImage('https://placehold.co/415x200?text=Hello+5');
       },
     },
     {
-      label: 'Label de enchimento',
-      href: '',
+      label: 'Contato',
+      href: 'contact',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgImage('https://placehold.co/400x200?text=Hello+6');
+        setBgImage('https://placehold.co/415x200?text=Hello+6');
       },
     },
   ];
@@ -105,7 +105,7 @@ const Menu = () => {
       clearTimeout(timeoutOp);
       setBgOpacity(0.8);
     }
-  }, [bgImage]) 
+  }, [bgImage, setBgImage]);
 
   return (
     <div
