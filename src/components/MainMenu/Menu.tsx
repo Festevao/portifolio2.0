@@ -5,31 +5,58 @@ import { MenuLink } from './links';
 const Menu = () => {
   const menuRef = useRef<any>(null);
   const [menuSize, setMenuSize] = useState({ width: 0, height: 0 });
+  const [bgImage, setBgImage] = useState<string | undefined>(undefined);
+  const [timeoutOp, setTimeoutOp] = useState<NodeJS.Timeout>();
+  const [bgOpacity, setBgOpacity] = useState(0);
 
   const menuLinks: MenuLink[] = [
     {
       label: 'Base de conhecimento',
-      href: 'knowledge',
+      href: '/knowledge',
+      onHover: () => {
+        clearTimeout(timeoutOp);
+        setBgImage('https://placehold.co/400x200?text=Hello+1');
+      },
     },
     {
       label: 'Blog pessoal',
       href: '/blog',
+      onHover: () => {
+        clearTimeout(timeoutOp);
+        setBgImage('https://placehold.co/400x200?text=Hello+2');
+      },
     },
     {
       label: 'Sobre mim',
       href: '/about',
+      onHover: () => {
+        clearTimeout(timeoutOp);
+        setBgImage('https://placehold.co/400x200?text=Hello+3');
+      },
     },
     {
       label: 'Exxperiencia',
       href: '',
+      onHover: () => {
+        clearTimeout(timeoutOp);
+        setBgImage('https://placehold.co/400x200?text=Hello+4');
+      },
     },
     {
       label: 'Formação',
       href: '',
+      onHover: () => {
+        clearTimeout(timeoutOp);
+        setBgImage('https://placehold.co/400x200?text=Hello+5');
+      },
     },
     {
       label: 'Label de enchimento',
       href: '',
+      onHover: () => {
+        clearTimeout(timeoutOp);
+        setBgImage('https://placehold.co/400x200?text=Hello+6');
+      },
     },
   ];
 
@@ -42,6 +69,14 @@ const Menu = () => {
           index={index}
           href={link.href}
           menuSize={menuSize}
+          onHover={link.onHover}
+          onDisHover={() => {
+            clearTimeout(timeoutOp);
+            setBgOpacity(0);
+            setTimeoutOp(setTimeout(() => {
+              setBgImage(undefined);
+            }, 1000));
+          }}
         >
           {link.label}
         </Option>
@@ -65,6 +100,13 @@ const Menu = () => {
     return () => window.removeEventListener('resize', updateSize);
   }, [menuRef]);
 
+  useEffect(() => {
+    if (bgImage) {
+      clearTimeout(timeoutOp);
+      setBgOpacity(0.8);
+    }
+  }, [bgImage]) 
+
   return (
     <div
       className='relative flex flex-col justify-center items-center min-h-[100vh] min-w-[100vw] w-full h-full'
@@ -73,42 +115,46 @@ const Menu = () => {
         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='409' height='49.1' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23222' stroke-width='6.7' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E")`
       }}
     >
-      <div
-        className='absolute flex flex-col justify-center items-center min-h-[100vh] min-w-[100vw] w-full h-full'
+      <img
+        alt="Slider"
+        src={bgImage}
+        className="absolute flex flex-col justify-center items-center w-full h-full"
+        width={'100%'}
+        height={'100%'}
         style={{
-          opacity: 0,
-          transition: 'opacity 1.5s easy',
+          opacity: bgOpacity,
+          transition: bgImage ? 'opacity 1s ease-in' : 'unset',
         }}
       />
+      <div
+        ref={menuRef}
+        className='relative flex flex-col min-w-[30vw] max-w-[30%] w-full aspect-square'
+      >
         <div
-          ref={menuRef}
-          className='relative flex flex-col min-w-[30vw] max-w-[30%] w-full aspect-square'
+          className="relative flex items-center justify-center h-[100%] w-[100%] rounded-full"
+          style={{
+            zIndex: 9998,
+            overflow: 'hidden',
+            background: 'black',
+            transition: 'background 1.5s ease',
+          }}
         >
-          <div
-            className="relative flex items-center justify-center h-[100%] w-[100%] rounded-full"
+          <span
             style={{
-              zIndex: 9998,
-              overflow: 'hidden',
-              background: 'black',
-              transition: 'background 1.5s ease',
+              zIndex: 9999,
+              color: 'white',
+              fontSize: (menuSize.width * 0.15).toString() + 'px',
+              fontStyle: 'italic',
             }}
           >
-            <span
-              style={{
-                zIndex: 9999,
-                color: 'white',
-                fontSize: (menuSize.width * 0.15).toString() + 'px',
-                fontStyle: 'italic',
-              }}
-            >
-              Portifólio
-            </span>
-            <div
-              className="absolute w-full h-full inset-0 rounded-full bg-black shadow-inner-white-gradient"
-            />
-          </div>
-          <RenderLinks />
+            Portifólio
+          </span>
+          <div
+            className="absolute w-full h-full inset-0 rounded-full bg-black shadow-inner-white-gradient"
+          />
         </div>
+        <RenderLinks />
+      </div>
     </div>
   );
 };

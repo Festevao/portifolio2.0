@@ -3,11 +3,13 @@ import { ReactNode, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 
 type Props = {
-  children?: ReactNode,
-  maxIndex: number,
-  index: number,
-  href: string,
-  menuSize: { width: number, height: number },
+  children?: ReactNode;
+  maxIndex: number;
+  index: number;
+  href: string;
+  menuSize: { width: number; height: number; };
+  onHover?: (...args: any) => void;
+  onDisHover?: (...args: any) => void;
 }
 
 const Option: React.FC<Props> = ({
@@ -16,6 +18,8 @@ const Option: React.FC<Props> = ({
   index,
   href,
   menuSize,
+  onHover,
+  onDisHover,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -95,8 +99,14 @@ const Option: React.FC<Props> = ({
         top: top.toString() + 'px',
         transition: 'width 1s ease',
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => {
+        setIsHovered(true);
+        onHover && onHover();
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        onDisHover && onDisHover();
+      }}
     >
       <Link
         href={href}
