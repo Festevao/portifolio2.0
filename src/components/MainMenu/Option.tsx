@@ -41,6 +41,10 @@ const Option: React.FC<Props> = ({
     return returnValue > 0 ? returnValue + 0.2 : 1 + (colIndex / 10);
   }
 
+  const width = isHovered
+    ? `${Math.abs(size)}px`
+    : `${Math.abs(size) - Math.abs(hideOffset * distanceToMiddle(maxColIndex, colIndex))}px`;
+
   const calculateBorderRadius = (
     diameter: number,
     stripHeight: number,
@@ -69,7 +73,7 @@ const Option: React.FC<Props> = ({
       `}
       style={{
         left: '50%',
-        width: isHovered ? `${Math.abs(size)}px` : `${Math.abs(size) - Math.abs(hideOffset * distanceToMiddle(maxColIndex, colIndex))}px`,
+        width: width,
         height: height,
         transform: `translateX(${size >= 0 ? '0' : '-100%'})`,
         borderTopRightRadius: index % 2 === 0 ? 'unset' : radius.borderTop,
@@ -89,6 +93,7 @@ const Option: React.FC<Props> = ({
           textAlign: index % 2 === 0 ? 'left' : 'right',
           paddingLeft: index % 2 === 0 ? '10%' : 'unset',
           paddingRight: index % 2 === 0 ? 'unset' : '10%',
+          fontSize: (menuSize.width * 0.04).toString() + 'px',
         }}
       >
         {children}

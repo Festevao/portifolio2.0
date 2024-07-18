@@ -86,16 +86,25 @@ const Menu = () => {
           <div
             className="relative flex items-center justify-center h-[100%] w-[100%] rounded-full"
             style={{
-              zIndex: 9999,
+              zIndex: 9998,
               overflow: 'hidden',
               background: 'black',
               transition: 'background 1.5s ease',
             }}
           >
+            <span
+              style={{
+                zIndex: 9999,
+                color: 'white',
+                fontSize: (menuSize.width * 0.15).toString() + 'px',
+                fontStyle: 'italic',
+              }}
+            >
+              Portifólio
+            </span>
             <div
               className="absolute w-full h-full inset-0 rounded-full bg-black shadow-inner-white-gradient"
-            >
-            </div>
+            />
           </div>
           <RenderLinks />
         </div>
