@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 type Props = {
   children?: ReactNode,
@@ -41,7 +42,7 @@ const Option: React.FC<Props> = ({
     return returnValue > 0 ? returnValue + 0.2 : 1 + (colIndex / 10);
   }
 
-  const width = isHovered
+  const width = isHovered || isMobile || menuSize.width < 150
     ? `${Math.abs(size)}px`
     : `${Math.abs(size) - Math.abs(hideOffset * distanceToMiddle(maxColIndex, colIndex))}px`;
 
@@ -66,6 +67,20 @@ const Option: React.FC<Props> = ({
 
   const radius = calculateBorderRadius(menuSize.width, height, top);
 
+  const calcProps = () => {
+    return index % 2 === 0
+      ? {
+        borderTopLeftRadius: radius.borderTop,
+        borderBottomLeftRadius: radius.borderBottom,
+        borderLeft: '8px solid black',
+      }
+      : {
+        borderTopRightRadius: radius.borderTop,
+        borderBottomRightRadius: radius.borderBottom,
+        borderRight: '8px solid black',
+      };
+  }
+
   return (
     <div 
       className={`\ 
@@ -76,10 +91,7 @@ const Option: React.FC<Props> = ({
         width: width,
         height: height,
         transform: `translateX(${size >= 0 ? '0' : '-100%'})`,
-        borderTopRightRadius: index % 2 === 0 ? 'unset' : radius.borderTop,
-        borderBottomRightRadius: index % 2 === 0 ? 'unset' : radius.borderBottom,
-        borderTopLeftRadius: index % 2 === 0 ? radius.borderTop : 'unset',
-        borderBottomLeftRadius: index % 2 === 0 ? radius.borderBottom : 'unset',
+        ...calcProps(),
         top: top.toString() + 'px',
         transition: 'width 1s ease',
       }}
