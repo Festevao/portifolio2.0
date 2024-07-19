@@ -15,6 +15,7 @@ const Menu = () => {
       href: '/knowledge',
       onHover: () => {
         clearTimeout(timeoutOp);
+        setBgOpacity(0.8)
         setBgImage('https://placehold.co/415x200?text=Hello+1');
       },
     },
@@ -23,6 +24,7 @@ const Menu = () => {
       href: '/blog',
       onHover: () => {
         clearTimeout(timeoutOp);
+        setBgOpacity(0.8)
         setBgImage('https://placehold.co/415x200?text=Hello+2');
       },
     },
@@ -31,6 +33,7 @@ const Menu = () => {
       href: '/about',
       onHover: () => {
         clearTimeout(timeoutOp);
+        setBgOpacity(0.8)
         setBgImage('https://placehold.co/415x200?text=Hello+3');
       },
     },
@@ -39,6 +42,7 @@ const Menu = () => {
       href: '/professional-experience',
       onHover: () => {
         clearTimeout(timeoutOp);
+        setBgOpacity(0.8)
         setBgImage('https://placehold.co/415x200?text=Hello+4');
       },
     },
@@ -47,6 +51,7 @@ const Menu = () => {
       href: 'education',
       onHover: () => {
         clearTimeout(timeoutOp);
+        setBgOpacity(0.8)
         setBgImage('https://placehold.co/415x200?text=Hello+5');
       },
     },
@@ -55,6 +60,7 @@ const Menu = () => {
       href: 'contact',
       onHover: () => {
         clearTimeout(timeoutOp);
+        setBgOpacity(0.8)
         setBgImage('https://placehold.co/415x200?text=Hello+6');
       },
     },
