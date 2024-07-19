@@ -16,7 +16,7 @@ const Menu = () => {
       href: '/knowledge',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8);
+        setBgOpacity(0.9);
         setBgImage('https://placehold.co/415x200?text=Hello+1');
       },
     },
@@ -25,7 +25,7 @@ const Menu = () => {
       href: '/blog',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8);
+        setBgOpacity(0.9);
         setBgImage('https://placehold.co/415x200?text=Hello+2');
       },
     },
@@ -34,7 +34,7 @@ const Menu = () => {
       href: '/about',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8);
+        setBgOpacity(0.9);
         setBgImage('https://placehold.co/415x200?text=Hello+3');
       },
     },
@@ -43,7 +43,7 @@ const Menu = () => {
       href: '/professional-experience',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8);
+        setBgOpacity(0.9);
         setBgImage('https://placehold.co/415x200?text=Hello+4');
       },
     },
@@ -52,7 +52,7 @@ const Menu = () => {
       href: 'education',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8);
+        setBgOpacity(0.9);
         setBgImage('https://placehold.co/415x200?text=Hello+5');
       },
     },
@@ -61,7 +61,7 @@ const Menu = () => {
       href: 'contact',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8);
+        setBgOpacity(0.9);
         setBgImage('https://placehold.co/415x200?text=Hello+6');
       },
     },
@@ -188,9 +188,9 @@ const Menu = () => {
         .star {
           position: absolute;
           bottom: 0;
-          width: 5px;
-          height: 5px;
-          box-shadow: 0 0 5px 3px white;
+          width: 3px;
+          height: 3px;
+          box-shadow: 0 0 3px 3px white;
           background: white;
           border-radius: 50%;
           animation: rise 5s linear infinite;
@@ -202,7 +202,8 @@ const Menu = () => {
           left: 50%;
           width: 2px;
           height: 100%;
-          background: linear-gradient(to bottom, rgba(255, 255, 255, 0.338) 0%, rgba(255, 255, 255, 0) 100%);
+          background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+          box-shadow: 0 0 1px rgba(255, 255, 255, 0.338);
           transform: translateX(-50%);
         }
 
@@ -210,7 +211,7 @@ const Menu = () => {
           to {
             transform: translateY(-100vh);
             opacity: 0;
-            box-shadow: 0 0 9px 5px white;
+            box-shadow: 0 0 1px 1px white;
           }
         }
       `}</style>
