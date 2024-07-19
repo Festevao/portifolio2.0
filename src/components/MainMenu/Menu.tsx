@@ -113,7 +113,7 @@ const Menu = () => {
       id: index,
       left: Math.random() * 100,
       animationDelay: Math.random() * 5,
-      trailHeight: Math.random() * (80 - 25) + 25,
+      trailHeight: Math.random() * (200 - 25) + 25,
     }));
     setStars(newStars);
   }, []);
