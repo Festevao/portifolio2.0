@@ -106,13 +106,6 @@ const Menu = () => {
     return () => window.removeEventListener('resize', updateSize);
   }, [menuRef]);
 
-  useEffect(() => {
-    if (bgImage) {
-      clearTimeout(timeoutOp);
-      setBgOpacity(0.8);
-    }
-  }, [bgImage, setBgImage]);
-
   return (
     <div
       className='relative flex flex-col justify-center items-center min-h-[100vh] min-w-[100vw] w-full h-full'
