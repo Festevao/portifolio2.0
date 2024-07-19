@@ -8,6 +8,7 @@ const Menu = () => {
   const [bgImage, setBgImage] = useState<string | undefined>(undefined);
   const [timeoutOp, setTimeoutOp] = useState<NodeJS.Timeout>();
   const [bgOpacity, setBgOpacity] = useState(0);
+  const [stars, setStars] = useState<{ id: number; left: number; animationDelay: number; trailHeight: number; }[]>([]);
 
   const menuLinks: MenuLink[] = [
     {
@@ -15,7 +16,7 @@ const Menu = () => {
       href: '/knowledge',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8)
+        setBgOpacity(0.8);
         setBgImage('https://placehold.co/415x200?text=Hello+1');
       },
     },
@@ -24,7 +25,7 @@ const Menu = () => {
       href: '/blog',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8)
+        setBgOpacity(0.8);
         setBgImage('https://placehold.co/415x200?text=Hello+2');
       },
     },
@@ -33,7 +34,7 @@ const Menu = () => {
       href: '/about',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8)
+        setBgOpacity(0.8);
         setBgImage('https://placehold.co/415x200?text=Hello+3');
       },
     },
@@ -42,7 +43,7 @@ const Menu = () => {
       href: '/professional-experience',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8)
+        setBgOpacity(0.8);
         setBgImage('https://placehold.co/415x200?text=Hello+4');
       },
     },
@@ -51,7 +52,7 @@ const Menu = () => {
       href: 'education',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8)
+        setBgOpacity(0.8);
         setBgImage('https://placehold.co/415x200?text=Hello+5');
       },
     },
@@ -60,7 +61,7 @@ const Menu = () => {
       href: 'contact',
       onHover: () => {
         clearTimeout(timeoutOp);
-        setBgOpacity(0.8)
+        setBgOpacity(0.8);
         setBgImage('https://placehold.co/415x200?text=Hello+6');
       },
     },
@@ -106,9 +107,20 @@ const Menu = () => {
     return () => window.removeEventListener('resize', updateSize);
   }, [menuRef]);
 
+  useEffect(() => {
+    const starCount = Math.floor(Math.random() * (20 - 12 + 1)) + 12;
+    const newStars = Array.from({ length: starCount }, (_, index) => ({
+      id: index,
+      left: Math.random() * 100,
+      animationDelay: Math.random() * 5,
+      trailHeight: Math.random() * (80 - 25) + 25,
+    }));
+    setStars(newStars);
+  }, []);
+
   return (
     <div
-      className='relative flex flex-col justify-center items-center min-h-[100vh] min-w-[100vw] w-full h-full'
+      className='relative flex flex-col justify-center items-center min-h-[100vh] min-w-[100vw] w-full h-full overflow-hidden'
       style={{
         backgroundColor: '#000000',
         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='409' height='49.1' viewBox='0 0 1000 120'%3E%3Cg fill='none' stroke='%23222' stroke-width='6.7' %3E%3Cpath d='M-500 75c0 0 125-30 250-30S0 75 0 75s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 45c0 0 125-30 250-30S0 45 0 45s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 105c0 0 125-30 250-30S0 105 0 105s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 15c0 0 125-30 250-30S0 15 0 15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500-15c0 0 125-30 250-30S0-15 0-15s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3Cpath d='M-500 135c0 0 125-30 250-30S0 135 0 135s125 30 250 30s250-30 250-30s125-30 250-30s250 30 250 30s125 30 250 30s250-30 250-30'/%3E%3C/g%3E%3C/svg%3E")`
@@ -125,6 +137,18 @@ const Menu = () => {
           transition: bgImage ? 'opacity 1s ease-in' : 'unset',
         }}
       />
+      {stars.map(star => (
+        <div
+          key={star.id}
+          className="star"
+          style={{
+            left: `${star.left}%`,
+            animationDelay: `${star.animationDelay}s`,
+          }}
+        >
+          <div className="star-trail" style={{ height: `${star.trailHeight}px` }} />
+        </div>
+      ))}
       <div
         ref={menuRef}
         className='relative flex flex-col min-w-[30vw] max-w-[30%] w-full aspect-square'
@@ -154,6 +178,42 @@ const Menu = () => {
         </div>
         <RenderLinks />
       </div>
+      <style jsx global>{`
+        body {
+          margin: 0;
+          overflow-x: hidden;
+        }
+      `}</style>
+      <style jsx>{`
+        .star {
+          position: absolute;
+          bottom: 0;
+          width: 5px;
+          height: 5px;
+          box-shadow: 0 0 5px 3px white;
+          background: white;
+          border-radius: 50%;
+          animation: rise 5s linear infinite;
+        }
+
+        .star-trail {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          width: 2px;
+          height: 100%;
+          background: linear-gradient(to bottom, rgba(255, 255, 255, 0.338) 0%, rgba(255, 255, 255, 0) 100%);
+          transform: translateX(-50%);
+        }
+
+        @keyframes rise {
+          to {
+            transform: translateY(-100vh);
+            opacity: 0;
+            box-shadow: 0 0 9px 5px white;
+          }
+        }
+      `}</style>
     </div>
   );
 };
