@@ -112,7 +112,7 @@ const Menu = () => {
     const newStars = Array.from({ length: starCount }, (_, index) => ({
       id: index,
       left: Math.random() * 100,
-      animationDelay: Math.random() * 5,
+      animationDelay: Math.random() * 15,
       trailHeight: Math.random() * (200 - 25) + 25,
     }));
     setStars(newStars);
@@ -166,7 +166,7 @@ const Menu = () => {
             style={{
               zIndex: 9999,
               color: 'white',
-              fontSize: (menuSize.width * 0.15).toString() + 'px',
+              fontSize: (menuSize.width * 0.12).toString() + 'px',
               fontStyle: 'italic',
             }}
           >
@@ -193,7 +193,7 @@ const Menu = () => {
           box-shadow: 0 0 3px 3px white;
           background: white;
           border-radius: 50%;
-          animation: rise 5s linear infinite;
+          animation: rise 15s linear infinite;
         }
 
         .star-trail {

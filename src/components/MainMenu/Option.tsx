@@ -26,7 +26,7 @@ const Option: React.FC<Props> = ({
   const gap = menuSize.height * 0.03;
   const colIndex = Math.floor(index / 2);
   const maxColIndex = Math.ceil(maxIndex / 2);
-  const hideOffset = menuSize.width * 0.2;
+  const hideOffset = menuSize.width * 0.33;
 
   const hOffset = menuSize.height - (maxColIndex + 1) * gap;
   const height = hOffset / maxColIndex;
@@ -34,8 +34,8 @@ const Option: React.FC<Props> = ({
   const top = gap + (colIndex * gap) + (height * colIndex);
 
   const size = index % 2 === 0
-    ? -((menuSize.width / 2) + (menuSize.width * 0.4))
-    : ((menuSize.width / 2) + (menuSize.width * 0.4));
+    ? -((menuSize.width / 2) + (menuSize.width * 0.55))
+    : ((menuSize.width / 2) + (menuSize.width * 0.55));
 
   const distanceToMiddle = (range: number, index: number) => {
     const mid1 = Math.floor((range - 1) / 2);
@@ -43,7 +43,7 @@ const Option: React.FC<Props> = ({
   
     const returnValue = Math.min(Math.abs(index - mid1), Math.abs(index - mid2));
   
-    return returnValue > 0 ? returnValue + 0.2 : 1 + (colIndex / 10);
+    return returnValue > 0 ? returnValue + 0.2 : 1.1 + (colIndex / 10);
   }
 
   const width = isHovered || isMobile || menuSize.width < 150
@@ -113,8 +113,8 @@ const Option: React.FC<Props> = ({
         className='w-full h-full flex flex-col justify-center'
         style={{
           textAlign: index % 2 === 0 ? 'left' : 'right',
-          paddingLeft: index % 2 === 0 ? '10%' : 'unset',
-          paddingRight: index % 2 === 0 ? 'unset' : '10%',
+          paddingLeft: index % 2 === 0 ? '12%' : 'unset',
+          paddingRight: index % 2 === 0 ? 'unset' : '12%',
           fontSize: (menuSize.width * 0.04).toString() + 'px',
           textDecoration: 'underline',
         }}

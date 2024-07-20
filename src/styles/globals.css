@@ -12,6 +12,7 @@ body {
   padding: 0;
   width: 100%;
   box-sizing: border-box;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .shadow-inner-white-gradient {
