@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <footer
       className={`\
-        \ footer absolute bottom-0 flex flex-col justify-start items-center w-full bg-black min-h-[155px] min-w-[250px] text-white
+        \ footer absolute bottom-0 flex flex-col justify-between items-center w-full bg-black min-h-[155px] min-w-[250px] text-white
       `}
       style={{
         backgroundColor: '#000000',
@@ -20,12 +20,14 @@ const Footer = () => {
           <p>(32)98468-0116</p>
         </div>
       </div>
-      <span className='text-lg pb-1 absolute bottom-0 '>
-        © <></>
-        <span className='text-xs'>
-          {atualYear} - All Rights Reserved. Designed and Developed by Felipi Trindade
+      <div className='h-full w-full flex flex-col justify-center items-center'>
+        <span className='text-lg pb-1 text-center'>
+          © <></>
+          <span className='text-xs'>
+            {atualYear} - All Rights Reserved. Designed and Developed by Felipi Trindade
+          </span>
         </span>
-      </span>
+      </div>
     </footer>
   )
 }
