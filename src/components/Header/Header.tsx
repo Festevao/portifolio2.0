@@ -41,18 +41,16 @@ const Header = () => {
       const isLast = index === menuLinks.length - 2;
       const isLastLink = router.pathname.startsWith(menuLinks[menuLinks.length - 1].href);
       return (
-        <>
-          <Link href={href} key={label} className='lg:underline lg:mb-[-18px] font-bold'>
+        <div className='lg:flex lg:h-full lg:items-center' key={label}>
+          <Link href={href} className='lg:underline lg:mb-[-18px] font-bold'>
             {label}
           </Link>
           {
             index < menuLinks.length - 1 && !(isLast && isLastLink) && (
-              <div
-                className='w-full h-[1px] bg-white lg:hidden'
-              />
+              <div className='w-full h-[1px] bg-white lg:hidden'/>
             )
           }
-        </>
+        </div>
       )
     });
   }
