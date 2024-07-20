@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from '../../types/next'
-import Layout from '../../components/Layout/layout';
+import Layout from '../../components/Layout/Layout';
 
 const Experience: NextPageWithLayout = () => {
   return <div>Experience Page</div>;
