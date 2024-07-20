@@ -49,7 +49,7 @@ const Menu = () => {
     },
     {
       label: 'Formação',
-      href: 'education',
+      href: '/education',
       onHover: () => {
         clearTimeout(timeoutOp);
         setBgOpacity(0.9);
@@ -58,7 +58,7 @@ const Menu = () => {
     },
     {
       label: 'Contato',
-      href: 'contact',
+      href: '/contact',
       onHover: () => {
         clearTimeout(timeoutOp);
         setBgOpacity(0.9);
