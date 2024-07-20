@@ -168,9 +168,19 @@ const Menu = () => {
               color: 'white',
               fontSize: (menuSize.width * 0.12).toString() + 'px',
               fontStyle: 'italic',
+              lineHeight: 0.8,
             }}
+            className='text-center'
           >
-            Portifólio
+            Portifólio<br />
+            <span
+              style={{
+                fontSize: (menuSize.width * 0.05).toString() + 'px',
+                fontStyle: 'italic',
+              }}
+            >
+              Felipi Estevão
+            </span>
           </span>
           <div
             className="absolute w-full h-full inset-0 rounded-full bg-black shadow-inner-white-gradient"
