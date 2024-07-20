@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Option from './Option';
-import { MenuLink } from './links';
+import { MenuLink } from '../../types/MenuLink';
 
 const Menu = () => {
   const menuRef = useRef<any>(null);
