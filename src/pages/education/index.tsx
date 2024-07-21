@@ -7,7 +7,7 @@ const Education: NextPageWithLayout = () => {
 };
 
 Education.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <Layout pageName='Formação'>{page}</Layout>;
 };
 
 export default Education;

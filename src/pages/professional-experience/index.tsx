@@ -7,7 +7,7 @@ const Experience: NextPageWithLayout = () => {
 };
 
 Experience.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <Layout pageName='Experiência profissional'>{page}</Layout>;
 };
 
 export default Experience;

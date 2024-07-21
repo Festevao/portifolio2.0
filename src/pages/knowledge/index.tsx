@@ -7,7 +7,7 @@ const Knowledge: NextPageWithLayout = () => {
 };
 
 Knowledge.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <Layout pageName='Base de conhecimento'>{page}</Layout>;
 };
 
 export default Knowledge;

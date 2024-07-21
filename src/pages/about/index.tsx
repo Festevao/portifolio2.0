@@ -7,7 +7,7 @@ const About: NextPageWithLayout = () => {
 };
 
 About.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <Layout pageName='Sobre mim'>{page}</Layout>;
 };
 
 export default About;

@@ -7,7 +7,7 @@ const Blog: NextPageWithLayout = () => {
 };
 
 Blog.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return <Layout pageName='Blog Pessoal'>{page}</Layout>;
 };
 
 export default Blog;
