@@ -7,7 +7,7 @@ const Layout = (props: { children: ReactNode, pageName: string }) => {
   return (
     <div className="layout w-full h-full flex flex-col items-center justify-center">
       <Head>
-        <title>{props.pageName}</title>
+        <title>Felipi | {props.pageName}</title>
       </Head>
       <Header />
       <main className="main-content">
