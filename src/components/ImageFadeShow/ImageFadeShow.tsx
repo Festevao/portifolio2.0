@@ -26,7 +26,7 @@ const ImageFadeShow: React.FC<ImageFadeShowProps> = ({ images }) => {
   return (
     <div
       className={`\
-        \ relative w-full bg-gray-200 flex items-center justify-center overflow-hidden rounded-3xl sm:max-w-[75%] md:max-w-[25vw] aspect-square
+        \ relative w-full bg-gray-100 flex items-center justify-center overflow-hidden rounded-3xl sm:max-w-[75%] md:max-w-[25vw] aspect-square
         \ shadow-2xl border border-gray-300
       `}
     >
