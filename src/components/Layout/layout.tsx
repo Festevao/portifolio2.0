@@ -5,16 +5,18 @@ import Footer from '../Footer/Footer';
 
 const Layout = (props: { children: ReactNode, pageName: string }) => {
   return (
-    <div className="layout w-full h-full flex flex-col items-center justify-center">
+    <>
       <Head>
         <title>Felipi | {props.pageName}</title>
       </Head>
-      <Header />
-      <main className="main-content">
-        {props.children}
-      </main>
-      <Footer />
-    </div>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow w-full flex flex-col items-center justify-start">
+          {props.children}
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 
