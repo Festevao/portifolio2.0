@@ -12,7 +12,11 @@ const ImageFadeShow: React.FC<ImageFadeShowProps> = ({ images }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
+      setCurrentIndex(prevIndex => {
+        let auxIndex = prevIndex;
+        if (auxIndex >= images.length - 1) auxIndex = -1;
+        return auxIndex + 1;
+      });
     }, 5000);
 
     return () => clearInterval(interval);
