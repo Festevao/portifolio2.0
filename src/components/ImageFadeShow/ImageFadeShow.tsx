@@ -4,6 +4,7 @@ interface ImageFadeShowProps {
   images: {
     src: string;
     title?: string;
+    alt?: string;
   }[];
 }
 
@@ -29,11 +30,11 @@ const ImageFadeShow: React.FC<ImageFadeShowProps> = ({ images }) => {
         \ shadow-2xl border border-gray-300
       `}
     >
-      {images.map(({ src, title }, index) => (
+      {images.map(({ src, title, alt }, index) => (
         <img
           key={index}
           src={src}
-          alt={`Slide ${index}`}
+          alt={alt ?? `Slide ${index}`}
           title={title}
           className={`absolute object-cover transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
         />
