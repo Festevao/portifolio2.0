@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import { NextPageWithLayout } from '../../types/next'
-import Layout from '../../components/Layout/Layout';
-import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
-import ImageFadeShow from '../../components/ImageFadeShow/ImageFadeShow';
+import { NextPageWithLayout } from '@/types/next'
+import Layout from '@/components/Layout/Layout';
+import ProfileHeader from '@/components/ProfileHeader/ProfileHeader';
+import ImageFadeShow from '@/components/ImageFadeShow/ImageFadeShow';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 
@@ -147,10 +147,3 @@ About.getLayout = function getLayout(page: ReactElement) {
 };
 
 export default About;
-
-/*
-Os Ativistas são espíritos livres animados, criativos e sociáveis, que sempre encontram um motivo para sorrir.
-Os indivíduos Extrovertidos se envolvem facilmente em atividades de grupo e valorizam a interação social. Eles costumam ser visivelmente animados e demonstram entusiasmo.
-Os indivíduos Intuitivos são muito imaginativos, de mente aberta e curiosos. Eles valorizam a originalidade e focam em significados ocultos e possibilidades remotas.
-Os indivíduos Desbravadores são ótimos em improvisar e se adaptar às oportunidades. Eles costumam ser não conformistas flexíveis que valorizam mais a novidade do que a estabilidade.
-*/
