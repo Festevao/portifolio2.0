@@ -31,7 +31,7 @@ const About: NextPageWithLayout = () => {
         </p>
         <p>
           Sou do tipo de pessoa que valoriza sonhos e paixões. Não me importa tanto o que você faz para ganhar a vida;
-          sou mais interessado em saber o que realmente deseja e se tem a coragem de seguir seus verdadeiros anseios
+          estou mais interessado em saber o que realmente deseja e se tem a coragem de seguir seus verdadeiros anseios
           (e isso também vale pra mim). Mas não se engane, posso parecer uma pessoa emotiva, mas sempre valorizei o
           pensamento lógico e focado. 
         </p>
@@ -60,14 +60,16 @@ const About: NextPageWithLayout = () => {
             ]}
           />
         </div>
-        <div className='flex flex-row justify-center items-center text-xs md:text-lg'>
+        <div className='flex flex-col justify-center items-center text-xs md:text-base lg:text-lg'>
+          <h1 className='text-2xl lg:text-4xl font-bold'>Música</h1>
           <p className='p-6 text-justify'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
           </p>
         </div>
-        <div className='flex flex-row justify-center items-center text-xs md:text-lg'>
+        <div className='flex flex-col justify-center items-center text-xs md:text-base lg:text-lg'>
+          <h1 className='text-2xl lg:text-4xl font-bold'>Viagens</h1>
           <p className='p-6 text-justify'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
           </p>
         </div>
         <div className='flex flex-row justify-center items-center md:p-6'>
@@ -106,9 +108,10 @@ const About: NextPageWithLayout = () => {
             ]}
           />
         </div>
-        <div className='flex flex-row justify-center items-center text-xs md:text-lg'>
+        <div className='flex flex-col justify-center items-center text-xs md:text-base lg:text-lg'>
+          <h1 className='text-2xl lg:text-4xl font-bold'>Jogos</h1>
           <p className='p-6 text-justify'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
           </p>
         </div>
       </div>
