@@ -3,6 +3,8 @@ import { NextPageWithLayout } from '../../types/next'
 import Layout from '../../components/Layout/Layout';
 import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
 import ImageFadeShow from '../../components/ImageFadeShow/ImageFadeShow';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 const About: NextPageWithLayout = () => {
   const calculateAge = (birthDateStr: string) => {
@@ -38,10 +40,6 @@ const About: NextPageWithLayout = () => {
           para a formação de quem somos.
         </p>
       </section>
-      {/* <h1 className='text-3xl lg:text-5xl font-bold underline mb-16 mt-20'>Personalidade</h1>
-      <section className='text-justify w-full lg:text-xl space-y-5'>
-
-      </section> */}
       <h1 className='text-3xl lg:text-5xl font-bold underline mb-16 mt-20'>Meus Hobbies</h1>
       <div className='w-full lg:text-xl grid grid-cols-2'>
         <div className='flex flex-row justify-center items-center md:p-6'>
@@ -115,9 +113,28 @@ const About: NextPageWithLayout = () => {
         </div>
       </div>
       <h1 className='text-3xl lg:text-5xl font-bold underline mb-16 mt-20'>Highlights</h1>
-      <p className='text-justify w-full lg:text-xl'>
+      <p className='text-justify w-full lg:text-xl mb-6'>
         Aqui fica um resumo em imagens dos momentos mais importantes que registrei até hoje:
       </p>
+      <Carousel
+        autoPlay
+        showThumbs={false}
+        infiniteLoop={true}
+        className='w-full'
+      >
+        <div className='min-h-[20vh] h-full w-full flex justify-center items-center'>
+          <img src="https://placehold.co/415x100?text=Hello+3" />
+          <p className="legend">Legend 1</p>
+        </div>
+        <div className='min-h-[20vh] h-full w-full flex justify-center items-center'>
+          <img src="https://placehold.co/415x100?text=Hello+3" />
+          <p className="legend">Legend 2</p>
+        </div>
+        <div className='min-h-[20vh] h-full w-full flex justify-center items-center'>
+          <img src="https://placehold.co/415x100?text=Hello+3" />
+          <p className="legend">Legend 3</p>
+        </div>
+      </Carousel>
     </div>
   );
 };
