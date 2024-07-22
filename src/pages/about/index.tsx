@@ -1,7 +1,8 @@
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from '../../types/next'
 import Layout from '../../components/Layout/Layout';
-import ProfileHeader from '@/components/ProfileHeader/ProfileHeader';
+import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
+import ImageFadeShow from '../../components/ImageFadeShow/ImageFadeShow';
 
 const About: NextPageWithLayout = () => {
   const calculateAge = (birthDateStr: string) => {
@@ -43,26 +44,71 @@ const About: NextPageWithLayout = () => {
       </section> */}
       <h1 className='text-3xl lg:text-5xl font-bold underline mb-16 mt-20'>Meus Hobbies</h1>
       <div className='w-full lg:text-xl grid grid-cols-2'>
-        <div className='flex flex-row justify-center items-center'>
-
+        <div className='flex flex-row justify-center items-center md:p-6'>
+          <ImageFadeShow 
+            images={[
+              {
+                src: '/img/hobby-music-1.jpg'
+              },
+              {
+                src: '/img/hobby-music-2.jpg'
+              },
+              {
+                src: '/img/hobby-music-3.jpg'
+              },
+              {
+                src: '/img/hobby-music-4.jpg'
+              },
+            ]}
+          />
         </div>
-        <div className='flex flex-row justify-center items-center'>
+        <div className='flex flex-row justify-center items-center text-xs md:text-lg'>
           <p className='p-6 text-justify'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
           </p>
         </div>
-        <div className='flex flex-row justify-center items-center'>
+        <div className='flex flex-row justify-center items-center text-xs md:text-lg'>
           <p className='p-6 text-justify'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
           </p>
         </div>
-        <div className='flex flex-row justify-center items-center'>
-
+        <div className='flex flex-row justify-center items-center md:p-6'>
+        <ImageFadeShow 
+            images={[
+              {
+                src: 'https://placehold.co/50x50?text=1'
+              },
+              {
+                src: 'https://placehold.co/50x50?text=2'
+              },
+              {
+                src: 'https://placehold.co/50x50?text=3'
+              },
+              {
+                src: 'https://placehold.co/50x50?text=4'
+              },
+            ]}
+          />
         </div>
-        <div className='flex flex-row justify-center items-center'>
-
+        <div className='flex flex-row justify-center items-center md:p-6'>
+        <ImageFadeShow 
+            images={[
+              {
+                src: 'https://placehold.co/50x50?text=1'
+              },
+              {
+                src: 'https://placehold.co/50x50?text=2'
+              },
+              {
+                src: 'https://placehold.co/50x50?text=3'
+              },
+              {
+                src: 'https://placehold.co/50x50?text=4'
+              },
+            ]}
+          />
         </div>
-        <div className='flex flex-row justify-center items-center'>
+        <div className='flex flex-row justify-center items-center text-xs md:text-lg'>
           <p className='p-6 text-justify'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
           </p>

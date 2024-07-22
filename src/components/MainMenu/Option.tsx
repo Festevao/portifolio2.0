@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ReactNode, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 
-type Props = {
+interface Props {
   children?: ReactNode;
   maxIndex: number;
   index: number;
