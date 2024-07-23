@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from '../../types/next'
-import Layout from '../../components/Layout/LayoutTemp';
+import Layout from '../../components/Layout/Layout';
 import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
 import ImageFadeShow from '../../components/ImageFadeShow/ImageFadeShow';
 import "react-responsive-carousel/lib/styles/carousel.min.css";

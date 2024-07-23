@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from '../../types/next'
-import Layout from '../../components/Layout/LayoutTemp';
+import Layout from '../../components/Layout/Layout';
 
 const Contact: NextPageWithLayout = () => {
   return <div>Contact Page</div>;
