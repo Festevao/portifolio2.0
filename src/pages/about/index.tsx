@@ -107,7 +107,7 @@ const About: NextPageWithLayout = () => {
         <ImageFadeShow 
             images={[
               {
-                src: '/img/hobbies/games/batman.jpg'
+                src: '/img/hobbies/games/batman.jpeg'
               },
               {
                 src: '/img/hobbies/games/kdh.jpeg'
