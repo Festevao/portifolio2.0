@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from '../../types/next'
-import Layout from '../../components/Layout/Layout';
+import Layout from '../../components/Layout/LayoutTemp';
 
 const Education: NextPageWithLayout = () => {
   return <div>Education Page</div>;
