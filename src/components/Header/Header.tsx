@@ -74,8 +74,8 @@ const Header = () => {
       <div className='relative hidden lg:flex flex-row lg:gap-[2%] items-center justify-center w-full'>
         <RenderLinks />
       </div>
-      <div className='lg:hidden flex items-center ml-4'>
-        <button onClick={toggleMenu} className='p-1 focus:outline-none'>
+      <div className='lg:hidden flex items-end ml-4 pb-3'>
+        <button onClick={toggleMenu} className='p-[2px] focus:outline-none border-2 border-white rounded-sm'>
           <svg className='w-6 h-6 text-white' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
             <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M4 6h16M4 12h16m-7 6h7'></path>
           </svg>

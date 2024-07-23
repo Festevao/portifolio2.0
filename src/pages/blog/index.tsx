@@ -3,7 +3,11 @@ import { NextPageWithLayout } from '../../types/next'
 import Layout from '../../components/Layout/Layout';
 
 const Blog: NextPageWithLayout = () => {
-  return <div>Blog Page</div>;
+  return (
+    <div>
+      <p>Publicações + integração com DB</p>
+    </div>
+  );
 };
 
 Blog.getLayout = function getLayout(page: ReactElement) {

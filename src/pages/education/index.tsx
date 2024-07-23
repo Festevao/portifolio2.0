@@ -3,7 +3,13 @@ import { NextPageWithLayout } from '../../types/next'
 import Layout from '../../components/Layout/Layout';
 
 const Education: NextPageWithLayout = () => {
-  return <div>Education Page</div>;
+  return (
+    <div>
+      <p>Faculdade</p>
+      <p>Cursos</p>
+      <p>Mentores</p>
+    </div>
+  );
 };
 
 Education.getLayout = function getLayout(page: ReactElement) {

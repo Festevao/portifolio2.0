@@ -22,7 +22,7 @@ const About: NextPageWithLayout = () => {
   }
 
   return (
-    <div className='flex flex-col w-[80%] h-full items-center justify-start mb-[5vh]'>
+    <div className='flex flex-col w-[95%] md:w-[80%] h-full items-center justify-start mb-[5vh]'>
       <ProfileHeader />
       <h1 className='text-3xl lg:text-5xl font-bold underline mb-16 mt-10'>Sobre mim</h1>
       <section className='text-justify w-full lg:text-xl space-y-5'>
@@ -46,16 +46,16 @@ const About: NextPageWithLayout = () => {
           <ImageFadeShow 
             images={[
               {
-                src: '/img/hobby-music-1.jpg'
+                src: '/img/hobbies/music/hobby-music-1.jpg'
               },
               {
-                src: '/img/hobby-music-2.jpg'
+                src: '/img/hobbies/music/hobby-music-2.jpg'
               },
               {
-                src: '/img/hobby-music-3.jpg'
+                src: '/img/hobbies/music/hobby-music-3.jpg'
               },
               {
-                src: '/img/hobby-music-4.jpg'
+                src: '/img/hobbies/music/hobby-music-4.jpg'
               },
             ]}
           />
@@ -63,29 +63,42 @@ const About: NextPageWithLayout = () => {
         <div className='flex flex-col justify-center items-center text-xs md:text-base lg:text-lg'>
           <h1 className='text-2xl lg:text-4xl font-bold'>Música</h1>
           <p className='p-6 text-justify'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
+            Sou apaixonado por música e ela está sempre comigo, seja enquanto trabalho, estudo ou relaxo. Toco violão,
+            guitarra, bateria e violino, a raiz disso foi ter participado do grupo de louvor da igreja, uma experiência
+            que gera saudades até hoje. Adoro tocar e cantar com amigos, criando momentos inesquecíveis ao som das nossas músicas favoritas.
           </p>
         </div>
         <div className='flex flex-col justify-center items-center text-xs md:text-base lg:text-lg'>
           <h1 className='text-2xl lg:text-4xl font-bold'>Viagens</h1>
           <p className='p-6 text-justify'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
+            Viajar é a melhor forma de descansar e renovar as energias. Adoro explorar novos lugares, seja perto ou longe. A companhia pode
+            variar: amigos próximos, novas amizades ou até mesmo sozinho. Cada viagem é uma oportunidade de criar memórias incríveis,
+            descobrir novas culturas e apreciar a beleza do mundo.
           </p>
         </div>
         <div className='flex flex-row justify-center items-center md:p-6'>
         <ImageFadeShow 
             images={[
               {
-                src: 'https://placehold.co/50x50?text=1'
+                src: '/img/hobbies/travels/travel-fl-1.jpg'
               },
               {
-                src: 'https://placehold.co/50x50?text=2'
+                src: '/img/hobbies/travels/travel-fl-2.jpg'
               },
               {
-                src: 'https://placehold.co/50x50?text=3'
+                src: '/img/hobbies/travels/travel-fl-3.jpg'
               },
               {
-                src: 'https://placehold.co/50x50?text=4'
+                src: '/img/hobbies/travels/travel-jf-1.jpg'
+              },
+              {
+                src: '/img/hobbies/travels/travel-jf-2.jpg'
+              },
+              {
+                src: '/img/hobbies/travels/travel-tr-1.jpg'
+              },
+              {
+                src: '/img/hobbies/travels/travel-ub-1.jpg'
               },
             ]}
           />
@@ -111,7 +124,10 @@ const About: NextPageWithLayout = () => {
         <div className='flex flex-col justify-center items-center text-xs md:text-base lg:text-lg'>
           <h1 className='text-2xl lg:text-4xl font-bold'>Jogos</h1>
           <p className='p-6 text-justify'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing.
+          Jogos são minha maneira favorita de relaxar e me divertir. Seja explorando mundos incríveis em Skyrim,
+          enfrentando desafios emocionantes em Batman: Arkham Knight, ou mergulhando em aventuras mágicas em Kingdom Hearts,
+          sempre encontro uma forma de me desligar e relaxar. Também adoro jogar com amigos, compartilhando risadas
+          e estratégias enquanto nos divertimos juntos.
           </p>
         </div>
       </div>

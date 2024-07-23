@@ -3,7 +3,12 @@ import { NextPageWithLayout } from '../../types/next'
 import Layout from '../../components/Layout/Layout';
 
 const Contact: NextPageWithLayout = () => {
-  return <div>Contact Page</div>;
+  return (
+    <div>
+      <p>Redes sociais</p>
+      <p>Informações de contato pessoais</p>
+    </div>
+  );
 };
 
 Contact.getLayout = function getLayout(page: ReactElement) {
