@@ -2,7 +2,7 @@ const ProfileHeader = () => {
   return (
     <div className='relative w-full flex flex-col mt-[1%] mb-[10%]'>
       <img
-        src="https://placehold.co/415x100?text=Hello+3"
+        src="/img/wind-pic.png"
         alt=""
         className='w-full'
       />

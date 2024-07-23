@@ -107,16 +107,13 @@ const About: NextPageWithLayout = () => {
         <ImageFadeShow 
             images={[
               {
-                src: 'https://placehold.co/50x50?text=1'
+                src: '/img/hobbies/games/batman.jpg'
               },
               {
-                src: 'https://placehold.co/50x50?text=2'
+                src: '/img/hobbies/games/kdh.jpeg'
               },
               {
-                src: 'https://placehold.co/50x50?text=3'
-              },
-              {
-                src: 'https://placehold.co/50x50?text=4'
+                src: '/img/hobbies/games/skyrim.gif'
               },
             ]}
           />
