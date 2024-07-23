@@ -9,7 +9,7 @@ const ProfileHeader = () => {
       <img
         src="/img/profile.png"
         alt=""
-        className='absolute rounded-full aspect-square right-[10%] lg:right-[15%] bottom-[-60%] lg:bottom-[-40%] w-[25%] lg:w-[20%] border-4 border-white'
+        className='absolute rounded-full aspect-square right-[36.5%] lg:right-[15%] bottom-[-60%] lg:bottom-[-40%] w-[25%] lg:w-[20%] border-4 border-white'
       />
     </div>
   );
