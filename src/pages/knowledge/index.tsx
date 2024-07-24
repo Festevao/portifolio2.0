@@ -53,6 +53,12 @@ const Knowledge: NextPageWithLayout = () => {
           name='Java'
           showRateText
         />
+        <SkillRating 
+          logoUrl='/img/programming languages/php.png'
+          rate={1}
+          name='Php'
+          showRateText
+        />
       </div>
       <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Tecnologias (Desenvolvimento)</h1>
       <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Redes & Servidores</h1>
