@@ -16,8 +16,8 @@ const SkillRating: React.FC<SkillRatingProps> = ({ logoUrl, rate, name, showNumb
 
   const RenderGreenBars = () => {
     return greenArr.map((_, index) => (
-      <div className='flex flex-col w-full items-center justify-center text-[0.5rem] sm:text-[0.75rem] text-green-500'>
-        <div key={index} className="w-full h-2 bg-green-500 rounded-full"></div>
+      <div key={`skill-rate-${index + 1}`} className='flex flex-col w-full items-center justify-center text-[0.5rem] sm:text-[0.75rem] text-green-500'>
+        <div className="w-full h-2 bg-green-500 rounded-full"></div>
         {showNumber && index + 1}
       </div>
     ));
@@ -25,8 +25,8 @@ const SkillRating: React.FC<SkillRatingProps> = ({ logoUrl, rate, name, showNumb
   
   const RenderGrayBars = () => {
     return [...Array(grayBars)].map((_, index) => (
-      <div className='flex flex-col w-full items-center justify-center text-[0.5rem] sm:text-[0.75rem] text-gray-300'>
-        <div key={index} className="w-full h-2 bg-gray-300 rounded-full"></div>
+      <div key={`skill-rate-${greenArr.length + index + 1}`} className='flex flex-col w-full items-center justify-center text-[0.5rem] sm:text-[0.75rem] text-gray-300'>
+        <div className="w-full h-2 bg-gray-300 rounded-full"></div>
         {showNumber && greenArr.length + index + 1}
       </div>
     ));
