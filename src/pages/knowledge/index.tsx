@@ -1,13 +1,70 @@
 import { ReactElement } from 'react';
 import { NextPageWithLayout } from '../../types/next'
 import Layout from '../../components/Layout/Layout';
+import SkillRating from '@/components/SkillRating/SkillRating';
 
 const Knowledge: NextPageWithLayout = () => {
   return (
-    <div>
-      <p>Linguagens</p>
-      <p>Tecnologias</p>
-      <p>Serviços contratáveis</p>
+    <div className='w-[95%] lg:w-[80%] h-full flex flex-col justify-start items-center'>
+      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Base de conhecimento</h1>
+      <section className='text-justify w-full lg:text-xl space-y-5'>
+        <p>
+          Bem-vindo à minha Base de Conhecimento! Nesta seção, compartilho tudo que aprendi ao longo da minha
+          jornada como desenvolvedor e entusiasta de tecnologia. Aqui, você encontrará informações detalhadas
+          sobre uma variedade de tópicos, incluindo linguagens de programação, conceitos de redes e as diversas
+          tecnologias que já utilizei em meus projetos.
+        </p>
+      </section>
+      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Linguagens de programação</h1>
+      <div className='w-full grid grid-cols-2'>
+        <SkillRating 
+          logoUrl='/img/programming languages/javascript.png'
+          rate={4}
+          name='JavaScript'
+          showNumber
+        />
+        <SkillRating 
+          logoUrl='/img/programming languages/typescript.png'
+          rate={4}
+          name='TypeScript'
+          showNumber
+        />
+        <SkillRating 
+          logoUrl='/img/programming languages/c.png'
+          rate={3}
+          name='C'
+          showNumber
+        />
+        <SkillRating 
+          logoUrl='/img/programming languages/python.webp'
+          rate={2}
+          name='Python'
+          showNumber
+        />
+        <SkillRating 
+          logoUrl='/img/programming languages/golang.jpg'
+          rate={2}
+          name='Golang'
+          showNumber
+        />
+        <SkillRating 
+          logoUrl='/img/programming languages/java.png'
+          rate={1}
+          name='Java'
+          showNumber
+        />
+      </div>
+      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Tecnologias (Desenvolvimento)</h1>
+      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Redes & Servidores</h1>
+      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Tecnologias (Redes & Servidores)</h1>
+      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Serviços contratáveis</h1>
+      <section className='text-justify w-full lg:text-xl space-y-5'>
+        <p>
+          Finalmente, se você está buscando por um profissional capacitado para transformar suas ideias em realidade,
+          confira os serviços que ofereço. Seja para desenvolvimento de software, consultoria em redes ou implementação
+          de novas tecnologias, estou à disposição para colaborar em projetos desafiadores e inovadores.
+        </p>
+      </section>
     </div>
   );
 };
