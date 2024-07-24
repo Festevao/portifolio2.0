@@ -21,37 +21,37 @@ const Knowledge: NextPageWithLayout = () => {
           logoUrl='/img/programming languages/javascript.png'
           rate={4}
           name='JavaScript'
-          showNumber
+          showRateText
         />
         <SkillRating 
           logoUrl='/img/programming languages/typescript.png'
           rate={4}
           name='TypeScript'
-          showNumber
+          showRateText
         />
         <SkillRating 
           logoUrl='/img/programming languages/c.png'
           rate={3}
           name='C'
-          showNumber
+          showRateText
         />
         <SkillRating 
           logoUrl='/img/programming languages/python.webp'
           rate={2}
           name='Python'
-          showNumber
+          showRateText
         />
         <SkillRating 
           logoUrl='/img/programming languages/golang.jpg'
           rate={2}
           name='Golang'
-          showNumber
+          showRateText
         />
         <SkillRating 
           logoUrl='/img/programming languages/java.png'
           rate={1}
           name='Java'
-          showNumber
+          showRateText
         />
       </div>
       <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Tecnologias (Desenvolvimento)</h1>
