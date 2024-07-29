@@ -97,7 +97,7 @@ const TechSection: React.FC<Props> = ({ options, data }) => {
         {tooltip && (
           <div
             ref={tooltipRef}
-            className='fixed bg-gray-800 shadow-2xl text-white text-sm rounded p-2 transition-opacity duration-300 max-w-[250px] mr-10'
+            className='fixed bg-gray-800 shadow-2xl text-white text-xs sm:text-sm rounded p-2 transition-opacity duration-300 max-w-[250px] mr-10'
             style={{ top: tooltip.y, left: tooltip.x }}
           >
             {tooltip.text}
