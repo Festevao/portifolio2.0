@@ -69,7 +69,7 @@ const TechSection: React.FC<Props> = ({ options, data }) => {
             key={name}
             className={`\ 
               \ flex flex-col items-center justify-center border-2 rounded-lg p-3 gap-2 shadow-lg cursor-pointer
-              \ w-[110px] sm:w-[200px] hover:border-gray-300
+              \ w-[110px] sm:w-[250px] hover:border-gray-400 text-xs sm:text-base
             `}
             onClick={handleClick}
           >

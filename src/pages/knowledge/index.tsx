@@ -73,8 +73,11 @@ const Knowledge: NextPageWithLayout = () => {
       <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Tecnologias (Desenvolvimento)</h1>
       <section className='text-justify w-full lg:text-xl space-y-5 mb-8'>
         <p>
-          Explore minha expertise em várias tecnologias de desenvolvimento. Aqui, detalho as ferramentas e frameworks que
-          utilizo para criar soluções inovadoras e eficientes, destacando minhas habilidades e experiências práticas.
+          Nesta seção, compartilho as ferramentas de desenvolvimento que já utilizei ao longo da minha carreira. Cada uma delas
+          contribuiu de forma significativa para o meu aprendizado e crescimento profissional. Você pode explorar e filtrar essas
+          tecnologias por tópicos, conforme sua preferência. Além disso, ao clicar no card de uma ferramenta, você poderá ver uma
+          breve descrição sobre ela. Sinta-se à vontade para descobrir como cada ferramenta pode ser útil em diferentes cenários
+          de desenvolvimento.
         </p>
       </section>
       <TechSection data={devTechsData} options={devTechsOptions}/>

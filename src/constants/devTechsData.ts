@@ -65,7 +65,78 @@ export const devTechsData = [
     description: 'Swagger é uma ferramenta de código aberto usada para projetar, construir, documentar e consumir APIs RESTful. Fornece uma interface de usuário interativa para testar as operações da API, além de gerar documentação automática com base na especificação OpenAPI.',
     imgUrl: '/img/technologies development/swagger.webp',
   },
+  {
+    tags: ['Todos', 'JavaScript/TypeScript', 'Testes', 'Frameworks'],
+    name: 'Puppeteer',
+    description: 'Puppeteer é uma biblioteca Node.js que fornece uma API de alto nível para controlar o navegador via DevTools Protocol. Utilizado principalmente para testes automatizados, captura de tela e scraping de sites, Puppeteer permite a interação programática com páginas web, incluindo a navegação, geração de PDFs e testes de desempenho. Sua capacidade de simular ações de usuários reais, como cliques e entradas de teclado, faz dele uma ferramenta poderosa.',
+    imgUrl: '/img/technologies development/puppeteer.png',
+  },
+  {
+    tags: ['Todos', 'JavaScript/TypeScript'],
+    name: 'HTML|CSS|JS',
+    description: 'HTML, CSS e JavaScript são as três tecnologias fundamentais para o desenvolvimento web. HTML (HyperText Markup Language) estrutura o conteúdo da web, CSS (Cascading Style Sheets) estiliza e layouta essas estruturas, e JavaScript adiciona interatividade e comportamento dinâmico.',
+    imgUrl: '/img/technologies development/html_css_js.png',
+  },
+  {
+    tags: ['Todos', 'Organização', 'Testes'],
+    name: 'Postman',
+    description: 'Postman é uma plataforma de colaboração para desenvolvimento de APIs. Facilita testes de API, automação de fluxos de trabalho e documentação. Com uma interface intuitiva, Postman permite enviar solicitações HTTP e visualizar respostas rapidamente.',
+    imgUrl: '/img/technologies development/postman.png',
+  },
+  {
+    tags: ['Todos', 'Organização', 'Testes'],
+    name: 'Insomnia',
+    description: 'Insomnia é uma ferramenta de cliente API que simplifica testes de API e desenvolvimento. Com suporte para múltiplos protocolos e uma interface limpa, é ideal para desenvolvedores que buscam eficiência e precisão.',
+    imgUrl: '/img/technologies development/insomnia.png',
+  },
+  {
+    tags: ['Todos', 'Organização'],
+    name: 'Git',
+    description: 'Git é um sistema de controle de versão distribuído, essencial para rastrear mudanças no código. Permite colaboração eficiente em projetos de desenvolvimento de software, facilitando o gerenciamento de versões e branches.',
+    imgUrl: '/img/technologies development/git.png',
+  },
+  {
+    tags: ['Todos', 'Organização', 'Banco de dados'],
+    name: 'Beekeeper',
+    description: 'Beekeeper Studio é um cliente de banco de dados SQL de código aberto. Oferece uma interface intuitiva para gerenciamento e consultas em vários bancos de dados, como MySQL, PostgreSQL e SQLite.',
+    imgUrl: '/img/technologies development/beekeeper.png',
+  },
+  {
+    tags: ['Todos', 'JavaScript/TypeScript', 'Frameworks'],
+    name: 'WhatsApp Web.js',
+    description: 'WhatsApp Web.js é uma biblioteca JavaScript para interagir com o WhatsApp Web. Permite automação de mensagens, criação de bots e integração com outras aplicações usando a API do WhatsApp Web.',
+    imgUrl: '/img/technologies development/whatsapp-web.js.png',
+  },
+  {
+    tags: ['Todos', 'Banco de dados'],
+    name: 'Postgres',
+    description: 'PostgreSQL é um poderoso sistema de banco de dados relacional de código aberto. Suporta consultas complexas, extensibilidade e conformidade com ACID, ideal para aplicações críticas e análise de dados.',
+    imgUrl: '/img/technologies development/postgres.png',
+  },
+  {
+    tags: ['Todos', 'Banco de dados'],
+    name: 'MySQL',
+    description: 'MySQL é um sistema de gerenciamento de banco de dados relacional amplamente utilizado. Conhecido por sua rapidez, confiabilidade e facilidade de uso, é ideal para aplicações web e serviços online.',
+    imgUrl: '/img/technologies development/mysql.png',
+  },
+  {
+    tags: ['Todos', 'Banco de dados'],
+    name: 'MongoDB',
+    description: 'MongoDB é um banco de dados NoSQL orientado a documentos. Utiliza documentos JSON-like, permitindo flexibilidade e escalabilidade, ideal para aplicações modernas que lidam com grandes volumes de dados variados.',
+    imgUrl: '/img/technologies development/mongodb.png',
+  },
 ];
+
+/*
+  postman
+  insomnia
+  git
+  beekeeper
+  whatsapp-web.js
+  postgres
+  mysql
+  mongoDb
+*/
 
 export const devTechsOptions = [
   {
@@ -79,6 +150,10 @@ export const devTechsOptions = [
   {
     tag: 'Frameworks',
     imgUrl: '/img/technologies development/framework-icon.png',
+  },
+  {
+    tag: 'Testes',
+    imgUrl: '/img/technologies development/software-test.png',
   },
   {
     tag: 'Banco de dados',
