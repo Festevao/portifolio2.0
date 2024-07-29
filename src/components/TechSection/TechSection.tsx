@@ -17,6 +17,7 @@ interface Props {
 const TechSection: React.FC<Props> = ({ options, data }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number } | null>(null);
+  const [visibleItems, setVisibleItems] = useState<number>(10);
   const tooltipRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -41,56 +42,99 @@ const TechSection: React.FC<Props> = ({ options, data }) => {
     };
   }, [tooltip]);
 
+  const handleLoadMore = () => {
+    setVisibleItems(prev => prev + 10);
+  };
+
   const RenderData = () => {
-    return data
-      .filter(({ tags }) => tags.includes(selectedOption.tag))
-      .map(({ imgUrl, name, description }) => {
-        const handleClick = (event: React.MouseEvent) => {
-          const { clientX, clientY } = event;
-          const tooltipWidth = 150;
-          const tooltipHeight = 60;
+    const filteredData = data.filter(({ tags }) => tags.includes(selectedOption.tag));
 
-          let x = clientX + 10;
-          let y = clientY + 10;
+    const itemsToDisplay = selectedOption.tag === 'Todos' 
+      ? filteredData.slice(0, visibleItems)
+      : filteredData;
 
-          if (x + tooltipWidth > window.innerWidth) {
-            x = clientX - tooltipWidth - 10;
-          }
+    return (
+      <>
+        {itemsToDisplay.map(({ imgUrl, name, description }) => {
+          const handleClick = (event: React.MouseEvent) => {
+            const { clientX, clientY } = event;
+            const tooltipWidth = 150;
+            const tooltipHeight = 60;
 
-          if (y + tooltipHeight > window.innerHeight) {
-            y = clientY - tooltipHeight - 10;
-          }
+            let x = clientX + 10;
+            let y = clientY + 10;
 
-          setTooltip({ text: description, x, y });
-        };
+            if (x + tooltipWidth > window.innerWidth) {
+              x = clientX - tooltipWidth - 10;
+            }
 
-        return (
+            if (y + tooltipHeight > window.innerHeight) {
+              y = clientY - tooltipHeight - 10;
+            }
+
+            setTooltip({ text: description, x, y });
+          };
+
+          return (
+            <div
+              key={name}
+              className={`\ 
+                \ flex flex-col items-center justify-center border-2 rounded-lg p-3 gap-2 shadow-lg cursor-pointer w-[110px]
+                \ sm:w-[250px] hover:border-gray-400 text-xs sm:text-base
+              `}
+              onClick={handleClick}
+            >
+              <div className='flex items-center justify-center w-full'>
+                <img
+                  className='h-14 min-w-[50px]'
+                  src={imgUrl}
+                  alt={name}
+                />
+              </div>
+              <hr className='w-full'/>
+              {name}
+            </div>
+          );
+        })}
+        {selectedOption.tag === 'Todos' && visibleItems < filteredData.length && (
           <div
-            key={name}
             className={`\ 
-              \ flex flex-col items-center justify-center border-2 rounded-lg p-3 gap-2 shadow-lg cursor-pointer
-              \ w-[110px] sm:w-[250px] hover:border-gray-400 text-xs sm:text-base
+              \ flex flex-col items-center justify-center border-2 rounded-lg p-3 gap-2 shadow-lg cursor-pointer w-[110px]
+              \ sm:w-[250px] hover:border-gray-400 text-xs sm:text-base
             `}
-            onClick={handleClick}
+            onClick={handleLoadMore}
           >
             <div className='flex items-center justify-center w-full'>
-              <img
-                className='h-14 min-w-[50px]'
-                src={imgUrl}
-                alt={name}
-              />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className='h-[59px]'
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="8" y1="12" x2="16" y2="12" />
+              <line x1="12" y1="8" x2="12" y2="16" />
+            </svg>
             </div>
             <hr className='w-full'/>
-            {name}
+            Ver Mais
           </div>
-        );
-      });
+        )}
+      </>
+    );
   };
 
   return (
     <section className='w-full'>
       <div className='w-full flex flex-col justify-center gap-10 items-center'>
-        <SelectWithImages options={options} onChange={(opt) => { setSelectedOption(opt!) }} />
+        <SelectWithImages options={options} onChange={(opt) => {
+          setSelectedOption(opt!);
+          if (opt?.tag !== 'Todos') setVisibleItems(10);
+        }} />
         <div className='w-full flex flex-wrap justify-center items-center gap-4'>
           <RenderData />
         </div>
