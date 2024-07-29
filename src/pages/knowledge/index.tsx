@@ -2,6 +2,8 @@ import { ReactElement } from 'react';
 import { NextPageWithLayout } from '../../types/next'
 import Layout from '../../components/Layout/Layout';
 import SkillRating from '@/components/SkillRating/SkillRating';
+import TechSection from '@/components/TechSection/TechSection';
+import { devTechsData, devTechsOptions } from '@/constants/devTechsData';
 
 const Knowledge: NextPageWithLayout = () => {
   return (
@@ -75,6 +77,7 @@ const Knowledge: NextPageWithLayout = () => {
           utilizo para criar soluções inovadoras e eficientes, destacando minhas habilidades e experiências práticas.
         </p>
       </section>
+      <TechSection data={devTechsData} options={devTechsOptions}/>
       <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Redes & Servidores</h1>
       <section className='text-justify w-full lg:text-xl space-y-5 mb-8'>
         <p>
