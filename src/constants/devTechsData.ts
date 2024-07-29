@@ -1,54 +1,54 @@
 export const devTechsData = [
   {
-    tags: ['JavaScript', 'Typescript'],
+    tags: ['Todos', 'JavaScript', 'Typescript'],
     name: 'NodeJS',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, nibh sit amet vestibulum convallis, quam lacus convallis dolor, et porta purus diam aliquet lorem. Ut fermentum id quam a placerat.',
     imgUrl: '/img/technologies development/nodeJS.png',
   },
   {
-    tags: ['JavaScript', 'Typescript'],
+    tags: ['Todos', 'JavaScript', 'Typescript'],
     name: 'NextJS',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, nibh sit amet vestibulum convallis, quam lacus convallis dolor, et porta purus diam aliquet lorem. Ut fermentum id quam a placerat.',
     imgUrl: '/img/technologies development/nextJS.png',
   },
   {
-    tags: ['JavaScript', 'Typescript'],
+    tags: ['Todos', 'JavaScript', 'Typescript'],
     name: 'NestJS',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, nibh sit amet vestibulum convallis, quam lacus convallis dolor, et porta purus diam aliquet lorem. Ut fermentum id quam a placerat.',
     imgUrl: '/img/technologies development/nestJS.png',
   },
   {
-    tags: ['JavaScript', 'Typescript', 'Frameworks'],
+    tags: ['Todos', 'JavaScript', 'Typescript', 'Frameworks'],
     name: 'Express',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, nibh sit amet vestibulum convallis, quam lacus convallis dolor, et porta purus diam aliquet lorem. Ut fermentum id quam a placerat.',
     imgUrl: '/img/technologies development/expressJS.png',
   },
   {
-    tags: ['JavaScript', 'Typescript', 'Frameworks'],
+    tags: ['Todos', 'JavaScript', 'Typescript', 'Frameworks'],
     name: 'NodeMailer',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, nibh sit amet vestibulum convallis, quam lacus convallis dolor, et porta purus diam aliquet lorem. Ut fermentum id quam a placerat.',
     imgUrl: '/img/technologies development/nodemailer.webp',
   },
   {
-    tags: ['JavaScript', 'Typescript', 'Frameworks', 'Banco de dados'],
+    tags: ['Todos', 'JavaScript', 'Typescript', 'Frameworks', 'Banco de dados'],
     name: 'PrismaORM',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, nibh sit amet vestibulum convallis, quam lacus convallis dolor, et porta purus diam aliquet lorem. Ut fermentum id quam a placerat.',
     imgUrl: '/img/technologies development/prisma.png',
   },
   {
-    tags: ['JavaScript', 'Typescript', 'Frameworks', 'Banco de dados'],
+    tags: ['Todos', 'JavaScript', 'Typescript', 'Frameworks', 'Banco de dados'],
     name: 'TypeORM',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, nibh sit amet vestibulum convallis, quam lacus convallis dolor, et porta purus diam aliquet lorem. Ut fermentum id quam a placerat.',
     imgUrl: '/img/technologies development/typeORM.png',
   },
   {
-    tags: ['Banco de dados'],
+    tags: ['Todos', 'Banco de dados'],
     name: 'Redis',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, nibh sit amet vestibulum convallis, quam lacus convallis dolor, et porta purus diam aliquet lorem. Ut fermentum id quam a placerat.',
     imgUrl: '/img/technologies development/redis.png',
   },
   {
-    tags: ['Mensageria'],
+    tags: ['Todos', 'Mensageria'],
     name: 'RabbitMQ',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper, nibh sit amet vestibulum convallis, quam lacus convallis dolor, et porta purus diam aliquet lorem. Ut fermentum id quam a placerat.',
     imgUrl: '/img/technologies development/rabbitmq.png',
@@ -56,6 +56,10 @@ export const devTechsData = [
 ];
 
 export const devTechsOptions = [
+  {
+    tag: 'Todos',
+    imgUrl: '/img/view-icon.png',
+  },
   {
     tag: 'JavaScript',
     imgUrl: '/img/programming languages/javascript.png',

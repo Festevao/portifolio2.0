@@ -1,23 +1,39 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 interface Props {
   options: {
     tag: string;
     imgUrl: string;
   }[];
+  onChange?: (arg?: { tag: string; imgUrl: string }) => void;
 }
 
-const SelectWithImages: React.FC<Props> = ({ options }) => {
+const SelectWithImages: React.FC<Props> = ({ options, onChange }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [isOpen, setIsOpen] = useState(false);
+  const selectRef = useRef<HTMLDivElement>(null);
 
   const handleSelect = (option: { tag: string; imgUrl: string }) => {
     setSelectedOption(option);
+    onChange && onChange(option);
     setIsOpen(false);
   };
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="relative w-full">
+    <div ref={selectRef} className="relative w-full max-w-[250px]">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
