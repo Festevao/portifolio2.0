@@ -125,18 +125,13 @@ export const devTechsData = [
     description: 'MongoDB é um banco de dados NoSQL orientado a documentos. Utiliza documentos JSON-like, permitindo flexibilidade e escalabilidade, ideal para aplicações modernas que lidam com grandes volumes de dados variados.',
     imgUrl: '/img/technologies development/mongodb.png',
   },
+  {
+    tags: ['Todos', 'Frameworks', 'JavaScript/TypeScript'],
+    name: 'Svelte',
+    description: 'Svelte é um framework moderno para construção de interfaces de usuário reativas. Ao invés de usar um virtual DOM, Svelte compila componentes para código altamente eficiente, resultando em aplicações mais rápidas e leves. Ideal para desenvolvedores que buscam simplicidade e desempenho otimizado no front-end.',
+    imgUrl: '/img/technologies development/svelte.svg',
+  },
 ];
-
-/*
-  postman
-  insomnia
-  git
-  beekeeper
-  whatsapp-web.js
-  postgres
-  mysql
-  mongoDb
-*/
 
 export const devTechsOptions = [
   {
