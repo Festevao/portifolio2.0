@@ -74,7 +74,7 @@ export const devTechsOptions = [
   },
   {
     tag: 'JavaScript/TypeScript',
-    imgUrl: '/img/programming languages/javascript.png',
+    imgUrl: '/img/technologies development/jsts.png',
   },
   {
     tag: 'Frameworks',
