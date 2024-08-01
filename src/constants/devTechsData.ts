@@ -84,6 +84,12 @@ export const devTechsData = [
     imgUrl: '/img/technologies development/postman.png',
   },
   {
+    tags: ['Todos', 'Hospedagem/Devops'],
+    name: 'Docker',
+    description: 'Docker permite a criação de ambientes de desenvolvimento consistentes, facilitando a integração e entrega contínuas (CI/CD). Com ele, desenvolvedores podem garantir que suas aplicações funcionem de forma idêntica em diferentes ambientes, simplificando a configuração e o gerenciamento de dependências.',
+    imgUrl: '/img/technologies infra/docker.png',
+  },
+  {
     tags: ['Todos', 'Organização', 'Testes'],
     name: 'Insomnia',
     description: 'Insomnia é uma ferramenta de cliente API que simplifica testes de API e desenvolvimento. Com suporte para múltiplos protocolos e uma interface limpa, é ideal para desenvolvedores que buscam eficiência e precisão.',
@@ -161,5 +167,17 @@ export const devTechsOptions = [
   {
     tag: 'Organização',
     imgUrl: '/img/technologies development/folders-icon.png',
+  },
+  {
+    tag: 'Hospedagem/Devops',
+    imgUrl: '/img/technologies infra/hosting-devops.png',
+  },
+  {
+    tag: 'Redes',
+    imgUrl: '/img/technologies infra/redes.png',
+  },
+  {
+    tag: 'Monitoramento',
+    imgUrl: '/img/technologies infra/monitor.png',
   },
 ]
