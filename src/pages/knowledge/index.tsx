@@ -70,6 +70,13 @@ const Knowledge: NextPageWithLayout = () => {
           showRateText
         />
       </div>
+      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Redes & Servidores</h1>
+      <section className='text-justify w-full lg:text-xl space-y-5 mb-8'>
+        <p>
+          Descubra meu conhecimento em redes e servidores. Nesta seção, compartilho minha experiência na configuração, manutenção
+          e otimização de infraestruturas de rede e servidores, essenciais para garantir desempenho e segurança.
+        </p>
+      </section>
       <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Tecnologias</h1>
       <section className='text-justify w-full lg:text-xl space-y-5 mb-8'>
         <p>
@@ -80,13 +87,6 @@ const Knowledge: NextPageWithLayout = () => {
         </p>
       </section>
       <TechSection data={devTechsData} options={devTechsOptions}/>
-      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Redes & Servidores</h1>
-      <section className='text-justify w-full lg:text-xl space-y-5 mb-8'>
-        <p>
-          Descubra meu conhecimento em redes e servidores. Nesta seção, compartilho minha experiência na configuração, manutenção
-          e otimização de infraestruturas de rede e servidores, essenciais para garantir desempenho e segurança.
-        </p>
-      </section>
       <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Serviços contratáveis</h1>
       <section className='text-justify w-full lg:text-xl space-y-5 mb-8'>
         <p>
