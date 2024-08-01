@@ -8,8 +8,8 @@ import { devTechsData, devTechsOptions } from '@/constants/devTechsData';
 const Knowledge: NextPageWithLayout = () => {
   return (
     <div className='w-[95%] lg:w-[80%] h-full flex flex-col justify-start items-center'>
-      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Base de conhecimento</h1>
-      <section className='text-justify w-full lg:text-xl space-y-5'>
+      <h1 className='text-xl lg:text-2xl font-bold underline mb-5 mt-10 text-center'>Base de conhecimento</h1>
+      <section className='text-justify w-full text-sm lg:text-base space-y-5'>
         <p>
           Bem-vindo à minha Base de Conhecimento! Nesta seção, compartilho tudo que aprendi ao longo da minha
           jornada como desenvolvedor e entusiasta de tecnologia. Aqui, você encontrará informações detalhadas
@@ -17,8 +17,8 @@ const Knowledge: NextPageWithLayout = () => {
           tecnologias que já utilizei em meus projetos.
         </p>
       </section>
-      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Linguagens de programação</h1>
-      <section className='text-justify w-full lg:text-xl space-y-5 mb-8'>
+      <h1 className='text-xl lg:text-2xl font-bold underline mb-5 mt-10 text-center'>Linguagens de programação</h1>
+      <section className='text-justify w-full text-sm lg:text-base space-y-5 mb-8'>
         <p>
           Nesta seção, apresento meu nível de conhecimento nas diversas linguagens de programação com as quais já
           trabalhei. Cada uma é exibida junto a uma classificação intuitiva que reflete minha experiência e proficiência.
@@ -70,15 +70,15 @@ const Knowledge: NextPageWithLayout = () => {
           showRateText
         />
       </div>
-      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Redes & Servidores</h1>
-      <section className='text-justify w-full lg:text-xl space-y-5 mb-8'>
+      <h1 className='text-xl lg:text-2xl font-bold underline mb-5 mt-10 text-center'>Redes & Servidores</h1>
+      <section className='text-justify w-full text-sm lg:text-base space-y-5 mb-8'>
         <p>
           Descubra meu conhecimento em redes e servidores. Nesta seção, compartilho minha experiência na configuração, manutenção
           e otimização de infraestruturas de rede e servidores, essenciais para garantir desempenho e segurança.
         </p>
       </section>
-      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Tecnologias</h1>
-      <section className='text-justify w-full lg:text-xl space-y-5 mb-8'>
+      <h1 className='text-xl lg:text-2xl font-bold underline mb-5 mt-10 text-center'>Tecnologias</h1>
+      <section className='text-justify w-full text-sm lg:text-base space-y-5 mb-8'>
         <p>
           Nesta seção, compartilho as ferramentas de que já utilizei ao longo da minha carreira. Cada uma delas
           contribuiu de forma significativa para o meu aprendizado e crescimento profissional. Você pode explorar e filtrar essas
@@ -87,8 +87,8 @@ const Knowledge: NextPageWithLayout = () => {
         </p>
       </section>
       <TechSection data={devTechsData} options={devTechsOptions}/>
-      <h1 className='text-2xl lg:text-4xl font-bold underline mb-5 mt-10 text-center'>Serviços contratáveis</h1>
-      <section className='text-justify w-full lg:text-xl space-y-5 mb-8'>
+      <h1 className='text-xl lg:text-2xl font-bold underline mb-5 mt-10 text-center'>Serviços contratáveis</h1>
+      <section className='text-justify w-full text-sm lg:text-base space-y-5 mb-8'>
         <p>
           Finalmente, se você está buscando por um profissional capacitado para transformar suas ideias em realidade,
           confira os serviços que ofereço. Seja para desenvolvimento de software, consultoria em redes ou implementação
