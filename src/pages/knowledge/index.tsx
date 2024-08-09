@@ -132,9 +132,14 @@ const Knowledge: NextPageWithLayout = () => {
       <section className='text-justify w-full text-sm lg:text-base space-y-5 mb-8'>
         <p>
           Finalmente, se você está buscando por um profissional capacitado para transformar suas ideias em realidade,
-          confira os serviços que ofereço. Seja para desenvolvimento de software, consultoria em redes ou implementação
-          de novas tecnologias, estou à disposição para colaborar em projetos desafiadores e inovadores.
+          confira os serviços que ofereço e vagas que posso preencher em sua empresa:
         </p>
+        <ul>
+          <li>- Desenvolvedor de software.</li>
+          <li>- Analista de redes.</li>
+          <li>- Analista de TI.</li>
+          <li>- Suporte de TI a eventos.</li>
+        </ul>
       </section>
     </div>
   );

@@ -126,6 +126,18 @@ export const devTechsData = [
     imgUrl: '/img/technologies/mysql.png',
   },
   {
+    tags: ['Todos', 'Frontend', 'Frameworks'],
+    name: 'Tailwind CSS',
+    description: 'Tailwind CSS é um framework utilitário que permite criar layouts customizados rapidamente usando classes pré-definidas e responsivas.',
+    imgUrl: '/img/technologies/tailwind.png',
+  },
+  {
+    tags: ['Todos', 'Frontend', 'Frameworks'],
+    name: 'Bootstrap',
+    description: 'Bootstrap é um framework CSS popular para criar interfaces responsivas e móveis com componentes prontos e sistema de grid flexível.',
+    imgUrl: '/img/technologies/bootstrap.svg',
+  },
+  {
     tags: ['Todos', 'Banco de dados'],
     name: 'MongoDB',
     description: 'MongoDB é um banco de dados NoSQL orientado a documentos. Utiliza documentos JSON-like, permitindo flexibilidade e escalabilidade, ideal para aplicações modernas que lidam com grandes volumes de dados variados.',
@@ -156,7 +168,7 @@ export const devTechsData = [
     imgUrl: '/img/technologies/sequelize.png'
   },
   {
-    tags: ['Todos', 'Organização', 'Frameworks', 'Backend'],
+    tags: ['Todos', 'Frameworks', 'Backend'],
     name: 'class-validator',
     description: 'Class-validator é uma biblioteca que facilita a validação de objetos e classes em projetos TypeScript, garantindo integridade e consistência de dados.',
     imgUrl: '/img/technologies/class-validator-transformer.png'
@@ -198,7 +210,7 @@ export const devTechsData = [
     imgUrl: '/img/technologies/active-directory.png'
   },
   {
-    tags: ['Todos', 'Redes', 'Protocolo'],
+    tags: ['Todos', 'Redes', 'Organização'],
     name: 'LDAP',
     description: 'LDAP é um protocolo para acessar e manter diretórios de informação distribuída em redes IP, utilizado em autenticação e controle de acesso.',
     imgUrl: '/img/technologies/ldap.png'
@@ -258,11 +270,6 @@ export const devTechsData = [
     imgUrl: '/img/technologies/aws-lambda.png'
   },
 ];
-
-/*
-  tailwind
-  bootstrap
-*/
 
 export const devTechsOptions = [
   {
