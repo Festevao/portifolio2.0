@@ -259,6 +259,11 @@ export const devTechsData = [
   },
 ];
 
+/*
+  tailwind
+  bootstrap
+*/
+
 export const devTechsOptions = [
   {
     tag: 'Todos',
