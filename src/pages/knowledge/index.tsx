@@ -21,7 +21,7 @@ const Knowledge: NextPageWithLayout = () => {
       <h1 className='text-xl lg:text-2xl font-bold underline mb-5 mt-10 text-center'>Desenvolvimento de software</h1>
       <section className='text-justify w-full text-sm lg:text-base space-y-5 mb-8'>
         <p>
-          Já fazem {calculateAge('2021-06-02')} anos que trabalho como programador, período no qual desenvolvi uma paixão por "gerar soluções",
+          Já fazem {calculateAge('2021-06-02')} anos que trabalho como programador, período no qual desenvolvi uma paixão por \"gerar soluções\",
           processo que do meu ponto de vista exige muito carinho, planejamento e proatividade. Nesse período
           também entendi a importância de aplicar boas práticas, me atualizar sobre as técnicas de desenvolvimento e lidar com uma equipe.
         </p>
