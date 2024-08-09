@@ -5,22 +5,9 @@ import ProfileHeader from '../../components/ProfileHeader/ProfileHeader';
 import ImageFadeShow from '../../components/ImageFadeShow/ImageFadeShow';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+import { calculateAge } from '@/utils/calculateAge';
 
 const About: NextPageWithLayout = () => {
-  const calculateAge = (birthDateStr: string) => {
-    const birthDate = new Date(birthDateStr);
-    const today = new Date();
-  
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const month = today.getMonth() - birthDate.getMonth();
-  
-    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-  
-    return age;
-  }
-
   return (
     <div className='flex flex-col w-[95%] md:w-[80%] h-full items-center justify-start mb-[5vh]'>
       <ProfileHeader />
