@@ -6,14 +6,13 @@ import { companies } from '@/constants/companies';
 
 const Experience: NextPageWithLayout = () => {
   const RenderCompanies = () => {
-    return companies.map((company) => {
-      return <CompanySection {...company}/>
+    return companies.map((company, index) => {
+      return <CompanySection {...company} key={`company-${index}`}/>
     });
   };
   return (
-    <div className='w-[80%] felx flex-col justify-center items-start'>
+    <div className='w-[80%] flex flex-col justify-center items-start gap-5'>
       <RenderCompanies />
-      <p>Projetos</p>
     </div>
   );
 };
