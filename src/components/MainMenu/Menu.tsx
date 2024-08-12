@@ -48,15 +48,6 @@ const Menu = () => {
       },
     },
     {
-      label: 'Formação',
-      href: '/education',
-      onHover: () => {
-        clearTimeout(timeoutOp);
-        setBgOpacity(0.9);
-        setBgImage('https://placehold.co/415x200?text=Hello+5');
-      },
-    },
-    {
       label: 'Contato',
       href: '/contact',
       onHover: () => {

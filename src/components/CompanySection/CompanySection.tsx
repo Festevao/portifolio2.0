@@ -1,11 +1,18 @@
 import React from 'react';
 
+interface Project {
+  imgUrl: string;
+  name: string;
+  description: string;
+}
+
 interface Props {
   companyName: string;
   jobs: string[];
   jobsDescription: string;
   description: string;
   imgUrl: string;
+  projects?: Project[];
 }
 
 const CompanySection: React.FC<Props> = ({
