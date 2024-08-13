@@ -26,10 +26,6 @@ const Header = () => {
       href: '/professional-experience',
     },
     {
-      label: 'Formação',
-      href: '/education',
-    },
-    {
       label: 'Contato',
       href: '/contact',
     },
