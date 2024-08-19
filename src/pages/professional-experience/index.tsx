@@ -11,7 +11,9 @@ const Experience: NextPageWithLayout = () => {
     });
   };
   return (
-    <div className='w-[80%] flex flex-col justify-center items-start gap-5'>
+    <div className='w-[80%] flex flex-col justify-center items-center gap-5'>
+      <h1 className='text-lg underline font-bold text-center mt-5'>Experiência profissional</h1>
+      <p className='text-center w-full mb-5'>Aqui eu falo um pouquinho de empresas e projetos que ja trabalhei.</p>
       <RenderCompanies />
     </div>
   );

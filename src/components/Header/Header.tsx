@@ -14,7 +14,7 @@ const Header = () => {
       href: '/knowledge',
     },
     {
-      label: 'Blog pessoal',
+      label: 'Blog',
       href: '/blog',
     },
     {
