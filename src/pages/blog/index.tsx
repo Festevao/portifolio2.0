@@ -4,8 +4,8 @@ import Layout from '../../components/Layout/Layout';
 
 const Blog: NextPageWithLayout = () => {
   return (
-    <div>
-      <p>Publicações + integração com DB</p>
+    <div className='flex flex-col justify-center items-center h-full w-full min-h-[70vh]'>
+      <p>Ainda não existem publicações...</p>
     </div>
   );
 };
