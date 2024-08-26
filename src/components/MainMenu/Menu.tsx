@@ -17,7 +17,7 @@ const Menu = () => {
       onHover: () => {
         clearTimeout(timeoutOp);
         setBgOpacity(0.9);
-        setBgImage('https://placehold.co/415x200?text=Hello+1');
+        setBgImage('/img/menu_bg/menu_1.png');
       },
     },
     {
@@ -26,7 +26,7 @@ const Menu = () => {
       onHover: () => {
         clearTimeout(timeoutOp);
         setBgOpacity(0.9);
-        setBgImage('https://placehold.co/415x200?text=Hello+2');
+        setBgImage('/img/menu_bg/menu_2.png');
       },
     },
     {
@@ -35,7 +35,7 @@ const Menu = () => {
       onHover: () => {
         clearTimeout(timeoutOp);
         setBgOpacity(0.9);
-        setBgImage('https://placehold.co/415x200?text=Hello+3');
+        setBgImage('/img/menu_bg/menu_3.png');
       },
     },
     {
@@ -44,7 +44,7 @@ const Menu = () => {
       onHover: () => {
         clearTimeout(timeoutOp);
         setBgOpacity(0.9);
-        setBgImage('https://placehold.co/415x200?text=Hello+4');
+        setBgImage('/img/menu_bg/menu_4.png');
       },
     },
     {
@@ -53,7 +53,7 @@ const Menu = () => {
       onHover: () => {
         clearTimeout(timeoutOp);
         setBgOpacity(0.9);
-        setBgImage('https://placehold.co/415x200?text=Hello+6');
+        setBgImage('/img/menu_bg/menu_6.png');
       },
     },
   ];
@@ -120,7 +120,7 @@ const Menu = () => {
       <img
         alt="Slider"
         src={bgImage}
-        className="absolute flex flex-col justify-center items-center w-full h-full"
+        className="absolute flex flex-col justify-center max-h-[200px] sm:max-h-[500px] md:max-h-[700px] lg:max-h-[1000px] items-center w-full h-full animate-float"
         width={'100%'}
         height={'100%'}
         style={{
