@@ -20,7 +20,7 @@ const ContactCard: React.FC<Props> = ({
       href={href ? href : "#"}
       target='_blank'
     >
-      <div className='w-full rounded-lg shadow-lg flex flex-row justify-center items-center box-content gap-4 p-4'>
+      <div className='w-full rounded-lg shadow-xl border border-black flex flex-row justify-center items-center box-content gap-4 p-4'>
         <img
           className='w-10'
           src={imgUrl}
