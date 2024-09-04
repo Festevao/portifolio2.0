@@ -53,7 +53,7 @@ const Menu = () => {
       onHover: () => {
         clearTimeout(timeoutOp);
         setBgOpacity(0.9);
-        setBgImage('/img/menu_bg/menu_4.png');
+        setBgImage('/img/menu_bg/menu_5.png');
       },
     },
     {
@@ -66,6 +66,18 @@ const Menu = () => {
       },
     },
   ];
+
+  const RenderLinksMobile = () => {
+    return menuLinks.map(({ href, label }, index) => {
+      return (
+        <a href={href} className='w-[80%]' key={`mobile-link-${index}`}>
+          <div className='w-full flex items-center justify-center bg-gray-300 text-black p-5 rounded-md shadow-md shadow-white border border-black'>
+            <span className='underline'>{label}</span>
+          </div>
+        </a>
+      );
+    });
+  }
 
   const RenderLinks = () => {
     return menuLinks.map((link, index) => {
@@ -150,8 +162,13 @@ const Menu = () => {
         </div>
       ))}
       <div
+        className='relative flex md:hidden flex-col w-full h-full min-h-[80vh] justify-start items-center gap-4 animate-float'
+      >
+        <RenderLinksMobile />
+      </div>
+      <div
         ref={menuRef}
-        className='relative flex flex-col min-w-[30vw] max-w-[30%] w-full aspect-square'
+        className='relative hidden md:flex flex-col min-w-[30vw] max-w-[30%] w-full aspect-square'
       >
         <div
           className="relative flex items-center justify-center h-[100%] w-[100%] rounded-full"
@@ -225,6 +242,10 @@ const Menu = () => {
           }
         }
       `}</style>
+      <div className='flex flex-row gap-2 fixed bottom-2 text-xs'>
+        <button className='bg-white rounded-md p-2 underline border border-black shadow-md shadow-white'>  Curriculo online  </button>
+        <button className='bg-white rounded-md p-2 underline border border-black shadow-md shadow-white'>Curriculo presencial</button>
+      </div>
     </div>
   );
 };
