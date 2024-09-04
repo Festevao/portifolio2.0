@@ -108,13 +108,13 @@ const Knowledge: NextPageWithLayout = () => {
             Aqui vão alguns serviços que já prestei:
           </p>
           <ul className='flex flex-col w-full gap-2'>
-            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Planejamento de redes físicas</li>
-            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Análise de segurança de redes</li>
-            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Monitoramento de redes (desempenho)</li>
-            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Manutenção de máquinas</li>
-            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Controle e consultoria de processos de TI</li>
-            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Gestão de servidores</li>
-            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Suporte a eventos com infraestrutura temporária</li>
+            <li className='w-full text-center rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Planejamento de redes físicas</li>
+            <li className='w-full text-center rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Análise de segurança de redes</li>
+            <li className='w-full text-center rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Monitoramento de redes (desempenho)</li>
+            <li className='w-full text-center rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Manutenção de máquinas</li>
+            <li className='w-full text-center rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Controle e consultoria de processos de TI</li>
+            <li className='w-full text-center rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Gestão de servidores</li>
+            <li className='w-full text-center rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Suporte a eventos com infraestrutura temporária</li>
           </ul>
           <p className='underline'>
             E algumas marcas com que já trabalhei:
