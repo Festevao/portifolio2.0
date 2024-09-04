@@ -5,9 +5,16 @@ interface SkillRatingProps {
   name: string;
   rate: number;
   showRateText?: boolean;
+  lenguageRate?: boolean;
 }
 
-const SkillRating: React.FC<SkillRatingProps> = ({ logoUrl, rate, name, showRateText }) => {
+const SkillRating: React.FC<SkillRatingProps> = ({
+  logoUrl,
+  rate,
+  name,
+  showRateText,
+  lenguageRate,
+}) => {
   const totalRate = 5;
   const greenBars = Math.min(rate, totalRate); // Ensure rate doesn't exceed totalRate
   const grayBars = totalRate - greenBars;
@@ -20,13 +27,21 @@ const SkillRating: React.FC<SkillRatingProps> = ({ logoUrl, rate, name, showRate
     'EXPERT',
   ];
 
+  const rateMapLenguage = [
+    'LEIGO',
+    'INICIANTE',
+    'INTERMEDIÁRIO',
+    'AVANÇADO',
+    'NATIVO',
+  ];
+
   const greenArr = [...Array(greenBars)];
 
   const RenderGreenBars = () => {
     return greenArr.map((_, index) => (
       <div key={`skill-rate-${index + 1}`} className='flex flex-col w-full items-center justify-center text-[0.5rem] sm:text-[0.75rem] text-green-500'>
         <div className="w-full h-2 bg-green-500 rounded-full"></div>
-        <span className='text-[0.15rem] xs:text-[0.2rem] sm:text-[0.4rem] lg:text-[0.5rem]'>{showRateText && rateMap[index]}</span>
+        <span className='text-[0.15rem] xs:text-[0.2rem] sm:text-[0.4rem] lg:text-[0.5rem]'>{showRateText && (lenguageRate ? rateMapLenguage[index] : rateMap[index])}</span>
       </div>
     ));
   }
@@ -35,7 +50,7 @@ const SkillRating: React.FC<SkillRatingProps> = ({ logoUrl, rate, name, showRate
     return [...Array(grayBars)].map((_, index) => (
       <div key={`skill-rate-${greenArr.length + index + 1}`} className='flex flex-col w-full items-center justify-center text-[0.5rem] sm:text-[0.75rem] text-gray-300'>
         <div className="w-full h-2 bg-gray-300 rounded-full"></div>
-        <span className='text-[0.15rem] xs:text-[0.2rem] sm:text-[0.4rem] lg:text-[0.5rem]'>{showRateText && rateMap[greenArr.length + index]}</span>
+        <span className='text-[0.15rem] xs:text-[0.2rem] sm:text-[0.4rem] lg:text-[0.5rem]'>{showRateText && (lenguageRate ? rateMapLenguage[greenArr.length + index] : rateMap[greenArr.length + index])}</span>
       </div>
     ));
   }

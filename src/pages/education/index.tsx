@@ -3,6 +3,7 @@ import { NextPageWithLayout } from '../../types/next'
 import Layout from '../../components/Layout/Layout';
 import PageBanner from '@/components/PageBanner/PageBanner';
 import EducationCard from '@/components/EducationCard/EducationCard';
+import SkillRating from '@/components/SkillRating/SkillRating';
 
 const bannerInfos = {
   title: 'Formação',
@@ -58,7 +59,29 @@ const Education: NextPageWithLayout = () => {
           description='Duração de 11,5 horas, abordando um conteúdo sobre Web Scraping (extração de dados de sites) em Javascript. É um curso bem completo sobre o assunto e passa insights importanticimos como descobrir APIs dos sites, DOM e seletores, Graphql, tokens de autenticação. É um curso detalhado sobre o assunto e realmente cumpre o ensinamento com qualidade.'
           subTitleHref='https://www.udemy.com/course/web-scraping-in-nodejs'
         />
+        <EducationCard
+          title='Escola de linguas Helena Kemper (Formiga-MG)'
+          subTitle='Curso de inglês'
+          imgUrl='/img/education/curso0.jpg'
+          description='Curso de inglês realizado no mesmo período do meu ensino médio.'
+        />
         <h1 className='text-xl lg:text-2xl font-bold underline mb-5 text-center'>Linguagens</h1>
+        <div className='w-full grid grid-cols-2'>
+          <SkillRating
+            logoUrl='/img/education/lenguage1.png'
+            rate={5}
+            name='Português BR'
+            showRateText
+            lenguageRate
+          />
+          <SkillRating
+            logoUrl='/img/education/lenguage2.png'
+            rate={3}
+            name='Inglês'
+            showRateText
+            lenguageRate
+          />
+        </div>
       </div>
     </> 
   );
