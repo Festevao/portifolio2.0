@@ -104,19 +104,19 @@ const Knowledge: NextPageWithLayout = () => {
             Quando trabalho com infraestrutura, sigo um pensamento estruturado, sempre focado em protocolos e padrões organizacionais.
             Desde tabelas ARP e pacotes HTTP até regras de roteamento e controle de permissões de usuários, cada detalhe é abordado com precisão.
           </p>
-          <p>
+          <p className='underline'>
             Aqui vão alguns serviços que já prestei:
           </p>
-          <ul>
-            <li>- Planejamento de redes físicas.</li>
-            <li>- Análise de segurança de redes.</li>
-            <li>- Monitoramento de redes (desempenho).</li>
-            <li>- Manutenção de máquinas.</li>
-            <li>- Controle e consultoria de processos de TI.</li>
-            <li>- Gestão de servidores.</li>
-            <li>- Suporte a eventos com infraestrutura temporária.</li>
+          <ul className='flex flex-col w-full gap-2'>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Planejamento de redes físicas</li>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Análise de segurança de redes</li>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Monitoramento de redes (desempenho)</li>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Manutenção de máquinas</li>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Controle e consultoria de processos de TI</li>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Gestão de servidores</li>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-black-to-light'>Suporte a eventos com infraestrutura temporária</li>
           </ul>
-          <p>
+          <p className='underline'>
             E algumas marcas com que já trabalhei:
           </p>
           <BrandsSection brands={infraBrands}/>
@@ -137,11 +137,11 @@ const Knowledge: NextPageWithLayout = () => {
             Finalmente, se você está buscando por um profissional capacitado para transformar suas ideias em realidade,
             confira os serviços que ofereço e vagas que posso preencher em sua empresa:
           </p>
-          <ul>
-            <li>- Desenvolvedor de software.</li>
-            <li>- Analista de redes.</li>
-            <li>- Analista de TI.</li>
-            <li>- Suporte de TI a eventos.</li>
+          <ul className='flex flex-col w-full gap-2'>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-light-to-black text-white'>Desenvolvedor de software</li>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-light-to-black text-white'>Analista de redes</li>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-light-to-black text-white'>Analista de TI</li>
+            <li className='w-full text-center shadow-md rounded-md p-2 border border-dotted border-black font-bold bg-light-to-black text-white'>Suporte de TI a eventos</li>
           </ul>
         </section>
       </div>
