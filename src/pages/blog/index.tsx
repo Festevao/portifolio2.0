@@ -17,7 +17,8 @@ const Blog: NextPageWithLayout = () => {
   return (
     <>
       <PageBanner {...bannerInfos}/>
-      <div className='flex flex-col justify-center items-center h-full w-full min-h-[70vh]'>
+      <div className='w-[95%] md:w-[80%] mt-4 pb-4 md:pb-6 flex flex-col justify-center items-center gap-5'>
+        <h1 className='text-xl lg:text-2xl font-bold underline mb-5 text-center'>Postagens</h1>
         <p>Ainda não existem publicações...</p>
       </div>
     </>
