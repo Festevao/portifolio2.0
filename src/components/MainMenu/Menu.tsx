@@ -48,6 +48,15 @@ const Menu = () => {
       },
     },
     {
+      label: 'Formação',
+      href: '/education',
+      onHover: () => {
+        clearTimeout(timeoutOp);
+        setBgOpacity(0.9);
+        setBgImage('/img/menu_bg/menu_4.png');
+      },
+    },
+    {
       label: 'Contato',
       href: '/contact',
       onHover: () => {

@@ -26,6 +26,10 @@ const Header = () => {
       href: '/professional-experience',
     },
     {
+      label: 'Formação',
+      href: '/education',
+    },
+    {
       label: 'Contato',
       href: '/contact',
     },
@@ -33,7 +37,6 @@ const Header = () => {
 
   const RenderLinks = () => {
     return menuLinks.map(({ label, href }, index) => {
-      if (router.pathname.startsWith(href)) return;
       const isLast = index === menuLinks.length - 2;
       const isLastLink = router.pathname.startsWith(menuLinks[menuLinks.length - 1].href);
       return (
