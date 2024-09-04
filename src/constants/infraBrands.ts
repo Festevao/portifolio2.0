@@ -42,6 +42,10 @@ export const infraBrands = [
     description: "Notebooks | All in Ones",
   },
   {
+    name: "Leucotron",
+    description: "PABX",
+  },
+  {
     name: "LG",
     description: "TV's",
   },

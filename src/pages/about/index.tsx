@@ -116,17 +116,68 @@ const About: NextPageWithLayout = () => {
           autoPlay
           showThumbs={false}
           infiniteLoop={true}
-          className='w-full'
+          className='min-w-[310px] md:min-w-[500px]'
           showIndicators={false}
         >
-          <div className='min-h-[20vh] h-full md:max-h-[400px] w-full flex justify-center items-center'>
-            <img src="https://placehold.co/415x415?text=Hello+3" />
+          <div className='h-[20vh] md:h-[400px] flex justify-center items-center'>
+            <div className='w-full h-full bg-contain bg-center bg-no-repeat md:bg-repeat'
+              style={{
+                backgroundImage: 'url(/img/hobbies/highlights/highlight1.jpg)',
+              }}
+            />
+            <p 
+              className="legend"
+              style={{
+                bottom: 0,
+              }}
+            >
+              A compra do primeiro veículo
+            </p>
           </div>
-          <div className='min-h-[20vh] h-full md:max-h-[400px] w-full flex justify-center items-center'>
-            <img src="https://placehold.co/415x415?text=Hello+3" />
+          <div className='h-[20vh] md:h-[400px] flex justify-center items-center'>
+            <div className='w-full h-full bg-contain bg-center bg-no-repeat md:bg-repeat'
+              style={{
+                backgroundImage: 'url(/img/hobbies/highlights/highlight2.jpg)',
+              }}
+            />
+            <p 
+              className="legend"
+              style={{
+                bottom: 0,
+              }}
+            >
+              A conquista de entrar na faculdade
+            </p>
           </div>
-          <div className='min-h-[20vh] h-full md:max-h-[400px] w-full flex justify-center items-center'>
-            <img src="https://placehold.co/415x415?text=Hello+3" />
+          <div className='h-[20vh] md:h-[400px] flex justify-center items-center'>
+            <div className='w-full h-full bg-contain bg-center bg-no-repeat md:bg-repeat'
+              style={{
+                backgroundImage: 'url(/img/hobbies/highlights/highlight3.jpg)',
+              }}
+            />
+            <p 
+              className="legend"
+              style={{
+                bottom: 0,
+              }}
+            >
+              Primeira promoção
+            </p>
+          </div>
+          <div className='h-[20vh] md:h-[400px] flex justify-center items-center'>
+            <div className='w-full h-full bg-contain bg-center bg-no-repeat md:bg-repeat'
+              style={{
+                backgroundImage: 'url(/img/hobbies/highlights/highlight4.jpg)',
+              }}
+            />
+            <p 
+              className="legend"
+              style={{
+                bottom: 0,
+              }}
+            >
+              A melhor viagem (Florianopolis)
+            </p>
           </div>
         </Carousel>
       </div>
