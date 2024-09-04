@@ -3,11 +3,12 @@ import { NextPageWithLayout } from '../../types/next'
 import Layout from '../../components/Layout/Layout';
 import CompanySection from '@/components/CompanySection/CompanySection';
 import { companies } from '@/constants/companies';
+import PageBanner from '@/components/PageBanner/PageBanner';
 
 const bannerInfos = {
-  title: '',
-  description: '',
-  imageUrl: '',
+  title: 'Experiência profissional',
+  description: 'Aqui eu falo um pouquinho de empresas que ja trabalhei e trabalhos que realizei. Também cito os alguns projetos realizados em cada experiência e projetos pessoais.',
+  imageUrl: '/img/banners/experiencia_profissional.jpg',
   bgColor: '#000000',
   textColor: '#F7CAC9',
   titleColor: '#E0F7FA',
@@ -20,12 +21,14 @@ const Experience: NextPageWithLayout = () => {
       return <CompanySection {...company} key={`company-${index}`}/>
     });
   };
+  
   return (
-    <div className='w-[80%] flex flex-col justify-center items-center gap-5'>
-      <h1 className='text-lg underline font-bold text-center mt-5'>Experiência profissional</h1>
-      <p className='text-center w-full mb-5'>Aqui eu falo um pouquinho de empresas e projetos que ja trabalhei.</p>
-      <RenderCompanies />
-    </div>
+    <>
+      <PageBanner {...bannerInfos}/>
+      <div className='w-[95%] md:w-[80%] mt-4 md:mt-6 pb-4 md:pb-6  flex flex-col justify-center items-center gap-5'>
+        <RenderCompanies />
+      </div>
+    </>
   );
 };
 
