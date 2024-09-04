@@ -52,19 +52,19 @@ const PageBanner: React.FC<Props> = ({
         </div>
       </div>
       <div
-        className='w-full lg:w-[55%] h-full lg:min-h-[65vh] bg-no-repeat bg-contain bg-center'
+        className='w-full lg:w-[55%] h-full lg:min-h-[65vh] bg-contain bg-center z-[9999]'
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}
       >
         <div
-          className='w-full h-full min-h-[25vh] lg:min-h-[65vh] gradient-ground lg:hidden'
+          className='w-full z-[-1] h-full min-h-[25vh] lg:min-h-[65vh] gradient-ground lg:hidden'
           style={{
             background: `linear-gradient(to bottom, ${bgColor} 10%, ${bgColor}00 100%)`,
           }}
         />
         <div
-          className='w-full h-full min-h-[25vh] lg:min-h-[65vh] gradient-ground hidden lg:flex'
+          className='w-full z-[-1] h-full min-h-[25vh] lg:min-h-[65vh] gradient-ground hidden lg:flex'
           style={{
             background: `linear-gradient(to ${reverse ? 'left' : 'right' }, ${bgColor} 10%, ${bgColor}00 100%)`,
           }}
