@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface Props {
   brands: {
@@ -11,16 +11,6 @@ interface Props {
 const BrandsSection: React.FC<Props> = ({ brands }) => {
   const [tooltipInfo, setTooltipInfo] = useState<string | undefined>("");
 
-  useEffect(() => {
-    const allCards = document.querySelectorAll('.brand-card');
-    const maxWidth = Math.max(...Array.from(allCards).map(card => card.clientWidth));
-    allCards.forEach(card => {
-      (card as HTMLElement).style.width = `${maxWidth}px`;
-    });
-  }, [brands, tooltipInfo]);
-
-  console.log('refresh');
-
   const handleMouseEnter = (description: string | undefined) => {
     setTooltipInfo(description);
   };
@@ -29,7 +19,7 @@ const BrandsSection: React.FC<Props> = ({ brands }) => {
     return brands.map(({ name, title, description }, index) => (
       <div
         key={`brand-card-${index}`}
-        className='group relative py-2 px-4 flex items-center justify-center bg-gray-300 rounded-md brand-card shadow-lg border-gray-400 border'
+        className='group relative w-[100px] py-2 px-4 flex items-center justify-center bg-gray-300 rounded-md brand-card shadow-lg border-gray-400 border'
         title={title ?? name}
         onMouseEnter={() => handleMouseEnter(description)}
       >
