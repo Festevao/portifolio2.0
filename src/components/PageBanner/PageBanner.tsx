@@ -34,7 +34,7 @@ const PageBanner: React.FC<Props> = ({
       >
         <div className='flex flex-col justify-center items-start max-w-[80%] gap-5 lg:pl-[20%]'>
           <h1
-            className='text-xl lg:text-2xl font-bold underline text-center w-full lg:text-start'
+            className={`text-xl lg:text-2xl font-bold underline text-center w-full ${reverse ? 'lg:text-end' : 'lg:text-start'}`}
             style={{
               color: titleColor,
             }}
@@ -42,7 +42,7 @@ const PageBanner: React.FC<Props> = ({
             {title}
           </h1>
           <span
-            className='text-xs text-center lg:text-start md:text-sm font-semibold'
+            className={`text-xs text-center ${reverse ? 'lg:text-end' : 'lg:text-start'} md:text-sm font-semibold`}
             style={{
               color: textColor,
             }}

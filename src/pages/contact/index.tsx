@@ -3,16 +3,6 @@ import { NextPageWithLayout } from '../../types/next'
 import Layout from '../../components/Layout/Layout';
 import ContactCard from '@/components/ContactCard/ContactCard';
 
-const bannerInfos = {
-  title: '',
-  description: '',
-  imageUrl: '',
-  bgColor: '#000000',
-  textColor: '#F7CAC9',
-  titleColor: '#E0F7FA',
-  reverse: true,
-}
-
 const Contact: NextPageWithLayout = () => {
   useEffect(() => {
     const allCards = document.querySelectorAll('.contact-card');
