@@ -21,11 +21,11 @@ const About: NextPageWithLayout = () => {
   return (
     <>
       <PageBanner {...bannerInfos}/>
-      <div className='flex flex-col w-[95%] md:w-[80%] h-full items-center justify-start mb-[5vh] gap-10'>
-        <h1 className='text-xl lg:text-3xl font-bold underline mt-5 md:mt-8 text-center'>Meus Hobbies</h1>
+      <div className='w-[95%] md:w-[80%] mt-4 pb-4 md:pb-6 flex flex-col justify-center items-center gap-10'>
+        <h1 className='text-xl lg:text-2xl font-bold underline mb-5 text-center'>Meus Hobbies</h1>
         <div className='w-full flex flex-col items-center md:flex-row-reverse md:justify-around'>
           <div className='flex flex-col md:max-w-[50%] justify-center items-center text-xs md:text-base lg:text-lg'>
-            <h1 className='text-xl lg:text-2xl font-bold underline mb-5 text-center'>Música</h1>
+            <h1 className='text-xl lg:text-xl font-bold underline mb-5 text-center'>Música</h1>
             <p className='text-justify w-full text-xs lg:text-sm space-y-5 mb-8'>
               Sou apaixonado por música e ela está sempre comigo, seja enquanto trabalho, estudo ou relaxo. Toco violão,
               guitarra, bateria e violino, a raiz disso foi ter participado do grupo de louvor da igreja, uma experiência
@@ -51,7 +51,7 @@ const About: NextPageWithLayout = () => {
         </div>
         <div className='w-full flex flex-col items-center md:flex-row md:justify-around'>
           <div className='flex flex-col md:max-w-[50%] justify-center items-center text-xs md:text-base lg:text-lg'>
-            <h1 className='text-xl lg:text-2xl font-bold underline mb-5 text-center'>Viajens</h1>
+            <h1 className='text-xl lg:text-xl font-bold underline mb-5 text-center'>Viajens</h1>
             <p className='text-justify w-full text-xs lg:text-sm space-y-5 mb-8'>
               Viajar é a melhor forma de descansar e renovar as energias. Adoro explorar novos lugares, seja perto ou longe. A companhia pode
               variar: amigos próximos, novas amizades ou até mesmo sozinho. Cada viagem é uma oportunidade de criar memórias incríveis,
@@ -86,7 +86,7 @@ const About: NextPageWithLayout = () => {
         </div>
         <div className='w-full flex flex-col items-center md:flex-row-reverse md:justify-around'>
           <div className='flex flex-col md:max-w-[50%] justify-center items-center text-xs md:text-base lg:text-lg'>
-            <h1 className='text-xl lg:text-2xl font-bold underline mb-5 text-center'>Jogos</h1>
+            <h1 className='text-xl lg:text-xl font-bold underline mb-5 text-center'>Jogos</h1>
             <p className='text-justify w-full text-xs lg:text-sm space-y-5 mb-8'>
               Jogos são minha maneira favorita de relaxar e me divertir. Seja explorando mundos incríveis em Skyrim,
               enfrentando desafios emocionantes em Batman: Arkham Knight, ou mergulhando em aventuras mágicas em Kingdom Hearts,
@@ -108,7 +108,7 @@ const About: NextPageWithLayout = () => {
             ]}
           />
         </div>
-        <h1 className='text-xl lg:text-3xl font-bold underline text-center'>Highlights</h1>
+        <h1 className='text-xl lg:text-2xl font-bold underline text-center'>Highlights</h1>
         <p className='text-justify w-full text-xs lg:text-sm space-y-5 mb-8'>
           Aqui fica um resumo em imagens dos momentos mais importantes que registrei até hoje:
         </p>

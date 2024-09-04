@@ -23,8 +23,8 @@ const Knowledge: NextPageWithLayout = () => {
   return (
     <>
       <PageBanner {...bannerInfos}/>
-      <div className='w-[95%] lg:w-[80%] h-full flex flex-col justify-start items-center'>
-        <h1 className='text-xl lg:text-2xl font-bold underline mb-5 mt-10 text-center'>Desenvolvimento de software</h1>
+      <div className='w-[95%] md:w-[80%] mt-4 pb-4 md:pb-6 flex flex-col justify-center items-center gap-5'>
+        <h1 className='text-xl lg:text-2xl font-bold underline mb-5 text-center'>Desenvolvimento de software</h1>
         <section className='text-justify w-full text-xs lg:text-sm space-y-5 mb-8'>
           <p>
             Já fazem {calculateAge('2021-06-02')} anos que trabalho como programador. Prezo pela aplicação das melhores práticas de desenvolvimento,
