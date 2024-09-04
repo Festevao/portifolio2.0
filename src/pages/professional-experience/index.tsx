@@ -7,7 +7,7 @@ import PageBanner from '@/components/PageBanner/PageBanner';
 
 const bannerInfos = {
   title: 'Experiência profissional',
-  description: 'Aqui eu falo um pouquinho de empresas que ja trabalhei e trabalhos que realizei. Também cito os alguns projetos realizados em cada experiência e projetos pessoais.',
+  description: 'Aqui eu falo um pouquinho de empresas que já trabalhei e trabalhos que realizei. Também cito os alguns projetos realizados em cada experiência e projetos pessoais.',
   imageUrl: '/img/banners/experiencia_profissional.jpg',
   bgColor: '#000000',
   textColor: '#F7CAC9',

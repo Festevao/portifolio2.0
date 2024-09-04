@@ -6,8 +6,8 @@ export const companies = [
       'Planejamento / implementação / monitoramento de infraestrutura de redes',
       'Gestão de usuários em redes e servidores',
       'Controle de acesso à recintos',
-      'Participção na definição de processos de TI',
-      'Desevolvimento de API',
+      'Participação na definição de processos de TI',
+      'Desenvolvimento de API',
     ],
     jobsDescription: 'Suporte de TI => Analista de redes',
     description: `\ Clínica de harmonização facial reconhecida no Brasil e no mundo
@@ -57,7 +57,7 @@ export const companies = [
         description: 'Planejamento e implementação de rede física para stand de eventos, faculdades e clínicas',
       },
       {
-        name: 'Sistemas de triagem em núvem',
+        name: 'Sistemas de triagem em nuvem',
         description: 'Execução desde a disponibilização do sistema online até o treinamento de todos os colaboradores envolvidos no processo',
       },
     ],
@@ -73,7 +73,7 @@ export const companies = [
     projects: [
       {
         name: 'Gerador de coleiras automático',
-        description: 'Um software que recebe todos os parâmetros de coleiras e ja exporta um arquivo PDF para a fabrica produzir',
+        description: 'Um software que recebe todos os parâmetros de coleiras e exporta um arquivo PDF para a fabrica produzir',
       },
       {
         name: 'API de mensagens do whatsapp',
@@ -88,12 +88,12 @@ export const companies = [
       'Consultoria de processos de desenvolvimento'
     ],
     jobsDescription: 'Desenvolvedor de software',
-    description: 'Empresa de desolvimento de software com foco em gateways de pagemnto e checkout',
+    description: 'Empresa de desenvolvimento de software com foco em gateways de pagamento e checkout',
     imgUrl: '/img/companies/devsx-logo.jpeg',
     projects: [
       {
         name: 'White-label de getway de pagamentos',
-        description: 'Um ecosistema completo para realizar pagamentos de lojistas e um ecossistema de taxas entre usuários',
+        description: 'Um ecossistema completo para realizar pagamentos de lojistas e um ecossistema de taxas entre usuários',
       },
     ],
   },

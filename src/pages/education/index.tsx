@@ -49,18 +49,18 @@ const Education: NextPageWithLayout = () => {
           title='Udemy'
           subTitle='Next.js e React - Curso Completo - Aprenda com Projetos'
           imgUrl='/img/education/curso4.jpg'
-          description='Duração de 28,5 horas, abordando um conteúdo intermediário sobre um dos frameworks mais famosos para produção de frontend em Javascript/Typescript. É um curso repleto de projetos que exemplificam os conceitos de Next e React, entrando em tópicos como SSR, pré renderização, autenticação. É um conteudo limpo e completo.'
+          description='Duração de 28,5 horas, abordando um conteúdo intermediário sobre um dos frameworks mais famosos para produção de frontend em Javascript/Typescript. É um curso repleto de projetos que exemplificam os conceitos de Next e React, entrando em tópicos como SSR, pré renderização, autenticação. É um conteúdo limpo e completo.'
           subTitleHref='https://www.udemy.com/course/nextjs-e-react'
         />
         <EducationCard
           title='Udemy'
           subTitle='Web Scraping in Nodejs & JavaScript'
           imgUrl='/img/education/curso5.jpg'
-          description='Duração de 11,5 horas, abordando um conteúdo sobre Web Scraping (extração de dados de sites) em Javascript. É um curso bem completo sobre o assunto e passa insights importanticimos como descobrir APIs dos sites, DOM e seletores, Graphql, tokens de autenticação. É um curso detalhado sobre o assunto e realmente cumpre o ensinamento com qualidade.'
+          description='Duração de 11,5 horas, abordando um conteúdo sobre Web Scraping (extração de dados de sites) em Javascript. É um curso bem completo sobre o assunto e passa insights importantíssimos como descobrir APIs dos sites, DOM e seletores, Graphql, tokens de autenticação. É um curso detalhado sobre o assunto e realmente cumpre o ensinamento com qualidade.'
           subTitleHref='https://www.udemy.com/course/web-scraping-in-nodejs'
         />
         <EducationCard
-          title='Escola de linguas Helena Kemper (Formiga-MG)'
+          title='Escola de línguas Helena Kemper (Formiga-MG)'
           subTitle='Curso de inglês'
           imgUrl='/img/education/curso0.jpg'
           description='Curso de inglês realizado no mesmo período do meu ensino médio.'

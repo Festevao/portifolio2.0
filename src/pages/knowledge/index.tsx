@@ -39,7 +39,7 @@ const Knowledge: NextPageWithLayout = () => {
             em ambientes de produção, testes de software e por ai vai.
           </p>
           <p>
-            E como seu sei que números e informações práticas podem me ajudar a ter sua atenção, aqui vai uma forma intuitíva de mostrar algumas linguagens
+            E como seu sei que números e informações práticas podem me ajudar a ter sua atenção, aqui vai uma forma intuitiva de mostrar algumas linguagens
             de programação que já usei:
           </p>
         </section>

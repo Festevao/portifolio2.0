@@ -51,7 +51,7 @@ const About: NextPageWithLayout = () => {
         </div>
         <div className='w-full flex flex-col items-center md:flex-row md:justify-around'>
           <div className='flex flex-col md:max-w-[50%] justify-center items-center text-xs md:text-base lg:text-lg'>
-            <h1 className='text-xl lg:text-xl font-bold underline mb-5 text-center'>Viajens</h1>
+            <h1 className='text-xl lg:text-xl font-bold underline mb-5 text-center'>Viagens</h1>
             <p className='text-justify w-full text-xs lg:text-sm space-y-5 mb-8'>
               Viajar é a melhor forma de descansar e renovar as energias. Adoro explorar novos lugares, seja perto ou longe. A companhia pode
               variar: amigos próximos, novas amizades ou até mesmo sozinho. Cada viagem é uma oportunidade de criar memórias incríveis,
@@ -176,7 +176,7 @@ const About: NextPageWithLayout = () => {
                 bottom: 0,
               }}
             >
-              A melhor viagem (Florianopolis)
+              A melhor viagem (Florianópolis)
             </p>
           </div>
         </Carousel>
