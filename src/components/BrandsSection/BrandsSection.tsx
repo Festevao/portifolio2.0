@@ -15,6 +15,15 @@ const BrandsSection: React.FC<Props> = ({ brands }) => {
     setClick(index);
   }
 
+  const RenderBreakDescription: React.FC<{ description?: string }> = ({ description }) => {
+    return description?.split(' | ').map((desc, idx) => (
+      <React.Fragment key={`brands-tooltip-${idx}`}>
+        {desc}
+        <br />
+      </React.Fragment>
+    ));
+  }
+
   const RenderBrands = () => {
     return brands.map(({ name, title, description }, index) => (
       <div
@@ -26,7 +35,7 @@ const BrandsSection: React.FC<Props> = ({ brands }) => {
       >
         <input type='button' className='text-center whitespace-nowrap' value={name}/>
         <div
-          className='absolute bottom-full mb-2 w-max p-2 bg-black text-white text-sm rounded opacity-0 group-hover:opacity-100 group-focus:opacity-100 pointer-events-none transition-opacity duration-300'
+          className='absolute bottom-full mb-2 hidden lg:block w-max p-2 bg-black text-white text-sm rounded opacity-0 group-hover:opacity-100 group-focus:opacity-100 pointer-events-none transition-opacity duration-300'
           style={{
             opacity: click != undefined
               ? click === index
@@ -36,6 +45,18 @@ const BrandsSection: React.FC<Props> = ({ brands }) => {
           }}
         >
           {description}
+        </div>
+        <div
+          className='absolute bottom-full w-[150%] lg:hidden mb-2 p-2 bg-black text-white text-sm rounded opacity-0 group-hover:opacity-100 group-focus:opacity-100 pointer-events-none transition-opacity duration-300'
+          style={{
+            opacity: click != undefined
+              ? click === index
+                ? '1'
+                : '0'
+              : undefined,
+          }}
+        >
+          <RenderBreakDescription description={description}/>
         </div>
       </div>
     ));
