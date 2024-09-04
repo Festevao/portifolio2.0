@@ -7,6 +7,7 @@ interface Props {
   bgColor: string;
   textColor: string;
   titleColor: string;
+  reverse?: boolean;
 }
 
 const PageBanner: React.FC<Props> = ({
@@ -16,12 +17,13 @@ const PageBanner: React.FC<Props> = ({
   bgColor,
   textColor,
   titleColor,
+  reverse,
 }) => {
   return (
     <div
-      className='w-full flex flex-col lg:flex-row border-b-8 border-t-8'
+      className={`w-full flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} border-b-8 border-t-8`}
       style={{
-        borderColor: bgColor
+        borderColor: bgColor,
       }}
     >
       <div
@@ -64,7 +66,7 @@ const PageBanner: React.FC<Props> = ({
         <div
           className='w-full h-full min-h-[25vh] lg:min-h-[65vh] gradient-ground hidden lg:flex'
           style={{
-            background: `linear-gradient(to right, ${bgColor} 10%, ${bgColor}00 100%)`,
+            background: `linear-gradient(to ${reverse ? 'left' : 'right' }, ${bgColor} 10%, ${bgColor}00 100%)`,
           }}
         />
       </div>

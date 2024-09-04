@@ -15,7 +15,8 @@ const bannerInfos = {
   imageUrl: '/img/banners/base_de_conhecimento.jpg',
   bgColor: '#000000',
   textColor: '#F7CAC9',
-  titleColor: '#E0F7FA'
+  titleColor: '#E0F7FA',
+  reverse: false,
 }
 
 const Knowledge: NextPageWithLayout = () => {

@@ -7,6 +7,16 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { calculateAge } from '@/utils/calculateAge';
 
+const bannerInfos = {
+  title: '',
+  description: '',
+  imageUrl: '',
+  bgColor: '#000000',
+  textColor: '#F7CAC9',
+  titleColor: '#E0F7FA',
+  reverse: false,
+}
+
 const About: NextPageWithLayout = () => {
   return (
     <div className='flex flex-col w-[95%] md:w-[80%] h-full items-center justify-start mb-[5vh]'>

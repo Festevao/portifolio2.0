@@ -4,6 +4,16 @@ import Layout from '../../components/Layout/Layout';
 import CompanySection from '@/components/CompanySection/CompanySection';
 import { companies } from '@/constants/companies';
 
+const bannerInfos = {
+  title: '',
+  description: '',
+  imageUrl: '',
+  bgColor: '#000000',
+  textColor: '#F7CAC9',
+  titleColor: '#E0F7FA',
+  reverse: true,
+}
+
 const Experience: NextPageWithLayout = () => {
   const RenderCompanies = () => {
     return companies.map((company, index) => {
