@@ -6,6 +6,8 @@ import TechSection from '@/components/TechSection/TechSection';
 import { devTechsData, devTechsOptions } from '@/constants/devTechsData';
 import { calculateAge } from '@/utils/calculateAge';
 import PageBanner from '@/components/PageBanner/PageBanner';
+import BrandsSection from '@/components/BrandsSection/BrandsSection';
+import { infraBrands } from '@/constants/infraBrands';
 
 const bannerInfos = {
   title: 'Base de conhecimento',
@@ -87,10 +89,6 @@ const Knowledge: NextPageWithLayout = () => {
         <h1 className='text-xl lg:text-2xl font-bold underline mb-5 mt-10 text-center'>Redes & Servidores</h1>
         <section className='text-justify w-full text-xs lg:text-sm space-y-5 mb-8'>
           <p>
-            Descubra meu conhecimento em redes e servidores. Nesta seção, compartilho minha experiência na configuração, manutenção
-            e otimização de infraestruturas de rede e servidores, essenciais para garantir desempenho e segurança.
-          </p>
-          <p>
             No início, eu comecei a aplicar o que aprendi na faculdade, principalmente em gerenciamento de redes. Acabei aumentando
             bastante a segurança do lugar onde trabalhava, configurando VLANs, colocando failover/load balance nos roteadores,
             ajustando os APs WiFi, configurando todos os switches. Além disso, eu também cuidava de
@@ -118,11 +116,15 @@ const Knowledge: NextPageWithLayout = () => {
             <li>- Gestão de servidores.</li>
             <li>- Suporte a eventos com infraestrutura temporária.</li>
           </ul>
+          <p>
+            E algumas marcas com que já trabalhei:
+          </p>
+          <BrandsSection brands={infraBrands}/>
         </section>
         <h1 className='text-xl lg:text-2xl font-bold underline mb-5 mt-10 text-center'>Tecnologias</h1>
         <section className='text-justify w-full text-xs lg:text-sm space-y-5 mb-8'>
           <p>
-            Nesta seção, compartilho as ferramentas de que já utilizei ao longo da minha carreira. Cada uma delas
+            Explore algumas ferramentas de que já utilizei ao longo da minha carreira. Cada uma delas
             contribuiu de forma significativa para o meu aprendizado e crescimento profissional. Você pode explorar e filtrar essas
             tecnologias por tópicos, conforme sua preferência. Além disso, ao clicar no card de uma ferramenta, você poderá ver uma
             breve descrição sobre ela. Sinta-se à vontade para descobrir como cada ferramenta pode ser útil em diferentes cenários.
