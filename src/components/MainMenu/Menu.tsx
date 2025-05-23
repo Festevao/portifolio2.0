@@ -248,11 +248,6 @@ const Menu = () => {
           href='/curriculos/curriculo_online.pdf'
           className='text-center bg-gray-300 rounded-md p-2 underline border border-black shadow-md shadow-white'
         >  Curriculo de entrega online  </a>
-        <a
-          target='_blank'
-          href='/curriculos/curriculo_pessoal.pdf'
-          className='text-center bg-gray-300 rounded-md p-2 underline border border-black shadow-md shadow-white'
-        >Curriculo de entrega presencial</a>
       </div>
     </div>
   );
