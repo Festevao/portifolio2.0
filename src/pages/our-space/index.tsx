@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import { SessionProvider } from 'next-auth/react';
 import { User } from '@/types/User';
 import { WeatherData } from '@/types/Weather';
@@ -11,6 +10,7 @@ import PlacesSection from '@/components/PlacesSection/PlacesSection';
 import MusicSection from '@/components/MusicSection/MusicSection';
 import MoviesSection from '@/components/MoviesSection/MoviesSection';
 import MessagesSection from '@/components/MessagesSection/MessagesSection';
+import DailyQuestionSection from '@/components/DailyQuestionSection/DailyQuestionSection';
 import { useGeolocation } from '@/hooks/useGeolocation';
 
 interface OurSpaceProps {
@@ -254,6 +254,14 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
               </div>
               </div>
             </div>
+
+          {/* Seção da Pergunta do Dia */}
+          <DailyQuestionSection 
+            weather={weather} 
+            participants={[meUser.username, otherUser.username]} 
+            meUser={meUser}
+            otherUser={otherUser}
+          />
 
           {/* Seção de Mensagens */}
           <MessagesSection 
