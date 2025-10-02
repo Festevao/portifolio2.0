@@ -8,12 +8,22 @@ interface AddMessageModalProps {
   onSave: (messageData: CreateMessageData) => void;
   weather: WeatherData;
   participants: string[];
+  meUser: {
+    username: string;
+    nome: string;
+    avatar?: string;
+  };
+  otherUser: {
+    username: string;
+    nome: string;
+    avatar?: string;
+  };
 }
 
 /**
  * Modal para adicionar nova mensagem com suporte a Markdown
  */
-const AddMessageModal = ({ isOpen, onClose, onSave, weather, participants }: AddMessageModalProps) => {
+const AddMessageModal = ({ isOpen, onClose, onSave, weather, participants, meUser, otherUser }: AddMessageModalProps) => {
   const [content, setContent] = useState('');
   const [images, setImages] = useState<string[]>([]);
   const [saving, setSaving] = useState(false);
@@ -155,8 +165,33 @@ const AddMessageModal = ({ isOpen, onClose, onSave, weather, participants }: Add
               <label className={`block text-sm font-medium mb-2 ${
                 weather.isDaytime ? 'text-gray-700' : 'text-purple-200'
               }`}>
-                Para: {participants[1]}
+                💌 Enviando mensagem para:
               </label>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-white/20">
+                {otherUser.avatar ? (
+                  <img
+                    src={otherUser.avatar}
+                    alt={otherUser.nome}
+                    className="w-10 h-10 rounded-full object-cover border-2 shadow-lg"
+                  />
+                ) : (
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg">
+                    {otherUser.nome.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                <div>
+                  <p className={`font-bold text-lg ${
+                    weather.isDaytime ? 'text-gray-800' : 'text-white'
+                  }`}>
+                    {otherUser.nome}
+                  </p>
+                  <p className={`text-sm ${
+                    weather.isDaytime ? 'text-gray-600' : 'text-purple-300'
+                  }`}>
+                    @{otherUser.username}
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Tabs de edição/preview */}

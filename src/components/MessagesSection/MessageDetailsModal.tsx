@@ -7,12 +7,22 @@ interface MessageDetailsModalProps {
   message: Message;
   weather: WeatherData;
   onDelete: (messageId: string) => void;
+  meUser: {
+    username: string;
+    nome: string;
+    avatar?: string;
+  };
+  otherUser: {
+    username: string;
+    nome: string;
+    avatar?: string;
+  };
 }
 
 /**
  * Modal para visualizar detalhes completos de uma mensagem
  */
-const MessageDetailsModal = ({ isOpen, onClose, message, weather, onDelete }: MessageDetailsModalProps) => {
+const MessageDetailsModal = ({ isOpen, onClose, message, weather, onDelete, meUser, otherUser }: MessageDetailsModalProps) => {
   if (!isOpen) return null;
 
   /**
@@ -40,6 +50,22 @@ const MessageDetailsModal = ({ isOpen, onClose, message, weather, onDelete }: Me
     }
   };
 
+  /**
+   * Obtém informações do usuário pelo username
+   */
+  const getUserInfo = (username: string) => {
+    if (username === meUser.username) {
+      return meUser;
+    } else if (username === otherUser.username) {
+      return otherUser;
+    }
+    return { username, nome: username, avatar: undefined };
+  };
+
+  const senderInfo = getUserInfo(message.sender);
+  const recipientInfo = getUserInfo(message.recipient);
+  const isFromMe = message.sender === meUser.username;
+
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn`}>
       <div className={`relative w-full max-w-2xl max-h-[90vh] rounded-2xl shadow-xl flex flex-col overflow-hidden transition-all duration-300 ${
@@ -49,13 +75,31 @@ const MessageDetailsModal = ({ isOpen, onClose, message, weather, onDelete }: Me
         <div className={`flex items-center justify-between p-6 border-b ${
           weather.isDaytime ? 'border-gray-200' : 'border-purple-700'
         }`}>
-          <div className="flex items-center gap-3">
-            <div className="text-2xl">💌</div>
+          <div className="flex items-center gap-4">
+            {/* Avatar do remetente */}
+            <div className="relative">
+              {senderInfo.avatar ? (
+                <img
+                  src={senderInfo.avatar}
+                  alt={senderInfo.nome}
+                  className="w-16 h-16 rounded-full object-cover border-2 shadow-lg"
+                />
+              ) : (
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg ${
+                  isFromMe
+                    ? 'bg-gradient-to-br from-pink-500 to-purple-600'
+                    : 'bg-gradient-to-br from-blue-500 to-indigo-600'
+                }`}>
+                  {senderInfo.nome.charAt(0).toUpperCase()}
+                </div>
+              )}
+            </div>
+            
             <div>
               <h3 className={`text-xl font-bold ${
                 weather.isDaytime ? 'text-gray-900' : 'text-white'
               }`}>
-                Mensagem
+                {isFromMe ? 'Sua mensagem' : '💌 Mensagem de ' + senderInfo.nome}
               </h3>
               <p className={`text-sm ${
                 weather.isDaytime ? 'text-gray-600' : 'text-purple-300'
@@ -64,6 +108,7 @@ const MessageDetailsModal = ({ isOpen, onClose, message, weather, onDelete }: Me
               </p>
             </div>
           </div>
+          
           <button
             onClick={onClose}
             className={`p-2 rounded-full transition-all hover:scale-110 ${
@@ -85,30 +130,81 @@ const MessageDetailsModal = ({ isOpen, onClose, message, weather, onDelete }: Me
                 ? 'bg-gray-50 border border-gray-200'
                 : 'bg-purple-900/30 border border-purple-700/30'
             }`}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className={`block text-sm font-medium ${
-                    weather.isDaytime ? 'text-gray-700' : 'text-purple-200'
-                  }`}>
-                    De:
-                  </label>
-                  <p className={`text-lg font-semibold ${
-                    weather.isDaytime ? 'text-gray-900' : 'text-white'
-                  }`}>
-                    {message.sender}
-                  </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Remetente */}
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    {senderInfo.avatar ? (
+                      <img
+                        src={senderInfo.avatar}
+                        alt={senderInfo.nome}
+                        className="w-12 h-12 rounded-full object-cover border-2 shadow-lg"
+                      />
+                    ) : (
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow-lg ${
+                        isFromMe
+                          ? 'bg-gradient-to-br from-pink-500 to-purple-600'
+                          : 'bg-gradient-to-br from-blue-500 to-indigo-600'
+                      }`}>
+                        {senderInfo.nome.charAt(0).toUpperCase()}
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-medium ${
+                      weather.isDaytime ? 'text-gray-700' : 'text-purple-200'
+                    }`}>
+                      De:
+                    </label>
+                    <p className={`text-lg font-semibold ${
+                      weather.isDaytime ? 'text-gray-900' : 'text-white'
+                    }`}>
+                      {senderInfo.nome}
+                    </p>
+                    <p className={`text-sm ${
+                      weather.isDaytime ? 'text-gray-600' : 'text-purple-300'
+                    }`}>
+                      @{senderInfo.username}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <label className={`block text-sm font-medium ${
-                    weather.isDaytime ? 'text-gray-700' : 'text-purple-200'
-                  }`}>
-                    Para:
-                  </label>
-                  <p className={`text-lg font-semibold ${
-                    weather.isDaytime ? 'text-gray-900' : 'text-white'
-                  }`}>
-                    {message.recipient}
-                  </p>
+                
+                {/* Destinatário */}
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    {recipientInfo.avatar ? (
+                      <img
+                        src={recipientInfo.avatar}
+                        alt={recipientInfo.nome}
+                        className="w-12 h-12 rounded-full object-cover border-2 shadow-lg"
+                      />
+                    ) : (
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow-lg ${
+                        !isFromMe
+                          ? 'bg-gradient-to-br from-pink-500 to-purple-600'
+                          : 'bg-gradient-to-br from-blue-500 to-indigo-600'
+                      }`}>
+                        {recipientInfo.nome.charAt(0).toUpperCase()}
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-medium ${
+                      weather.isDaytime ? 'text-gray-700' : 'text-purple-200'
+                    }`}>
+                      Para:
+                    </label>
+                    <p className={`text-lg font-semibold ${
+                      weather.isDaytime ? 'text-gray-900' : 'text-white'
+                    }`}>
+                      {recipientInfo.nome}
+                    </p>
+                    <p className={`text-sm ${
+                      weather.isDaytime ? 'text-gray-600' : 'text-purple-300'
+                    }`}>
+                      @{recipientInfo.username}
+                    </p>
+                  </div>
                 </div>
               </div>
               

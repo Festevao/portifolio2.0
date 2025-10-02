@@ -256,7 +256,12 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
             </div>
 
           {/* Seção de Mensagens */}
-          <MessagesSection weather={weather} participants={[meUser.username, otherUser.username]} />
+          <MessagesSection 
+            weather={weather} 
+            participants={[meUser.username, otherUser.username]} 
+            meUser={meUser}
+            otherUser={otherUser}
+          />
 
           {/* Seção de Lugares */}
           <PlacesSection weather={weather} participants={[meUser.username, otherUser.username]} />

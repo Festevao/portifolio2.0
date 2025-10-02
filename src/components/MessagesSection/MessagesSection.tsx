@@ -7,13 +7,23 @@ import MessageDetailsModal from './MessageDetailsModal';
 interface MessagesSectionProps {
   weather: WeatherData;
   participants: string[];
+  meUser: {
+    username: string;
+    nome: string;
+    avatar?: string;
+  };
+  otherUser: {
+    username: string;
+    nome: string;
+    avatar?: string;
+  };
 }
 
 /**
  * Seção de mensagens entre usuários - "Queria te dizer"
  * Permite enviar mensagens com Markdown e imagens
  */
-const MessagesSection = ({ weather, participants }: MessagesSectionProps) => {
+const MessagesSection = ({ weather, participants, meUser, otherUser }: MessagesSectionProps) => {
   const [sentMessages, setSentMessages] = useState<Message[]>([]);
   const [receivedMessages, setReceivedMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
@@ -161,6 +171,26 @@ const MessagesSection = ({ weather, participants }: MessagesSectionProps) => {
     }
   };
 
+  /**
+   * Obtém informações do usuário pelo username
+   */
+  const getUserInfo = (username: string) => {
+    if (username === meUser.username) {
+      return meUser;
+    } else if (username === otherUser.username) {
+      return otherUser;
+    }
+    return { username, nome: username, avatar: undefined };
+  };
+
+  /**
+   * Obtém o nome completo do usuário
+   */
+  const getUserDisplayName = (username: string) => {
+    const user = getUserInfo(username);
+    return user.nome || user.username;
+  };
+
   useEffect(() => {
     loadMessages();
   }, []);
@@ -277,80 +307,132 @@ const MessagesSection = ({ weather, participants }: MessagesSectionProps) => {
                 </p>
               </div>
             ) : (
-              <div className="space-y-3">
-                {currentMessages.map((message) => (
-                  <div
-                    key={message._id}
-                    className={`p-4 rounded-xl border transition-all duration-200 hover:scale-[1.02] cursor-pointer ${
-                      !message.isRead && activeTab === 'received'
-                        ? weather.isDaytime
-                          ? 'bg-blue-50 border-blue-200 shadow-md'
-                          : 'bg-blue-900/30 border-blue-700/50 shadow-md'
-                        : weather.isDaytime
-                          ? 'bg-white/20 border-white/30 hover:bg-white/30'
-                          : 'bg-purple-900/20 border-purple-700/30 hover:bg-purple-800/30'
-                    }`}
-                    onClick={() => openMessageDetails(message)}
-                  >
-                    <div className="flex justify-between items-start">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className={`font-bold text-lg ${
-                            weather.isDaytime ? 'text-gray-800' : 'text-white'
-                          }`}>
-                            {activeTab === 'sent' ? '📤 Para' : '📥 De'} {activeTab === 'sent' ? participants[1] : participants[0]}
-                          </h3>
-                          {!message.isRead && activeTab === 'received' && (
-                            <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
-                              Nova
+              <div className="space-y-4">
+                {currentMessages.map((message) => {
+                  const senderInfo = getUserInfo(message.sender);
+                  const recipientInfo = getUserInfo(message.recipient);
+                  const isFromMe = message.sender === meUser.username;
+                  
+                  return (
+                    <div
+                      key={message._id}
+                      className={`p-4 rounded-xl border transition-all duration-200 hover:scale-[1.02] cursor-pointer ${
+                        !message.isRead && activeTab === 'received'
+                          ? weather.isDaytime
+                            ? 'bg-blue-50 border-blue-200 shadow-md'
+                            : 'bg-blue-900/30 border-blue-700/50 shadow-md'
+                          : weather.isDaytime
+                            ? 'bg-white/20 border-white/30 hover:bg-white/30'
+                            : 'bg-purple-900/20 border-purple-700/30 hover:bg-purple-800/30'
+                      }`}
+                      onClick={() => openMessageDetails(message)}
+                    >
+                      <div className="flex gap-3">
+                        {/* Avatar do remetente */}
+                        <div className="flex-shrink-0">
+                          <div className="relative">
+                            {senderInfo.avatar ? (
+                              <img
+                                src={senderInfo.avatar}
+                                alt={senderInfo.nome}
+                                className="w-12 h-12 rounded-full object-cover border-2 shadow-lg"
+                              />
+                            ) : (
+                              <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg ${
+                                isFromMe
+                                  ? 'bg-gradient-to-br from-pink-500 to-purple-600'
+                                  : 'bg-gradient-to-br from-blue-500 to-indigo-600'
+                              }`}>
+                                {senderInfo.nome.charAt(0).toUpperCase()}
+                              </div>
+                            )}
+                            
+                            {/* Indicador de status */}
+                            {!message.isRead && activeTab === 'received' && (
+                              <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse"></div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Conteúdo da mensagem */}
+                        <div className="flex-1 min-w-0">
+                          {/* Header com nomes */}
+                          <div className="flex items-center gap-2 mb-2">
+                            <h3 className={`font-bold text-lg ${
+                              weather.isDaytime ? 'text-gray-800' : 'text-white'
+                            }`}>
+                              {isFromMe ? 'Eu' : '💌 ' + senderInfo.nome}
+                            </h3>
+                            
+                            <span className={`text-sm ${
+                              weather.isDaytime ? 'text-gray-500' : 'text-purple-300'
+                            }`}>
+                              para
                             </span>
-                          )}
-                        </div>
-                        
-                        <div className={`text-sm ${
-                          weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
-                        }`}>
-                          {message.content.length > 100 
-                            ? `${message.content.substring(0, 100)}...` 
-                            : message.content
-                          }
-                        </div>
-                        
-                        {message.images && message.images.length > 0 && (
-                          <div className="flex items-center gap-1 mt-2">
-                            <span className="text-xs">📷</span>
+                            
+                            <h4 className={`font-semibold text-base ${
+                              weather.isDaytime ? 'text-gray-700' : 'text-purple-200'
+                            }`}>
+                              {isFromMe ? recipientInfo.nome : 'mim'}
+                            </h4>
+                            
+                            {!message.isRead && activeTab === 'received' && (
+                              <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full animate-bounce">
+                                ✨ Nova
+                              </span>
+                            )}
+                          </div>
+                          
+                          {/* Preview do conteúdo */}
+                          <div className={`text-sm leading-relaxed ${
+                            weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
+                          }`}>
+                            {message.content.length > 120 
+                              ? `${message.content.substring(0, 120)}...` 
+                              : message.content
+                            }
+                          </div>
+                          
+                          {/* Informações adicionais */}
+                          <div className="flex items-center gap-3 mt-3">
+                            {message.images && message.images.length > 0 && (
+                              <div className="flex items-center gap-1">
+                                <span className="text-sm">📷</span>
+                                <span className={`text-xs ${
+                                  weather.isDaytime ? 'text-gray-500' : 'text-purple-400'
+                                }`}>
+                                  {message.images.length} foto{message.images.length !== 1 ? 's' : ''}
+                                </span>
+                              </div>
+                            )}
+                            
                             <span className={`text-xs ${
                               weather.isDaytime ? 'text-gray-500' : 'text-purple-400'
                             }`}>
-                              {message.images.length} imagem{message.images.length !== 1 ? 's' : ''}
+                              {new Date(message.createdAt).toLocaleString('pt-BR')}
                             </span>
                           </div>
-                        )}
+                        </div>
                         
-                        <p className={`text-xs mt-2 ${
-                          weather.isDaytime ? 'text-gray-500' : 'text-purple-400'
-                        }`}>
-                          {new Date(message.createdAt).toLocaleString('pt-BR')}
-                        </p>
+                        {/* Botão de deletar */}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            deleteMessage(message._id);
+                          }}
+                          className={`flex-shrink-0 p-2 rounded-full transition-all hover:scale-110 ${
+                            weather.isDaytime
+                              ? 'bg-red-100 hover:bg-red-200 text-red-600'
+                              : 'bg-red-900/50 hover:bg-red-900/70 text-red-300'
+                          }`}
+                          title="Deletar mensagem"
+                        >
+                          🗑️
+                        </button>
                       </div>
-                      
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          deleteMessage(message._id);
-                        }}
-                        className={`ml-4 p-2 rounded-full transition-all hover:scale-110 ${
-                          weather.isDaytime
-                            ? 'bg-red-100 hover:bg-red-200 text-red-600'
-                            : 'bg-red-900/50 hover:bg-red-900/70 text-red-300'
-                        }`}
-                        title="Deletar mensagem"
-                      >
-                        🗑️
-                      </button>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
 
@@ -379,6 +461,8 @@ const MessagesSection = ({ weather, participants }: MessagesSectionProps) => {
           onSave={saveMessage}
           weather={weather}
           participants={participants}
+          meUser={meUser}
+          otherUser={otherUser}
         />
       )}
 
@@ -390,6 +474,8 @@ const MessagesSection = ({ weather, participants }: MessagesSectionProps) => {
           message={selectedMessage}
           weather={weather}
           onDelete={deleteMessage}
+          meUser={meUser}
+          otherUser={otherUser}
         />
       )}
     </>
