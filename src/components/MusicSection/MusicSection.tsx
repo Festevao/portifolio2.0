@@ -173,7 +173,7 @@ const MusicSection = ({ weather, participants }: MusicSectionProps) => {
               <h2 className={`text-xl sm:text-2xl font-bold ${
                 weather.isDaytime ? 'text-gray-800' : 'text-white'
               }`}>
-                {playlist ? 'Nossa Playlist' : 'Playlist Compartilhada'}
+                {playlist ? 'Pra gente ouvir' : 'Playlist Compartilhada'}
               </h2>
               <p className={`text-sm sm:text-base ${
                 weather.isDaytime ? 'text-gray-600' : 'text-purple-200'

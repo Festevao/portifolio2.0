@@ -9,6 +9,7 @@ import WeatherBackground from '@/components/WeatherBackground/WeatherBackground'
 import TutorialModal from '@/components/TutorialModal/TutorialModal';
 import PlacesSection from '@/components/PlacesSection/PlacesSection';
 import MusicSection from '@/components/MusicSection/MusicSection';
+import MoviesSection from '@/components/MoviesSection/MoviesSection';
 import { useGeolocation } from '@/hooks/useGeolocation';
 
 interface OurSpaceProps {
@@ -258,6 +259,9 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
 
           {/* Seção de Músicas */}
           <MusicSection weather={weather} participants={[meUser.username, otherUser.username]} />
+
+          {/* Seção de Filmes e Séries */}
+          <MoviesSection weather={weather} participants={[meUser.username, otherUser.username]} />
 
           {/* Botão para rever tutorial */}
           <div className="text-center">

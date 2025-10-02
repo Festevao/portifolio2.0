@@ -135,7 +135,7 @@ const PlacesSection = ({ weather, participants }: PlacesSectionProps) => {
               <h2 className={`text-xl sm:text-2xl font-bold ${
                 weather.isDaytime ? 'text-gray-800' : 'text-white'
               }`}>
-                Lugares para Ir
+                Bora lá qualquer hora ?
               </h2>
               <p className={`text-sm sm:text-base ${
                 weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
