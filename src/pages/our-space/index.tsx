@@ -10,6 +10,7 @@ import TutorialModal from '@/components/TutorialModal/TutorialModal';
 import PlacesSection from '@/components/PlacesSection/PlacesSection';
 import MusicSection from '@/components/MusicSection/MusicSection';
 import MoviesSection from '@/components/MoviesSection/MoviesSection';
+import MessagesSection from '@/components/MessagesSection/MessagesSection';
 import { useGeolocation } from '@/hooks/useGeolocation';
 
 interface OurSpaceProps {
@@ -202,7 +203,7 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
       <Head>
         <title>Nosso Espaço - {meUser.nome}</title>
       </Head>
-
+      
       <WeatherBackground weather={weather} />
 
       {/* Tutorial Modal */}
@@ -220,7 +221,7 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
               : 'bg-purple-950/40 border-purple-800/30'
           }`}>
             <div className="flex flex-col items-center gap-4">
-              {meUser.avatar && (
+                {meUser.avatar && (
                 <div className="relative">
                   <div className={`absolute inset-0 rounded-full blur-xl opacity-50 animate-pulse ${
                     weather.isDaytime 
@@ -236,9 +237,9 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
                         : 'border-white/50'
                     }`}
                   />
-                </div>
-              )}
-              
+                    </div>
+                  )}
+
               <div>
                 <h1 className={`text-2xl md:text-3xl font-bold mb-2 transition-colors duration-500 ${
                   weather.isDaytime ? 'text-gray-800' : 'text-white'
@@ -251,8 +252,11 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
                   Este é o nosso cantinho especial 💜
                 </p>
               </div>
+              </div>
             </div>
-          </div>
+
+          {/* Seção de Mensagens */}
+          <MessagesSection weather={weather} participants={[meUser.username, otherUser.username]} />
 
           {/* Seção de Lugares */}
           <PlacesSection weather={weather} participants={[meUser.username, otherUser.username]} />
@@ -263,22 +267,6 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
           {/* Seção de Filmes e Séries */}
           <MoviesSection weather={weather} participants={[meUser.username, otherUser.username]} />
 
-          {/* Botão para rever tutorial */}
-          <div className="text-center">
-            <button
-              onClick={() => {
-                localStorage.removeItem('tutorialCompleted');
-                setShowTutorial(true);
-              }}
-              className={`px-4 py-2 rounded-full font-medium shadow-lg transform hover:scale-105 transition-all text-sm ${
-                weather.isDaytime
-                  ? 'bg-white/80 text-purple-600 hover:bg-white'
-                  : 'bg-purple-600/80 text-white hover:bg-purple-600'
-              }`}
-            >
-              🤖 Rever Tutorial
-            </button>
-          </div>
         </div>
       </div>
     </SessionProvider>
