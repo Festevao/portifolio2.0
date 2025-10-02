@@ -302,6 +302,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const baseUrl = process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL || `http://localhost:${process.env.PORT || 3000}`;
     
     const usersResponse = await fetch(`${baseUrl}/api/users/check?me=${me}&other=${other}`);
+
+    console.log('usersResponse', usersResponse);
     
     if (!usersResponse.ok) {
       return {
