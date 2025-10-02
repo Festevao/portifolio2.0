@@ -40,9 +40,19 @@ export interface CreatePlaceEventData {
 /**
  * Resposta da API para operações de lugares
  */
+export interface PaginationInfo {
+  currentPage: number;
+  totalPages: number;
+  totalCount: number;
+  limit: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
+
 export interface PlaceEventResponse {
   success: boolean;
   message?: string;
   placeEvent?: PlaceEvent;
   placeEvents?: PlaceEvent[];
+  pagination?: PaginationInfo;
 }

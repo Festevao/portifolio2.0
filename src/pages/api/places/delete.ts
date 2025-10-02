@@ -25,12 +25,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       });
     }
 
+    // Valida se o ID é um ObjectId válido
+    if (!ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: 'ID inválido'
+      });
+    }
+
     const client = await clientPromise;
     const db = client.db('portifolio');
     const placesCollection = db.collection('places');
 
+    // Converte string para ObjectId
+    const objectId = new ObjectId(id);
+
     // Verifica se o evento existe
-    const existingEvent = await placesCollection.findOne({ _id: new ObjectId(id) });
+    const existingEvent = await placesCollection.findOne({ _id: objectId });
     
     if (!existingEvent) {
       return res.status(404).json({
@@ -40,7 +51,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     // Deleta o evento
-    const result = await placesCollection.deleteOne({ _id: new ObjectId(id) });
+    const result = await placesCollection.deleteOne({ _id: objectId });
 
     if (result.deletedCount > 0) {
       return res.status(200).json({

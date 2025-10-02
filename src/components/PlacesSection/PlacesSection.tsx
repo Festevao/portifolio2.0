@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { PlaceEvent, CreatePlaceEventData } from '@/types/PlaceEvent';
+import { PlaceEvent, CreatePlaceEventData, PaginationInfo } from '@/types/PlaceEvent';
 import { WeatherData } from '@/types/Weather';
+import { isEventUpcoming, getEventHighlightColor, getEventProximityText, getEventTextColor } from '@/utils/eventUtils';
 import AddPlaceModal from './AddPlaceModal';
 import PlaceDetailsModal from './PlaceDetailsModal';
 
@@ -14,23 +15,27 @@ interface PlacesSectionProps {
  */
 const PlacesSection = ({ weather, participants }: PlacesSectionProps) => {
   const [places, setPlaces] = useState<PlaceEvent[]>([]);
+  const [pagination, setPagination] = useState<PaginationInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState<PlaceEvent | null>(null);
   const [expanded, setExpanded] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   /**
-   * Carrega a lista de lugares filtrados por participantes
+   * Carrega a lista de lugares filtrados por participantes com paginação
    */
-  const loadPlaces = async () => {
+  const loadPlaces = async (page: number = 1) => {
     try {
       const participantsParam = participants.join(',');
-      const response = await fetch(`/api/places/list?participants=${participantsParam}`);
+      const response = await fetch(`/api/places/list?participants=${participantsParam}&page=${page}&limit=5`);
       const data = await response.json();
       
       if (data.success && data.placeEvents) {
         setPlaces(data.placeEvents);
+        setPagination(data.pagination);
+        setCurrentPage(page);
       }
     } catch (error) {
       console.error('Erro ao carregar lugares:', error);
@@ -55,7 +60,8 @@ const PlacesSection = ({ weather, participants }: PlacesSectionProps) => {
       const data = await response.json();
       
       if (data.success) {
-        setPlaces(places.filter(place => place._id !== placeId));
+        // Recarrega a página atual após deletar
+        await loadPlaces(currentPage);
       } else {
         alert('Erro ao deletar lugar: ' + data.message);
       }
@@ -84,7 +90,9 @@ const PlacesSection = ({ weather, participants }: PlacesSectionProps) => {
       const data = await response.json();
 
       if (data.success && data.placeEvent) {
-        setPlaces([data.placeEvent, ...places]);
+        // Recarrega a primeira página para mostrar o novo evento
+        await loadPlaces(1);
+        setShowAddModal(false);
       } else {
         throw new Error(data.message || 'Erro ao criar lugar');
       }
@@ -184,58 +192,123 @@ const PlacesSection = ({ weather, participants }: PlacesSectionProps) => {
               </div>
             ) : (
               <div className="space-y-3">
-                {places.map((place) => (
-                  <div
-                    key={place._id}
-                    className={`p-4 rounded-xl border transition-all hover:shadow-lg cursor-pointer ${
-                      weather.isDaytime
-                        ? 'bg-white/40 border-white/30 hover:bg-white/50'
-                        : 'bg-purple-900/40 border-purple-700/30 hover:bg-purple-900/50'
-                    }`}
-                    onClick={() => openPlaceDetails(place)}
-                  >
-                    <div className="flex justify-between items-start">
-                      <div className="flex-1">
-                        <h3 className={`font-bold text-lg mb-2 ${
-                          weather.isDaytime ? 'text-gray-800' : 'text-white'
-                        }`}>
-                          📍 {place.title}
-                        </h3>
-                        
-                        {place.description && (
-                          <p className={`text-sm ${
-                            weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
-                          }`}>
-                            💭 {place.description}
-                          </p>
-                        )}
-                        
-                        {!place.description && (
-                          <p className={`text-xs italic ${
-                            weather.isDaytime ? 'text-gray-500' : 'text-purple-400'
-                          }`}>
-                            Clique para ver mais detalhes
-                          </p>
-                        )}
-                      </div>
-                      
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation(); // Evita abrir detalhes ao clicar no botão
-                          deletePlace(place._id!);
-                        }}
-                        className={`ml-4 p-2 rounded-full transition-all hover:scale-110 ${
+                {places.map((place) => {
+                  const isUpcoming = isEventUpcoming(place);
+                  const highlightColor = getEventHighlightColor(place, weather.isDaytime);
+                  const proximityText = getEventProximityText(place);
+                  const textColor = getEventTextColor(place, weather.isDaytime);
+                  
+                  return (
+                    <div
+                      key={place._id}
+                      className={`p-4 rounded-xl border transition-all duration-200 hover:scale-[1.02] cursor-pointer relative overflow-hidden ${
+                        isUpcoming && highlightColor
+                          ? `${highlightColor} border-transparent shadow-lg`
+                          : weather.isDaytime
+                            ? 'bg-white/40 border-white/30 hover:bg-white/50'
+                            : 'bg-purple-900/40 border-purple-700/30 hover:bg-purple-900/50'
+                      }`}
+                      onClick={() => openPlaceDetails(place)}
+                    >
+                      {/* Badge de proximidade */}
+                      {isUpcoming && proximityText && (
+                        <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-bold ${
                           weather.isDaytime
-                            ? 'bg-red-100 hover:bg-red-200 text-red-600'
-                            : 'bg-red-900/50 hover:bg-red-900/70 text-red-300'
-                        }`}
-                        title="Deletar lugar"
-                      >
-                        🗑️
-                      </button>
+                            ? 'bg-yellow-500 text-white'
+                            : 'bg-purple-600 text-white'
+                        }`}>
+                          {proximityText}
+                        </div>
+                      )}
+                      
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1 pr-2">
+                          <h3 className={`font-bold text-lg mb-2 ${textColor}`}>
+                            📍 {place.title}
+                          </h3>
+                          
+                          {place.description && (
+                            <p className={`text-sm ${
+                              isUpcoming 
+                                ? weather.isDaytime ? 'text-gray-700' : 'text-gray-200'
+                                : weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
+                            }`}>
+                              💭 {place.description}
+                            </p>
+                          )}
+                          
+                          {place.date && (
+                            <p className={`text-xs mt-1 ${
+                              isUpcoming
+                                ? weather.isDaytime ? 'text-gray-600' : 'text-gray-300'
+                                : weather.isDaytime ? 'text-gray-500' : 'text-purple-400'
+                            }`}>
+                              📅 {new Date(place.date).toLocaleDateString('pt-BR')}
+                            </p>
+                          )}
+                          
+                          {!place.description && !place.date && (
+                            <p className={`text-xs italic ${
+                              weather.isDaytime ? 'text-gray-500' : 'text-purple-400'
+                            }`}>
+                              Clique para ver mais detalhes
+                            </p>
+                          )}
+                        </div>
+                        
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            deletePlace(place._id!);
+                          }}
+                          className={`ml-4 p-2 rounded-full transition-all hover:scale-110 ${
+                            weather.isDaytime
+                              ? 'bg-red-100 hover:bg-red-200 text-red-600'
+                              : 'bg-red-900/50 hover:bg-red-900/70 text-red-300'
+                          }`}
+                          title="Deletar lugar"
+                        >
+                          🗑️
+                        </button>
+                      </div>
                     </div>
+                  );
+                })}
+                
+                {/* Controles de paginação */}
+                {pagination && pagination.totalPages > 1 && (
+                  <div className="flex items-center justify-between pt-4 border-t border-white/20">
+                    <button
+                      onClick={() => loadPlaces(currentPage - 1)}
+                      disabled={!pagination.hasPrevPage}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+                        weather.isDaytime
+                          ? 'bg-white/40 text-gray-700 hover:bg-white/60 disabled:hover:bg-white/40'
+                          : 'bg-purple-600/40 text-white hover:bg-purple-600/60 disabled:hover:bg-purple-600/40'
+                      }`}
+                    >
+                      ← Anterior
+                    </button>
+                    
+                    <span className={`text-sm font-medium ${
+                      weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
+                    }`}>
+                      Página {pagination.currentPage} de {pagination.totalPages}
+                    </span>
+                    
+                    <button
+                      onClick={() => loadPlaces(currentPage + 1)}
+                      disabled={!pagination.hasNextPage}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+                        weather.isDaytime
+                          ? 'bg-white/40 text-gray-700 hover:bg-white/60 disabled:hover:bg-white/40'
+                          : 'bg-purple-600/40 text-white hover:bg-purple-600/60 disabled:hover:bg-purple-600/40'
+                      }`}
+                    >
+                      Próxima →
+                    </button>
                   </div>
-                ))}
+                )}
               </div>
             )}
 

@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { ObjectId } from 'mongodb';
 import clientPromise from '@/lib/mongodb';
 import { MovieRecommendationResponse } from '@/types/MovieRecommendation';
 
@@ -24,12 +25,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       });
     }
 
+    // Valida se o ID é um ObjectId válido
+    if (!ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: 'ID inválido'
+      });
+    }
+
     const client = await clientPromise;
     const db = client.db('portifolio');
     const moviesCollection = db.collection('movieRecommendations');
 
+    // Converte string para ObjectId
+    const objectId = new ObjectId(id);
+
     // Verifica se a recomendação existe
-    const existingRecommendation = await moviesCollection.findOne({ _id: id });
+    const existingRecommendation = await moviesCollection.findOne({ _id: objectId });
     
     if (!existingRecommendation) {
       return res.status(404).json({
@@ -39,7 +51,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     // Deleta a recomendação
-    const result = await moviesCollection.deleteOne({ _id: id });
+    const result = await moviesCollection.deleteOne({ _id: objectId });
 
     if (result.deletedCount === 1) {
       return res.status(200).json({
