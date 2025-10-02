@@ -3,8 +3,8 @@ import clientPromise from '@/lib/mongodb';
 import { PlaceEvent, PlaceEventResponse, CreatePlaceEventData } from '@/types/PlaceEvent';
 
 /**
- * API para listar todos os eventos/lugares
- * GET /api/places/list
+ * API para listar eventos/lugares filtrados por participantes
+ * GET /api/places/list?participants=user1,user2
  */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<PlaceEventResponse>) {
   if (req.method !== 'GET') {
@@ -15,13 +15,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   }
 
   try {
+    const { participants } = req.query;
+
+    if (!participants || typeof participants !== 'string') {
+      return res.status(400).json({
+        success: false,
+        message: 'Parâmetro participants é obrigatório'
+      });
+    }
+
+    // Converte string "user1,user2" em array ["user1", "user2"]
+    const participantsArray = participants.split(',').map(p => p.trim());
+
+    if (participantsArray.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Lista de participantes não pode estar vazia'
+      });
+    }
+
     const client = await clientPromise;
     const db = client.db('portifolio');
     const placesCollection = db.collection('places');
 
-    // Busca todos os eventos ordenados por data (mais recentes primeiro)
+    // Busca eventos onde TODOS os participantes estão na lista de participantes do evento
     const placeEvents = await placesCollection
-      .find({})
+      .find({
+        participants: {
+          $all: participantsArray // Todos os participantes devem estar no array
+        }
+      })
       .sort({ date: -1, createdAt: -1 })
       .toArray();
 

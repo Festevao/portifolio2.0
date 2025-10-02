@@ -24,7 +24,7 @@ const WeatherBackground = ({ weather }: WeatherBackgroundProps) => {
   };
 
   return (
-    <div className={`fixed inset-0 ${getBackgroundClasses()} transition-colors duration-1000`}>
+    <div className={`fixed inset-0 z-0 ${getBackgroundClasses()} transition-colors duration-1000`}>
       {/* Sol ou Lua */}
       {weather.isDaytime ? <Sun /> : <Moon />}
 

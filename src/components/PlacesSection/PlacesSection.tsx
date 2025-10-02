@@ -21,11 +21,12 @@ const PlacesSection = ({ weather, participants }: PlacesSectionProps) => {
   const [expanded, setExpanded] = useState(false);
 
   /**
-   * Carrega a lista de lugares
+   * Carrega a lista de lugares filtrados por participantes
    */
   const loadPlaces = async () => {
     try {
-      const response = await fetch('/api/places/list');
+      const participantsParam = participants.join(',');
+      const response = await fetch(`/api/places/list?participants=${participantsParam}`);
       const data = await response.json();
       
       if (data.success && data.placeEvents) {

@@ -10,6 +10,7 @@ declare module 'next-auth' {
   interface JWT {
     accessToken?: string
     refreshToken?: string
+    accessTokenExpires?: number
   }
 }
 
@@ -58,18 +59,66 @@ export const authOptions = {
       if (account) {
         token.accessToken = account.access_token
         token.refreshToken = account.refresh_token
+        token.accessTokenExpires = Date.now() + (account.expires_in * 1000) - 60000 // 1 minuto antes
         console.log('JWT callback - account found:', {
           hasAccessToken: !!account.access_token,
           hasRefreshToken: !!account.refresh_token,
           tokenType: account.token_type,
-          accessTokenLength: account.access_token?.length
+          accessTokenLength: account.access_token?.length,
+          expiresIn: account.expires_in
         })
+      }
+      
+      // Refresh token if it's about to expire
+      if (token.refreshToken && token.accessTokenExpires && Date.now() > token.accessTokenExpires) {
+        console.log('Token expiring, refreshing...')
+        try {
+          const response = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Authorization': `Basic ${Buffer.from(
+                `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
+              ).toString('base64')}`
+            },
+            body: new URLSearchParams({
+              grant_type: 'refresh_token',
+              refresh_token: token.refreshToken
+            })
+          })
+          
+          const refreshedTokens = await response.json()
+          
+          if (response.ok) {
+            console.log('Token refreshed successfully')
+            token.accessToken = refreshedTokens.access_token
+            token.accessTokenExpires = Date.now() + (refreshedTokens.expires_in * 1000) - 60000
+            
+            // Update refresh token if provided
+            if (refreshedTokens.refresh_token) {
+              token.refreshToken = refreshedTokens.refresh_token
+            }
+          } else {
+            console.error('Failed to refresh token:', refreshedTokens)
+            // Clear tokens if refresh fails
+            token.accessToken = null
+            token.refreshToken = null
+            token.accessTokenExpires = null
+          }
+        } catch (error) {
+          console.error('Error refreshing token:', error)
+          // Clear tokens if refresh fails
+          token.accessToken = null
+          token.refreshToken = null
+          token.accessTokenExpires = null
+        }
       }
       
       console.log('JWT callback - final token:', {
         hasAccessToken: !!token.accessToken,
         hasRefreshToken: !!token.refreshToken,
-        accessTokenLength: token.accessToken?.length
+        accessTokenLength: token.accessToken?.length,
+        expiresAt: token.accessTokenExpires ? new Date(token.accessTokenExpires).toISOString() : null
       })
       
       return token

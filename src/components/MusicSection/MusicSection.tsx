@@ -23,6 +23,7 @@ const MusicSection = ({ weather, participants }: MusicSectionProps) => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [spotifyTheme, setSpotifyTheme] = useState<'light' | 'dark'>('dark');
+  const [tokenExpired, setTokenExpired] = useState(false);
 
   /**
    * Carrega a playlist compartilhada
@@ -55,6 +56,12 @@ const MusicSection = ({ weather, participants }: MusicSectionProps) => {
     try {
       const response = await fetch(`/api/spotify/playlist-tracks?playlistId=${playlistId}`);
       const data = await response.json();
+      
+      if (response.status === 401) {
+        console.error('Token expirado, precisa relogar');
+        setTokenExpired(true);
+        return;
+      }
       
       if (data.tracks && data.tracks.items) {
         setPlaylistTracks(data.tracks.items);
@@ -119,6 +126,12 @@ const MusicSection = ({ weather, participants }: MusicSectionProps) => {
         })
       });
 
+      if (response.status === 401) {
+        console.error('Token expirado, precisa relogar');
+        setTokenExpired(true);
+        return;
+      }
+
       const data = await response.json();
 
       if (data.success) {
@@ -137,6 +150,7 @@ const MusicSection = ({ weather, participants }: MusicSectionProps) => {
 
   useEffect(() => {
     if (status === 'authenticated') {
+      setTokenExpired(false); // Reset token expired state on new auth
       loadPlaylist();
     } else if (status === 'unauthenticated') {
       setLoading(false);
@@ -196,26 +210,36 @@ const MusicSection = ({ weather, participants }: MusicSectionProps) => {
                   {status === 'loading' ? 'Autenticando com Spotify...' : 'Carregando playlist...'}
                 </p>
               </div>
-            ) : status === 'unauthenticated' ? (
+            ) : status === 'unauthenticated' || tokenExpired ? (
               <div className="text-center py-8">
                 <div className="text-6xl mb-4">🎵</div>
                 <p className={`text-lg ${weather.isDaytime ? 'text-gray-600' : 'text-purple-300'}`}>
-                  Conecte-se ao Spotify
+                  {tokenExpired ? 'Sessão Expirada' : 'Conecte-se ao Spotify'}
                 </p>
                 <p className={`text-sm ${weather.isDaytime ? 'text-gray-500' : 'text-purple-400'}`}>
-                  Para usar as funcionalidades de música, você precisa se conectar ao Spotify
+                  {tokenExpired 
+                    ? 'Sua sessão do Spotify expirou. Faça login novamente para continuar.'
+                    : 'Para usar as funcionalidades de música, você precisa se conectar ao Spotify'
+                  }
                 </p>
                 <button
-                  onClick={() => signIn('spotify', { 
-                    callbackUrl: `${window.location.origin}/our-space?me=${participants[0]}&other=${participants[1]}` 
-                  })}
+                  onClick={() => {
+                    if (tokenExpired) {
+                      // Logout primeiro para limpar sessão inválida
+                      window.location.href = '/api/auth/signout';
+                    } else {
+                      signIn('spotify', { 
+                        callbackUrl: `${window.location.origin}/our-space?me=${participants[0]}&other=${participants[1]}` 
+                      });
+                    }
+                  }}
                   className={`mt-4 px-6 py-3 rounded-xl font-bold transition-all transform hover:scale-105 shadow-lg ${
                     weather.isDaytime
                       ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700'
                       : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700'
                   }`}
                 >
-                  🎵 Conectar ao Spotify
+                  🎵 {tokenExpired ? 'Relogar no Spotify' : 'Conectar ao Spotify'}
                 </button>
               </div>
             ) : !playlist ? (

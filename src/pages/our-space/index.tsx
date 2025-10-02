@@ -210,10 +210,10 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
       )}
 
       {/* Conteúdo Principal */}
-      <div className="relative min-h-screen flex flex-col items-center justify-start p-4 md:p-8 overflow-hidden">
-        <div className="w-full max-w-4xl z-10">
+      <div className="relative min-h-screen flex flex-col items-center justify-start p-4 md:p-8 overflow-hidden z-10">
+        <div className="w-full max-w-4xl relative z-20">
           {/* Header de Boas-vindas */}
-          <div className={`text-center backdrop-blur-md rounded-3xl shadow-2xl p-6 md:p-8 mb-6 border transition-all duration-500 ${
+          <div className={`text-center mt-24 backdrop-blur-md rounded-3xl shadow-2xl p-6 md:p-8 mb-6 border transition-all duration-500 ${
             weather.isDaytime 
               ? 'bg-white/40 border-white/30' 
               : 'bg-purple-950/40 border-purple-800/30'
@@ -300,14 +300,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     // Usar NEXTAUTH_URL como base URL (deve ser pública)
     const baseUrl = process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL || `http://localhost:${process.env.PORT || 3000}`;
-    
-    console.log('baseUrl sendo usado:', baseUrl);
-    console.log('NEXT_PUBLIC_NEXTAUTH_URL:', process.env.NEXT_PUBLIC_NEXTAUTH_URL);
-    console.log('NEXTAUTH_URL:', process.env.NEXTAUTH_URL);
-    
+        
     const usersResponse = await fetch(`${baseUrl}/api/users/check?me=${me}&other=${other}`);
-
-    console.log('usersResponse', usersResponse);
     
     if (!usersResponse.ok) {
       return {
