@@ -220,7 +220,7 @@ const MoviesSection = ({ weather, participants }: MoviesSectionProps) => {
                               <p className={`text-sm mt-1 italic ${
                                 weather.isDaytime ? 'text-gray-500' : 'text-purple-300'
                               }`}>
-                                "{movie.notes}"
+                                &quot;{movie.notes}&quot;
                               </p>
                             )}
                           </div>

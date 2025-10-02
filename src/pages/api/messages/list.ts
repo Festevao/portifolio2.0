@@ -57,7 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     // Ordenação: mensagens mais recentes primeiro
-    const sort = { createdAt: -1 };
+    const sort = { createdAt: -1 as const };
 
     // Busca total de documentos para paginação
     const totalCount = await messagesCollection.countDocuments(query);

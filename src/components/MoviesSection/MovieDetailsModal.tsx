@@ -245,7 +245,7 @@ const MovieDetailsModal = ({ isOpen, onClose, movie, weather }: MovieDetailsModa
                     <p className={`italic ${
                       weather.isDaytime ? 'text-yellow-800' : 'text-yellow-200'
                     }`}>
-                      "{movie.notes}"
+                      &quot;{movie.notes}&quot;
                     </p>
                   </div>
                 </div>
@@ -272,7 +272,7 @@ const MovieDetailsModal = ({ isOpen, onClose, movie, weather }: MovieDetailsModa
                       <p className={`italic text-lg ${
                         weather.isDaytime ? 'text-gray-600' : 'text-gray-400'
                       }`}>
-                        "{details.tagline}"
+                        &quot;{details.tagline}&quot;
                       </p>
                     </div>
                   )}

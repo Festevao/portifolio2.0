@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const form = formidable({
       maxFileSize: 10 * 1024 * 1024, // 10MB
       filter: ({ mimetype }) => {
-        return mimetype && mimetype.includes('image');
+        return Boolean(mimetype && mimetype.includes('image'));
       },
     });
 

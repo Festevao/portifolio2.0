@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { NextPageWithLayout } from '../../types/next'
+import { NextPageWithLayout } from '../../types/next.d'
 import Layout from '../../components/Layout/Layout';
 import PageBanner from '@/components/PageBanner/PageBanner';
 import EducationCard from '@/components/EducationCard/EducationCard';
