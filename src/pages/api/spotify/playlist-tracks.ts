@@ -57,6 +57,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         statusText: tracksResponse.statusText,
         error: errorData
       });
+      
+      // Se o token expirou, retorna 401 para que o frontend possa lidar
+      if (tracksResponse.status === 401) {
+        return res.status(401).json({
+          message: 'Token expirado - faça login novamente'
+        });
+      }
+      
       throw new Error(`Spotify API error: ${tracksResponse.status} - ${errorData.error?.message || tracksResponse.statusText}`);
     }
 

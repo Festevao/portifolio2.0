@@ -69,48 +69,64 @@ export const authOptions = {
         })
       }
       
-      // Refresh token if it's about to expire
-      if (token.refreshToken && token.accessTokenExpires && Date.now() > token.accessTokenExpires) {
-        console.log('Token expiring, refreshing...')
-        try {
-          const response = await fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              'Authorization': `Basic ${Buffer.from(
-                `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
-              ).toString('base64')}`
-            },
-            body: new URLSearchParams({
-              grant_type: 'refresh_token',
-              refresh_token: token.refreshToken
+      // Refresh token if it's about to expire (check every time)
+      if (token.refreshToken) {
+        const now = Date.now();
+        const expiresAt = token.accessTokenExpires || 0;
+        const timeUntilExpiry = expiresAt - now;
+        
+        console.log('Token check:', {
+          now: new Date(now).toISOString(),
+          expiresAt: new Date(expiresAt).toISOString(),
+          timeUntilExpiry: Math.round(timeUntilExpiry / 1000) + 's',
+          needsRefresh: timeUntilExpiry < 300000 // 5 minutes before expiry
+        });
+        
+        // Refresh if expired or expiring in less than 5 minutes
+        if (timeUntilExpiry < 300000) {
+          console.log('Token expiring soon, refreshing...')
+          try {
+            const response = await fetch('https://accounts.spotify.com/api/token', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': `Basic ${Buffer.from(
+                  `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
+                ).toString('base64')}`
+              },
+              body: new URLSearchParams({
+                grant_type: 'refresh_token',
+                refresh_token: token.refreshToken
+              })
             })
-          })
-          
-          const refreshedTokens = await response.json()
-          
-          if (response.ok) {
-            console.log('Token refreshed successfully')
-            token.accessToken = refreshedTokens.access_token
-            token.accessTokenExpires = Date.now() + (refreshedTokens.expires_in * 1000) - 60000
             
-            // Update refresh token if provided
-            if (refreshedTokens.refresh_token) {
-              token.refreshToken = refreshedTokens.refresh_token
+            const refreshedTokens = await response.json()
+            
+            if (response.ok) {
+              console.log('Token refreshed successfully:', {
+                newExpiresAt: new Date(Date.now() + (refreshedTokens.expires_in * 1000)).toISOString()
+              })
+              token.accessToken = refreshedTokens.access_token
+              token.accessTokenExpires = Date.now() + (refreshedTokens.expires_in * 1000) - 60000 // 1 minute buffer
+              
+              // Update refresh token if provided
+              if (refreshedTokens.refresh_token) {
+                token.refreshToken = refreshedTokens.refresh_token
+              }
+            } else {
+              console.error('Failed to refresh token:', refreshedTokens)
+              // Clear tokens if refresh fails
+              token.accessToken = null
+              token.refreshToken = null
+              token.accessTokenExpires = null
             }
-          } else {
-            console.error('Failed to refresh token:', refreshedTokens)
+          } catch (error) {
+            console.error('Error refreshing token:', error)
             // Clear tokens if refresh fails
             token.accessToken = null
             token.refreshToken = null
             token.accessTokenExpires = null
           }
-        } catch (error) {
-          console.error('Error refreshing token:', error)
-          // Clear tokens if refresh fails
-          token.accessToken = null
-          token.refreshToken = null
-          token.accessTokenExpires = null
         }
       }
       

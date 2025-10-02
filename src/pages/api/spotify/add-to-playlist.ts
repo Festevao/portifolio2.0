@@ -53,6 +53,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
     if (!addResponse.ok) {
       const errorData = await addResponse.json();
+      
+      // Se o token expirou, retorna 401 para que o frontend possa lidar
+      if (addResponse.status === 401) {
+        return res.status(401).json({
+          success: false,
+          message: 'Token expirado - faça login novamente'
+        });
+      }
+      
       throw new Error(`Spotify API error: ${addResponse.status} - ${errorData.error?.message || 'Unknown error'}`);
     }
 
