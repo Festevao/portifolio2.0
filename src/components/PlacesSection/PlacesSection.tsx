@@ -221,14 +221,14 @@ const PlacesSection = ({ weather, participants }: PlacesSectionProps) => {
                         </div>
                       )}
                       
-                      <div className="flex justify-between items-start">
-                        <div className="flex-1 pr-2">
-                          <h3 className={`font-bold text-lg mb-2 ${textColor}`}>
+                      <div className="flex justify-between items-start gap-2">
+                        <div className="flex-1 min-w-0">
+                          <h3 className={`font-bold text-base sm:text-lg mb-2 ${textColor}`}>
                             📍 {place.title}
                           </h3>
                           
                           {place.description && (
-                            <p className={`text-sm ${
+                            <p className={`text-xs sm:text-sm line-clamp-2 ${
                               isUpcoming 
                                 ? weather.isDaytime ? 'text-gray-700' : 'text-gray-200'
                                 : weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
@@ -261,14 +261,14 @@ const PlacesSection = ({ weather, participants }: PlacesSectionProps) => {
                             e.stopPropagation();
                             deletePlace(place._id!);
                           }}
-                          className={`ml-4 p-2 rounded-full transition-all hover:scale-110 ${
+                          className={`p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 flex-shrink-0 ${
                             weather.isDaytime
                               ? 'bg-red-100 hover:bg-red-200 text-red-600'
                               : 'bg-red-900/50 hover:bg-red-900/70 text-red-300'
                           }`}
                           title="Deletar lugar"
                         >
-                          🗑️
+                          <span className="text-sm sm:text-base">🗑️</span>
                         </button>
                       </div>
                     </div>
@@ -277,35 +277,38 @@ const PlacesSection = ({ weather, participants }: PlacesSectionProps) => {
                 
                 {/* Controles de paginação */}
                 {pagination && pagination.totalPages > 1 && (
-                  <div className="flex items-center justify-between pt-4 border-t border-white/20">
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/20">
                     <button
                       onClick={() => loadPlaces(currentPage - 1)}
                       disabled={!pagination.hasPrevPage}
-                      className={`px-4 py-2 rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+                      className={`w-full sm:w-auto px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                         weather.isDaytime
                           ? 'bg-white/40 text-gray-700 hover:bg-white/60 disabled:hover:bg-white/40'
                           : 'bg-purple-600/40 text-white hover:bg-purple-600/60 disabled:hover:bg-purple-600/40'
                       }`}
                     >
-                      ← Anterior
+                      <span className="hidden sm:inline">← Anterior</span>
+                      <span className="sm:hidden">← Ant.</span>
                     </button>
                     
-                    <span className={`text-sm font-medium ${
+                    <span className={`text-xs sm:text-sm font-medium order-first sm:order-none ${
                       weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
                     }`}>
-                      Página {pagination.currentPage} de {pagination.totalPages}
+                      <span className="hidden sm:inline">Página {pagination.currentPage} de {pagination.totalPages}</span>
+                      <span className="sm:hidden">{pagination.currentPage}/{pagination.totalPages}</span>
                     </span>
                     
                     <button
                       onClick={() => loadPlaces(currentPage + 1)}
                       disabled={!pagination.hasNextPage}
-                      className={`px-4 py-2 rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+                      className={`w-full sm:w-auto px-3 sm:px-4 py-2 rounded-lg font-medium text-sm sm:text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
                         weather.isDaytime
                           ? 'bg-white/40 text-gray-700 hover:bg-white/60 disabled:hover:bg-white/40'
                           : 'bg-purple-600/40 text-white hover:bg-purple-600/60 disabled:hover:bg-purple-600/40'
                       }`}
                     >
-                      Próxima →
+                      <span className="hidden sm:inline">Próxima →</span>
+                      <span className="sm:hidden">Prox. →</span>
                     </button>
                   </div>
                 )}

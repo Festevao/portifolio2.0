@@ -184,40 +184,40 @@ const MoviesSection = ({ weather, participants }: MoviesSectionProps) => {
                     }`}
                     onClick={() => openDetails(movie)}
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-start gap-3 sm:gap-4">
                       {/* Poster */}
                       <div className="flex-shrink-0">
                         {movie.posterPath ? (
                           <img
                             src={`https://image.tmdb.org/t/p/w200${movie.posterPath}`}
                             alt={movie.title}
-                            className="w-16 h-24 object-cover rounded-lg shadow-md"
+                            className="w-12 h-18 sm:w-16 sm:h-24 object-cover rounded-lg shadow-md"
                           />
                         ) : (
-                          <div className={`w-16 h-24 rounded-lg flex items-center justify-center ${
+                          <div className={`w-12 h-18 sm:w-16 sm:h-24 rounded-lg flex items-center justify-center ${
                             weather.isDaytime ? 'bg-gray-200' : 'bg-gray-700'
                           }`}>
-                            <span className="text-2xl">🎬</span>
+                            <span className="text-lg sm:text-2xl">🎬</span>
                           </div>
                         )}
                       </div>
 
                       {/* Informações */}
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between">
-                          <div>
-                            <h3 className={`font-bold text-lg truncate ${
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                          <div className="flex-1 min-w-0">
+                            <h3 className={`font-bold text-base sm:text-lg ${
                               weather.isDaytime ? 'text-gray-800' : 'text-white'
                             }`}>
                               {movie.title}
                             </h3>
-                            <p className={`text-sm ${
+                            <p className={`text-xs sm:text-sm ${
                               weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
                             }`}>
                               {movie.type === 'movie' ? 'Filme' : 'Série'} • {new Date(movie.releaseDate).getFullYear()}
                             </p>
                             {movie.notes && (
-                              <p className={`text-sm mt-1 italic ${
+                              <p className={`text-xs sm:text-sm mt-1 italic line-clamp-2 ${
                                 weather.isDaytime ? 'text-gray-500' : 'text-purple-300'
                               }`}>
                                 &quot;{movie.notes}&quot;
@@ -226,9 +226,9 @@ const MoviesSection = ({ weather, participants }: MoviesSectionProps) => {
                           </div>
                           
                           {/* Rating */}
-                          <div className="flex items-center gap-1 ml-2">
-                            <span className="text-yellow-500">⭐</span>
-                            <span className={`text-sm font-medium ${
+                          <div className="flex items-center gap-1 flex-shrink-0">
+                            <span className="text-yellow-500 text-sm">⭐</span>
+                            <span className={`text-xs sm:text-sm font-medium ${
                               weather.isDaytime ? 'text-gray-700' : 'text-white'
                             }`}>
                               {movie.voteAverage.toFixed(1)}
@@ -236,47 +236,52 @@ const MoviesSection = ({ weather, participants }: MoviesSectionProps) => {
                           </div>
                         </div>
 
-                        {/* Gêneros */}
-                        {movie.genres.length > 0 && (
-                          <div className="flex flex-wrap gap-1 mt-2">
-                            {movie.genres.slice(0, 3).map((genre, index) => (
-                              <span
-                                key={index}
-                                className={`px-2 py-1 text-xs rounded-full ${
-                                  weather.isDaytime
-                                    ? 'bg-purple-100 text-purple-700'
-                                    : 'bg-purple-800/50 text-purple-200'
-                                }`}
-                              >
-                                {genre}
-                              </span>
-                            ))}
-                            {movie.genres.length > 3 && (
-                              <span className={`text-xs ${
-                                weather.isDaytime ? 'text-gray-500' : 'text-purple-400'
-                              }`}>
-                                +{movie.genres.length - 3}
-                              </span>
-                            )}
-                          </div>
-                        )}
-                      </div>
+                        {/* Gêneros e botão de deletar */}
+                        <div className="flex items-center justify-between mt-2">
+                          {/* Gêneros */}
+                          {movie.genres.length > 0 ? (
+                            <div className="flex flex-wrap gap-1 flex-1">
+                              {movie.genres.slice(0, 2).map((genre, index) => (
+                                <span
+                                  key={index}
+                                  className={`px-2 py-1 text-xs rounded-full ${
+                                    weather.isDaytime
+                                      ? 'bg-purple-100 text-purple-700'
+                                      : 'bg-purple-800/50 text-purple-200'
+                                  }`}
+                                >
+                                  {genre}
+                                </span>
+                              ))}
+                              {movie.genres.length > 2 && (
+                                <span className={`text-xs self-center ${
+                                  weather.isDaytime ? 'text-gray-500' : 'text-purple-400'
+                                }`}>
+                                  +{movie.genres.length - 2}
+                                </span>
+                              )}
+                            </div>
+                          ) : (
+                            <div className="flex-1"></div>
+                          )}
 
-                      {/* Botão de deletar */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          deleteMovie(movie._id!);
-                        }}
-                        className={`p-2 rounded-full transition-all hover:scale-110 ${
-                          weather.isDaytime
-                            ? 'hover:bg-red-100 text-red-600'
-                            : 'hover:bg-red-900/50 text-red-400'
-                        }`}
-                        title="Deletar recomendação"
-                      >
-                        🗑️
-                      </button>
+                          {/* Botão de deletar */}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              deleteMovie(movie._id!);
+                            }}
+                            className={`ml-2 p-1.5 sm:p-2 rounded-full transition-all hover:scale-110 flex-shrink-0 ${
+                              weather.isDaytime
+                                ? 'bg-red-100 hover:bg-red-200 text-red-600'
+                                : 'bg-red-900/50 hover:bg-red-900/70 text-red-300'
+                            }`}
+                            title="Deletar recomendação"
+                          >
+                            <span className="text-sm sm:text-base">🗑️</span>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
