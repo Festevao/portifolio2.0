@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import { SessionProvider } from 'next-auth/react';
 import { User } from '@/types/User';
 import { WeatherData } from '@/types/Weather';
 import WeatherBackground from '@/components/WeatherBackground/WeatherBackground';
 import TutorialModal from '@/components/TutorialModal/TutorialModal';
 import PlacesSection from '@/components/PlacesSection/PlacesSection';
+import MusicSection from '@/components/MusicSection/MusicSection';
 import { useGeolocation } from '@/hooks/useGeolocation';
 
 interface OurSpaceProps {
@@ -194,7 +196,7 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
   }
 
   return (
-    <>
+    <SessionProvider>
       <Head>
         <title>Nosso Espaço - {meUser.nome}</title>
       </Head>
@@ -210,27 +212,39 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
       <div className="relative min-h-screen flex flex-col items-center justify-start p-4 md:p-8 overflow-hidden">
         <div className="w-full max-w-4xl z-10">
           {/* Header de Boas-vindas */}
-          <div className="text-center backdrop-blur-md bg-white/30 dark:bg-purple-950/30 rounded-3xl shadow-2xl p-6 md:p-8 mb-6">
+          <div className={`text-center backdrop-blur-md rounded-3xl shadow-2xl p-6 md:p-8 mb-6 border transition-all duration-500 ${
+            weather.isDaytime 
+              ? 'bg-white/40 border-white/30' 
+              : 'bg-purple-950/40 border-purple-800/30'
+          }`}>
             <div className="flex flex-col items-center gap-4">
               {meUser.avatar && (
                 <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full blur-xl opacity-50 animate-pulse" />
+                  <div className={`absolute inset-0 rounded-full blur-xl opacity-50 animate-pulse ${
+                    weather.isDaytime 
+                      ? 'bg-gradient-to-r from-amber-400 to-orange-500' 
+                      : 'bg-gradient-to-r from-pink-500 to-purple-500'
+                  }`} />
                   <img 
                     src={meUser.avatar} 
                     alt={meUser.nome}
-                    className="relative w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-4 border-white/50 shadow-xl"
+                    className={`relative w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-4 shadow-xl transition-all duration-500 ${
+                      weather.isDaytime 
+                        ? 'border-amber-200/70' 
+                        : 'border-white/50'
+                    }`}
                   />
                 </div>
               )}
               
               <div>
-                <h1 className={`text-2xl md:text-3xl font-bold mb-2 ${
+                <h1 className={`text-2xl md:text-3xl font-bold mb-2 transition-colors duration-500 ${
                   weather.isDaytime ? 'text-gray-800' : 'text-white'
                 }`}>
                   Bem-vind{meUser.gender === "FEM" ? "a" : "o"}, {meUser.nome.split(' ')[0]}! ✨
                 </h1>
-                <p className={`text-base md:text-lg ${
-                  weather.isDaytime ? 'text-gray-700' : 'text-purple-200'
+                <p className={`text-base md:text-lg transition-colors duration-500 ${
+                  weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
                 }`}>
                   Este é o nosso cantinho especial 💜
                 </p>
@@ -240,6 +254,9 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
 
           {/* Seção de Lugares */}
           <PlacesSection weather={weather} participants={[meUser.username, otherUser.username]} />
+
+          {/* Seção de Músicas */}
+          <MusicSection weather={weather} participants={[meUser.username, otherUser.username]} />
 
           {/* Botão para rever tutorial */}
           <div className="text-center">
@@ -259,7 +276,7 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
           </div>
         </div>
       </div>
-    </>
+    </SessionProvider>
   );
 };
 
