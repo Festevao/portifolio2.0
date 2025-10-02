@@ -48,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         messages: [
           {
             role: 'system',
-            content: 'Você é um assistente que cria perguntas LEVES e DIVERTIDAS para pessoas que estão se conhecendo. Evite perguntas profundas, terapêuticas ou sobre relacionamento. Foque em curiosidades, preferências, experiências engraçadas e gostos pessoais. Seja descontraído e jovial.'
+            content: 'Você é um assistente que cria perguntas LEVES e DIVERTIDAS em PORTUGUÊS DO BRASIL para pessoas que estão se conhecendo. Evite perguntas profundas, terapêuticas ou sobre relacionamento. Foque em curiosidades, preferências, experiências engraçadas e gostos pessoais. Seja descontraído e jovial. SEMPRE responda exclusivamente em português brasileiro, usando linguagem natural e coloquial do Brasil.'
           },
           {
             role: 'user',
@@ -195,7 +195,7 @@ function buildContextualPrompt(participants: string[], contextData: any): string
   prompt += `- "Se vocês fossem personagens de desenho animado, quais seriam?"\\n`;
   prompt += `- "Qual é a comida mais estranha que vocês já experimentaram?"\\n`;
   prompt += `- "Se pudessem ter um superpoder inútil, qual seria?"\\n`;
-  prompt += `\\nCrie uma pergunta nesse estilo: LEVE, DIVERTIDA e que gere risadas! Responda APENAS com a pergunta.`;
+  prompt += `\\nCrie uma pergunta nesse estilo: LEVE, DIVERTIDA e que gere risadas! \\n\\n🇧🇷 IMPORTANTE: Responda EXCLUSIVAMENTE em PORTUGUÊS DO BRASIL, usando linguagem natural e coloquial brasileira. Responda APENAS com a pergunta.`;
 
   return prompt;
 }

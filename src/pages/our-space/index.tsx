@@ -27,6 +27,8 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [weatherLoading, setWeatherLoading] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
+  const [aiGreeting, setAiGreeting] = useState<string>('Este é o nosso cantinho especial 💜');
+  const [isLoadingGreeting, setIsLoadingGreeting] = useState(true);
 
   /**
    * Verifica se o tutorial já foi concluído
@@ -37,6 +39,43 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
       setShowTutorial(true);
     }
   }, []);
+
+  /**
+   * Gera saudação personalizada com IA
+   */
+  const generateAiGreeting = async () => {
+    try {
+      const response = await fetch('/api/ai-greeting/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userName: meUser.nome.split(' ')[0], // Primeiro nome
+          userGender: meUser.gender,
+          participants: [meUser.username, otherUser.username]
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.success && data.greeting) {
+        setAiGreeting(data.greeting);
+      }
+    } catch (error) {
+      console.error('Erro ao gerar saudação personalizada:', error);
+      // Mantém a saudação padrão em caso de erro
+    } finally {
+      setIsLoadingGreeting(false);
+    }
+  };
+
+  /**
+   * Carrega saudação personalizada quando a página é carregada
+   */
+  useEffect(() => {
+    generateAiGreeting();
+  }, [meUser.username, otherUser.username]);
 
   /**
    * Busca o clima quando a localização estiver disponível
@@ -246,11 +285,18 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
                 }`}>
                   Bem-vind{meUser.gender === "FEM" ? "a" : "o"}, {meUser.nome.split(' ')[0]}! ✨
                 </h1>
-                <p className={`text-base md:text-lg transition-colors duration-500 ${
+                <div className={`text-base md:text-lg transition-colors duration-500 ${
                   weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
                 }`}>
-                  Este é o nosso cantinho especial 💜
-                </p>
+                  {isLoadingGreeting ? (
+                    <div className="flex items-center gap-2">
+                      <div className="inline-block animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-purple-500"></div>
+                      <span>Este é o nosso cantinho especial 💜</span>
+                    </div>
+                  ) : (
+                    <p className="animate-fade-in">{aiGreeting}</p>
+                  )}
+                </div>
               </div>
               </div>
             </div>
