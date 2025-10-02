@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 import { SessionProvider } from 'next-auth/react';
 import { User } from '@/types/User';
 import { WeatherData } from '@/types/Weather';
@@ -166,8 +167,8 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
               <p className="text-sm text-gray-700 font-semibold mb-2">💡 Como permitir:</p>
               <ul className="text-xs text-gray-600 space-y-1">
                 <li>• Clique no ícone 🔒 ao lado da URL</li>
-                <li>• Localize "Localização" nas permissões</li>
-                <li>• Selecione "Permitir"</li>
+                <li>• Localize &quot;Localização&quot; nas permissões</li>
+                <li>• Selecione &quot;Permitir&quot;</li>
                 <li>• Clique no botão abaixo</li>
               </ul>
             </div>

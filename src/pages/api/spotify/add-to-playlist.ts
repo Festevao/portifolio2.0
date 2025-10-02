@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../auth/[...nextauth]';
 import { AddTrackToPlaylistData } from '@/types/SharedPlaylist';
+import { AuthOptions } from 'next-auth';
 
 /**
  * API para adicionar uma música à playlist do Spotify
@@ -26,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     // Verifica se o usuário está autenticado
-    const session = await getServerSession(req, res, authOptions);
+    const session = await getServerSession(req, res, authOptions as AuthOptions);
     
     if (!session?.accessToken) {
       return res.status(401).json({

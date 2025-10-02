@@ -122,7 +122,7 @@ const GbraAvatar = ({ mode, animation }: GbraAvatarProps) => {
         {/* Nome tag */}
         <div className="absolute -bottom-4 sm:-bottom-6 md:-bottom-8 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-sm px-2 sm:px-3 md:px-4 py-0.5 sm:py-1 rounded-full shadow-lg">
           <span className="text-xs sm:text-sm font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            G'bra
+            G&apos;bra
           </span>
         </div>
       </div>

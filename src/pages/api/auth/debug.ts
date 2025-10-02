@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from './[...nextauth]';
+import { AuthOptions } from 'next-auth';
 
 /**
  * API para verificar o status da sessão e tokens
@@ -15,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const session = await getServerSession(req, res, authOptions);
+    const session = await getServerSession(req, res, authOptions as AuthOptions);
     
     return res.status(200).json({
       success: true,
