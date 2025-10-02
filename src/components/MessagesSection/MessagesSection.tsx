@@ -96,7 +96,7 @@ const MessagesSection = ({ weather, participants, meUser, otherUser }: MessagesS
 
       const data = await response.json();
 
-      if (data.success && data.message) {
+      if (data.success && data.data) {
         // Recarrega as mensagens
         await loadMessages();
         setShowAddModal(false);

@@ -76,7 +76,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       return res.status(201).json({
         success: true,
         message: 'Mensagem criada com sucesso',
-        message: createdMessage as unknown as Message
+        data: createdMessage as unknown as Message
       });
     } else {
       return res.status(500).json({

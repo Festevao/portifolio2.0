@@ -25,7 +25,7 @@ export interface CreateMessageData {
 export interface MessageResponse {
   success: boolean;
   message?: string;
-  message?: Message;
+  data?: Message;
   messages?: Message[];
   pagination?: {
     currentPage: number;
