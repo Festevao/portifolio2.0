@@ -301,6 +301,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // Usar NEXTAUTH_URL como base URL (deve ser pública)
     const baseUrl = process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL || `http://localhost:${process.env.PORT || 3000}`;
     
+    console.log('baseUrl sendo usado:', baseUrl);
+    console.log('NEXT_PUBLIC_NEXTAUTH_URL:', process.env.NEXT_PUBLIC_NEXTAUTH_URL);
+    console.log('NEXTAUTH_URL:', process.env.NEXTAUTH_URL);
+    
     const usersResponse = await fetch(`${baseUrl}/api/users/check?me=${me}&other=${other}`);
 
     console.log('usersResponse', usersResponse);
