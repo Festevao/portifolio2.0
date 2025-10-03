@@ -139,13 +139,6 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
     return greeting;
   };
 
-  /**
-   * Solicita permissão de localização novamente (não usado mais com fallback automático)
-   */
-  const requestLocationPermission = () => {
-    window.location.reload();
-  };
-
   const isLoading = geoLoading || weatherLoading;
 
   /**
@@ -267,13 +260,6 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
                 }`}>
                   Bem-vind{meUser.gender === "FEM" ? "a" : "o"}, {meUser.nome.split(' ')[0]}! ✨
                 </h1>
-                {source === 'ip' && (
-                  <p className={`text-xs mb-2 transition-colors duration-500 ${
-                    weather.isDaytime ? 'text-gray-500' : 'text-purple-300'
-                  }`}>
-                    📍 Localização aproximada baseada no IP
-                  </p>
-                )}
                 <div className={`text-base md:text-lg transition-colors duration-500 ${
                   weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
                 }`}>
