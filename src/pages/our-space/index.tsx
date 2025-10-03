@@ -12,23 +12,32 @@ import MoviesSection from '@/components/MoviesSection/MoviesSection';
 import MessagesSection from '@/components/MessagesSection/MessagesSection';
 import DailyQuestionSection from '@/components/DailyQuestionSection/DailyQuestionSection';
 import { useGeolocation } from '@/hooks/useGeolocation';
+import { useAuth } from '@/hooks/useAuth';
 
 interface OurSpaceProps {
   meUser: User;
   otherUser: User;
+  needsPassword: boolean;
 }
 
 /**
  * Página "Nosso Espaço" - um ambiente personalizado para dois usuários
  * Com fundo animado baseado no clima e tutorial interativo com IA
  */
-const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
+const OurSpace = ({ meUser, otherUser, needsPassword }: OurSpaceProps) => {
   const { latitude, longitude, error: geoError, loading: geoLoading, source } = useGeolocation();
+  const { isAuthenticated, loading: authLoading, error: authError } = useAuth(meUser.username);
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [weatherLoading, setWeatherLoading] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
   const [aiGreeting, setAiGreeting] = useState<string>('Este é o nosso cantinho especial 💜');
   const [isLoadingGreeting, setIsLoadingGreeting] = useState(true);
+  const [isClient, setIsClient] = useState(false);
+
+  // Flag para garantir hidratação consistente
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   /**
    * Verifica se o tutorial já foi concluído
@@ -139,7 +148,21 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
     return greeting;
   };
 
-  const isLoading = geoLoading || weatherLoading;
+  /**
+   * Redireciona para login se usuário não está autenticado
+   */
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      const currentUrl = window.location.href;
+      const loginUrl = needsPassword 
+        ? `/auth/set-password?me=${meUser.username}&returnUrl=${encodeURIComponent(currentUrl)}`
+        : `/auth/login?me=${meUser.username}&returnUrl=${encodeURIComponent(currentUrl)}`;
+      
+      window.location.href = loginUrl;
+    }
+  }, [isAuthenticated, authLoading, needsPassword, meUser.username]);
+
+  const isLoading = geoLoading || weatherLoading || authLoading;
 
   /**
    * Renderiza tela de loading
@@ -154,19 +177,46 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-white mb-4"></div>
             <p className="text-white text-xl font-semibold">
-              {geoLoading 
-                ? (source === 'ip' 
-                    ? 'Carregando informações...' 
-                    : 'Carregando informações...'
-                  )
-                : 'Buscando informações do clima...'
+              {!isClient || authLoading
+                ? 'Verificando acesso...'
+                : geoLoading 
+                  ? (source === 'ip' 
+                      ? 'Carregando informações...' 
+                      : 'Carregando informações...'
+                    )
+                  : 'Buscando informações do clima...'
               }
             </p>
-            {geoLoading && source === 'ip' && (
+            {isClient && geoLoading && source === 'ip' && (
               <p className="text-white/80 text-sm mt-2">
                 Carregando informações...
               </p>
             )}
+            {(!isClient || authLoading) && (
+              <p className="text-white/80 text-sm mt-2">
+                Verificando suas credenciais...
+              </p>
+            )}
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // Se não está autenticado mas não está carregando, não renderizar nada
+  // O useEffect acima vai redirecionar
+  if (!isAuthenticated) {
+    return (
+      <>
+        <Head>
+          <title>Redirecionando...</title>
+        </Head>
+        <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 flex items-center justify-center">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-white mb-4"></div>
+            <p className="text-white text-xl font-semibold">
+              Redirecionando para autenticação...
+            </p>
           </div>
         </div>
       </>
@@ -310,6 +360,7 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
 /**
  * Valida os query params e busca os usuários antes de renderizar
  * Redireciona para home se algum usuário não existir
+ * Verifica se o usuário "me" precisa definir senha
  */
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { me, other } = context.query;
@@ -327,6 +378,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // Usar NEXTAUTH_URL como base URL (deve ser pública)
     const baseUrl = process.env.NEXT_PUBLIC_NEXTAUTH_URL || process.env.NEXTAUTH_URL || `http://localhost:${process.env.PORT || 3000}`;
         
+    // Buscar usuários
     const usersResponse = await fetch(`${baseUrl}/api/users/check?me=${me}&other=${other}`);
     
     if (!usersResponse.ok) {
@@ -349,10 +401,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       };
     }
 
+    // Verificar se usuário "me" precisa definir senha
+    const passwordCheckResponse = await fetch(`${baseUrl}/api/auth/check-password?username=${me}`);
+    const passwordCheckData = await passwordCheckResponse.json();
+
+    let needsPassword = false;
+    if (passwordCheckResponse.ok && passwordCheckData.success && passwordCheckData.userExists) {
+      needsPassword = passwordCheckData.needsPassword;
+    }
+
     return {
       props: {
         meUser: usersData.users.me,
         otherUser: usersData.users.other,
+        needsPassword,
       },
     };
   } catch (error) {
