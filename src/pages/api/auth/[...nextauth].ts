@@ -26,6 +26,19 @@ export const authOptions = {
       }
     })
   ],
+  // Configurações de segurança para produção
+  useSecureCookies: process.env.NODE_ENV === 'production',
+  cookies: {
+    sessionToken: {
+      name: process.env.NODE_ENV === 'production' ? '__Secure-next-auth.session-token' : 'next-auth.session-token',
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: process.env.NODE_ENV === 'production'
+      }
+    }
+  },
   callbacks: {
     async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
       // Se a URL contém parâmetros de query, preserva eles
