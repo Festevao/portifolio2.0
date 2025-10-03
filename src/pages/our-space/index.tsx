@@ -23,7 +23,7 @@ interface OurSpaceProps {
  * Com fundo animado baseado no clima e tutorial interativo com IA
  */
 const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
-  const { latitude, longitude, error: geoError, loading: geoLoading } = useGeolocation();
+  const { latitude, longitude, error: geoError, loading: geoLoading, source } = useGeolocation();
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [weatherLoading, setWeatherLoading] = useState(false);
   const [showTutorial, setShowTutorial] = useState(false);
@@ -140,36 +140,10 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
   };
 
   /**
-   * Solicita permissão de localização novamente
+   * Solicita permissão de localização novamente (não usado mais com fallback automático)
    */
   const requestLocationPermission = () => {
-    if (!navigator.geolocation) {
-      alert('Seu navegador não suporta geolocalização.');
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      () => window.location.reload(),
-      (error) => {
-        if (error.code === error.PERMISSION_DENIED) {
-          alert(
-            '🔒 Permissão de localização negada.\n\n' +
-            'Para permitir:\n\n' +
-            '• Chrome/Edge: Clique no ícone 🔒 ao lado da URL → Permissões → Localização → Permitir\n\n' +
-            '• Firefox: Clique no ícone 🔒 ao lado da URL → Permissões → Localização → Permitir\n\n' +
-            '• Safari: Safari → Preferências → Sites → Localização → Permitir\n\n' +
-            'Depois de permitir, clique em "Tentar Novamente".'
-          );
-        } else {
-          alert('Erro ao obter localização. Tente novamente.');
-        }
-      },
-      {
-        enableHighAccuracy: false,
-        timeout: 10000,
-        maximumAge: 0
-      }
-    );
+    window.location.reload();
   };
 
   const isLoading = geoLoading || weatherLoading;
@@ -187,18 +161,32 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-white mb-4"></div>
             <p className="text-white text-xl font-semibold">
-              {geoLoading ? 'Obtendo sua localização...' : 'Buscando informações do clima...'}
+              {geoLoading 
+                ? (source === 'ip' 
+                    ? 'Obtendo sua localização aproximada...' 
+                    : 'Obtendo sua localização...'
+                  )
+                : 'Buscando informações do clima...'
+              }
             </p>
+            {geoLoading && source === 'ip' && (
+              <p className="text-white/80 text-sm mt-2">
+                Usando localização aproximada baseada no seu IP
+              </p>
+            )}
           </div>
         </div>
       </>
     );
   }
 
-  /**
-   * Renderiza erro de geolocalização
-   */
-  if (geoError) {
+  // Se não tiver clima ainda mas não há erro, continue carregando
+  if (!weather && !geoError) {
+    return null;
+  }
+
+  // Se há erro e não conseguiu obter localização por IP, mostrar erro final
+  if (geoError && !latitude && !longitude) {
     return (
       <>
         <Head>
@@ -206,36 +194,20 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
         </Head>
         <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 flex items-center justify-center p-4">
           <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-8 max-w-lg text-center">
-            <div className="text-6xl mb-4">📍</div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Permissão de Localização</h2>
-            <p className="text-gray-700 mb-4 font-medium">{geoError}</p>
-            <p className="text-sm text-gray-600 mb-6">
-              Esta página precisa da sua localização para mostrar o clima atual e criar um ambiente personalizado. ✨
+            <div className="text-6xl mb-4">❌</div>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Erro de Localização</h2>
+            <p className="text-gray-700 mb-4 font-medium">
+              Não foi possível obter sua localização através do GPS nem do seu endereço IP.
             </p>
-
-            {/* Instruções */}
-            <div className="bg-purple-50 rounded-xl p-4 mb-6 text-left">
-              <p className="text-sm text-gray-700 font-semibold mb-2">💡 Como permitir:</p>
-              <ul className="text-xs text-gray-600 space-y-1">
-                <li>• Clique no ícone 🔒 ao lado da URL</li>
-                <li>• Localize &quot;Localização&quot; nas permissões</li>
-                <li>• Selecione &quot;Permitir&quot;</li>
-                <li>• Clique no botão abaixo</li>
-              </ul>
-            </div>
-
-            <button 
-              onClick={requestLocationPermission}
-              className="w-full bg-purple-600 text-white px-8 py-4 rounded-full font-bold hover:bg-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 mb-3"
-            >
-              🌍 Permitir Localização
-            </button>
+            <p className="text-sm text-gray-600 mb-6">
+              Tente recarregar a página ou verificar sua conexão com a internet.
+            </p>
             
             <button 
               onClick={() => window.location.reload()}
-              className="w-full bg-gray-200 text-gray-700 px-8 py-3 rounded-full font-medium hover:bg-gray-300 transition-all"
+              className="w-full bg-purple-600 text-white px-8 py-4 rounded-full font-bold hover:bg-purple-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              🔄 Recarregar Página
+              🔄 Tentar Novamente
             </button>
           </div>
         </div>
@@ -295,6 +267,13 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
                 }`}>
                   Bem-vind{meUser.gender === "FEM" ? "a" : "o"}, {meUser.nome.split(' ')[0]}! ✨
                 </h1>
+                {source === 'ip' && (
+                  <p className={`text-xs mb-2 transition-colors duration-500 ${
+                    weather.isDaytime ? 'text-gray-500' : 'text-purple-300'
+                  }`}>
+                    📍 Localização aproximada baseada no IP
+                  </p>
+                )}
                 <div className={`text-base md:text-lg transition-colors duration-500 ${
                   weather.isDaytime ? 'text-gray-600' : 'text-purple-200'
                 }`}>
