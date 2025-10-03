@@ -59,7 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'meta-llama/Llama-3.2-3B-Instruct',
+        model: 'meta-llama/Meta-Llama-3-8B-Instruct',
         messages: [
           {
             role: 'system',
@@ -70,8 +70,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             content: prompt
           }
         ],
-        max_tokens: 100,
-        temperature: 0.9, // Mais criatividade para saudações variadas
+        max_tokens: 150,
+        temperature: 0.4, // Mais criatividade para saudações variadas
         stream: false
       })
     });
@@ -178,7 +178,9 @@ function buildGreetingPrompt(userName: string, userGender: 'MASC' | 'FEM', conte
   prompt += `✅ PERSONALIZADA (use o nome ${userName} e seja específic${genderAdjective})\\n`;
   prompt += `✅ CURTA (máximo 2 frases)\\n`;
   prompt += `✅ VARIADA (seja original, evite clichês)\\n`;
-  
+  prompt += `\\n\\n⚠️ EVITE COMPLETAMENTE:\\n`;
+  prompt += `- Falar sobre a noite fúria do brasil\\n`;
+  prompt += `- Fazer associações erradas, como por exemplo, falar que alguém é o rei do futebol sendo que a pessoa só disse até agora que ela "gosta de futebol"\\n`;
   prompt += `\\n🎯 EXEMPLOS DO ESTILO DESEJADO:\\n`;
   prompt += `- "Olá ${userName}, como está ${genderAdjective} mais nova maravilha do mundo moderno hoje?"\\n`;
   prompt += `- "E aí ${userName}, chegou ${genderAdjective} person${genderAdjective} que faz o sol ter inveja do seu brilho!"\\n`;

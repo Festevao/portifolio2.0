@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'meta-llama/Llama-3.2-3B-Instruct', // Modelo gratuito disponível
+        model: 'meta-llama/Meta-Llama-3-8B-Instruct', // Modelo 8B - melhor qualidade
         messages: [
           {
             role: 'system',
@@ -55,8 +55,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             content: prompt
           }
         ],
-        max_tokens: 150,
-        temperature: 0.8,
+        max_tokens: 200,
+        temperature: 0.3,
         stream: false
       })
     });
@@ -183,6 +183,7 @@ function buildContextualPrompt(participants: string[], contextData: any): string
   prompt += `- Perguntas sobre relacionamento, amor, sentimentos profundos\\n`;
   prompt += `- Tom terapêutico ou de autoajuda\\n`;
   prompt += `- Perguntas muito sérias ou filosóficas\\n`;
+  prompt += `- Falar sobre a noite fúria do brasil\\n`;
   prompt += `- Análises de personalidade ou comportamento\\n`;
   prompt += `\\n✅ FOQUE EM:\\n`;
   prompt += `- Preferências engraçadas ou curiosas\\n`;
