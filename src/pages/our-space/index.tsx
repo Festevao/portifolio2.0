@@ -156,15 +156,15 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
             <p className="text-white text-xl font-semibold">
               {geoLoading 
                 ? (source === 'ip' 
-                    ? 'Obtendo sua localização aproximada...' 
-                    : 'Obtendo sua localização...'
+                    ? 'Carregando informações...' 
+                    : 'Carregando informações...'
                   )
                 : 'Buscando informações do clima...'
               }
             </p>
             {geoLoading && source === 'ip' && (
               <p className="text-white/80 text-sm mt-2">
-                Usando localização aproximada baseada no seu IP
+                Carregando informações...
               </p>
             )}
           </div>
@@ -188,12 +188,12 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
         <div className="min-h-screen bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 flex items-center justify-center p-4">
           <div className="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl p-8 max-w-lg text-center">
             <div className="text-6xl mb-4">❌</div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Erro de Localização</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Erro ao carregar informações</h2>
             <p className="text-gray-700 mb-4 font-medium">
-              Não foi possível obter sua localização através do GPS nem do seu endereço IP.
+              Não foi possível carregar as informações do clima.
             </p>
             <p className="text-sm text-gray-600 mb-6">
-              Tente recarregar a página ou verificar sua conexão com a internet.
+              Tente recarregar a página ou verificar sua conexão com a internet. Se o problema persistir, contate o suporte.
             </p>
             
             <button 
