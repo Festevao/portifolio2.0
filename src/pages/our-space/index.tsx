@@ -129,6 +129,16 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
     setShowTutorial(false);
   };
 
+  const formatGreeting = (greeting: string) => {
+    if (greeting.startsWith('"') && greeting.endsWith("'")) {
+      return greeting.slice(1, -1);
+    }
+    if (greeting.startsWith('"') && greeting.endsWith("'")) {
+      return greeting.slice(1, -1);
+    }
+    return greeting;
+  };
+
   /**
    * Solicita permissão de localização novamente
    */
@@ -294,7 +304,7 @@ const OurSpace = ({ meUser, otherUser }: OurSpaceProps) => {
                       <span>Este é o nosso cantinho especial 💜</span>
                     </div>
                   ) : (
-                    <p className="animate-fade-in">{aiGreeting}</p>
+                    <p className="animate-fade-in">{formatGreeting(aiGreeting)}</p>
                   )}
                 </div>
               </div>
