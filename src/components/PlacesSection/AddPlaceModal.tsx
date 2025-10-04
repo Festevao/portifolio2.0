@@ -37,24 +37,30 @@ const AddPlaceModal = ({ isOpen, onClose, onSave, weather, participants }: AddPl
   const [searchQuery, setSearchQuery] = useState('');
 
   /**
-   * Busca endereço usando Nominatim API (gratuita)
+   * Busca endereço usando API route interna (evita problemas de CSP)
    */
   const searchAddress = async (query: string) => {
     if (!query.trim()) return;
 
     try {
       const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=5&countrycodes=br`
+        `/api/location/search?q=${encodeURIComponent(query)}&limit=5`
       );
-      const results = await response.json();
+      const data = await response.json();
 
-      if (results.length > 0) {
-        const result = results[0];
+      if (!data.success) {
+        console.error('Erro na busca:', data.message);
+        alert(data.message || 'Erro ao buscar endereço. Tente novamente.');
+        return;
+      }
+
+      if (data.results && data.results.length > 0) {
+        const result = data.results[0];
         const newLocation: LocationData = {
-          lat: parseFloat(result.lat),
-          lng: parseFloat(result.lon),
-          address: result.display_name,
-          name: result.name || result.display_name.split(',')[0]
+          lat: result.lat,
+          lng: result.lng,
+          address: result.address,
+          name: result.name
         };
         
         console.log('Endereço encontrado:', newLocation);
