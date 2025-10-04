@@ -50,11 +50,16 @@ const OurSpace = ({ meUser, otherUser, needsPassword }: OurSpaceProps) => {
   }, []);
 
   /**
-   * Gera saudação personalizada com IA
+   * Gera saudação personalizada com IA (alternando entre modo normal e fofoqueira)
    */
   const generateAiGreeting = async () => {
     try {
-      const response = await fetch('/api/ai-greeting/generate', {
+      const useFofoqueira = Math.random() < 0.1;
+      const apiEndpoint = useFofoqueira || true ? '/api/ai-greeting/fofoqueira' : '/api/ai-greeting/generate';
+      
+      console.log(`🤖 Usando ${useFofoqueira ? 'MODO FOFOQUEIRA 👀' : 'modo normal'}`);
+
+      const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
