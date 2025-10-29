@@ -144,10 +144,10 @@ IMPORTANTE: Responda APENAS os números das anotações relevantes (ex: "1,3,5" 
     let filteredAnnotations: typeof annotations = [];
     
     if (relevantNumbers && relevantNumbers !== 'NENHUMA' && relevantNumbers !== 'nenhuma') {
-      const numbers = relevantNumbers.split(',').map(n => parseInt(n.trim())).filter(n => !isNaN(n));
+      const numbers = relevantNumbers.split(',').map((n: string) => parseInt(n.trim())).filter((n: number) => !isNaN(n));
       filteredAnnotations = numbers
-        .map(num => annotations[num - 1]) // -1 porque a IA usa índices baseados em 1
-        .filter(ann => ann); // Remove undefined
+        .map((num: number) => annotations[num - 1]) // -1 porque a IA usa índices baseados em 1
+        .filter((ann: Annotation) => ann); // Remove undefined
     }
 
     // Se encontrou anotações relevantes, gerar sugestão simples
