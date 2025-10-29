@@ -60,7 +60,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'HuggingFaceH4/zephyr-7b-beta',
+        model: 'meta-llama/Meta-Llama-3-8B-Instruct',
         messages: [
           {
             role: 'system',
