@@ -101,7 +101,7 @@ IMPORTANTE: Responda APENAS os números das anotações relevantes (ex: "1,3,5" 
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'meta-llama/Meta-Llama-3-8B-Instruct',
+        model: 'HuggingFaceH4/zephyr-7b-beta',
         messages: [
           {
             role: 'system',
@@ -173,7 +173,7 @@ Dê uma sugestão SIMPLES e PRÁTICA (máximo 2 frases) em português brasileiro
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            model: 'meta-llama/Meta-Llama-3-8B-Instruct',
+            model: 'HuggingFaceH4/zephyr-7b-beta',
             messages: [
               {
                 role: 'system',
