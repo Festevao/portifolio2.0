@@ -181,6 +181,7 @@ function buildContextualPrompt(participants: string[], contextData: any): string
   prompt += `Com base nessas informações sobre ${user1} e ${user2}, crie uma pergunta LEVE, DIVERTIDA e DESCONTRAÍDA. `;
   prompt += `\\n\\n⚠️ EVITE COMPLETAMENTE:\\n`;
   prompt += `- Perguntas sobre relacionamento, amor, sentimentos profundos\\n`;
+  prompt += `- Perguntas sobre criar uma festa ou evento\\n`;
   prompt += `- Tom terapêutico ou de autoajuda\\n`;
   prompt += `- Perguntas muito sérias ou filosóficas\\n`;
   prompt += `- Falar sobre a noite fúria do brasil\\n`;

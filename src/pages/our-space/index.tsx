@@ -11,6 +11,7 @@ import MusicSection from '@/components/MusicSection/MusicSection';
 import MoviesSection from '@/components/MoviesSection/MoviesSection';
 import MessagesSection from '@/components/MessagesSection/MessagesSection';
 import DailyQuestionSection from '@/components/DailyQuestionSection/DailyQuestionSection';
+import AnnotationSection from '@/components/AnnotationSection/AnnotationSection';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import { useAuth } from '@/hooks/useAuth';
 
@@ -341,6 +342,14 @@ const OurSpace = ({ meUser, otherUser, needsPassword }: OurSpaceProps) => {
 
           {/* Seção de Mensagens */}
           <MessagesSection 
+            weather={weather} 
+            participants={[meUser.username, otherUser.username]} 
+            meUser={meUser}
+            otherUser={otherUser}
+          />
+
+          {/* Seção de Anotações */}
+          <AnnotationSection 
             weather={weather} 
             participants={[meUser.username, otherUser.username]} 
             meUser={meUser}
