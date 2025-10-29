@@ -149,7 +149,7 @@ const SearchAnnotationModal = ({ weather, meUser, otherUser, onClose }: SearchAn
                         : 'text-blue-200 hover:bg-purple-800/50 border border-purple-700'
                   }`}
                 >
-                  "{example}"
+                  &ldquo;{example}&rdquo;
                 </button>
               ))}
             </div>
