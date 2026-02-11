@@ -102,7 +102,7 @@ Cada campo tem uma função específica:
 ### Regras de negócio importantes:
 1. O clean_text deve ser **claro, objetivo e resumido**, máximo 100 caracteres.
 2. Cada tarefa pode ter até **3 tags**, escolhidas do conjunto fornecido, **em ordem de prioridade**. A primeira tag tem peso normal, a segunda multiplicada por 0.65, a terceira por 0.65^2.
-3. Urgência aumenta se houver prazo explícito ou hora específica mencionada.
+3. Urgência aumenta conforme o peso da tarefa na vida do usuário, mas não deve mudar caso a atividade ja esteja definida pra um prazo príxo ou qualquer outra métrica de tempo.
 4. Effort e energy_required devem refletir **dificuldade e tempo aproximado**, de 0 (muito fácil/baixo esforço) a 5 (muito difícil/alto esforço).
 5. Identifique corretamente se o texto é uma **tarefa real** ou apenas informação.
 6. Extraia **entidades importantes**: datas, horários, nomes, locais.
