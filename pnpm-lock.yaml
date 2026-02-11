@@ -23,6 +23,9 @@ importers:
       cloudinary:
         specifier: ^2.7.0
         version: 2.9.0
+      dotenv:
+        specifier: ^17.2.4
+        version: 17.2.4
       formidable:
         specifier: ^3.5.4
         version: 3.5.4
@@ -732,6 +735,10 @@ packages:
 
   dom-helpers@5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
+
+  dotenv@17.2.4:
+    resolution: {integrity: sha512-mudtfb4zRB4bVvdj0xRo+e6duH1csJRM8IukBqfTRvHotn9+LBXB8ynAidP9zHqoRC/fsllXgk4kCKlR21fIhw==}
+    engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -2655,6 +2662,8 @@ snapshots:
       '@babel/runtime': 7.28.6
       csstype: 3.2.3
 
+  dotenv@17.2.4: {}
+
   dunder-proto@1.0.1:
     dependencies:
       call-bind-apply-helpers: 1.0.2
@@ -3644,6 +3653,7 @@ snapshots:
       '@types/leaflet': 1.9.21
       bcryptjs: 3.0.3
       cloudinary: 2.9.0
+      dotenv: 17.2.4
       formidable: 3.5.4
       jsonwebtoken: 9.0.3
       leaflet: 1.9.4
@@ -3658,6 +3668,7 @@ snapshots:
       react-leaflet: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-responsive-carousel: 3.2.23
       react-transition-group: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      uuid: 13.0.0
     transitivePeerDependencies:
       - '@auth/core'
       - '@aws-sdk/credential-providers'

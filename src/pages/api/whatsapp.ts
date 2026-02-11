@@ -5,6 +5,11 @@ import fsp from "fs/promises"; // só se precisar de writeFile/unlink async
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import OpenAI from "openai";
+import { connectToDatabase } from '@/lib/mongodb';
+import { analyzeTextForTask } from '../../lib/taskInterface';
+import { Tag } from '../../lib/tagInterface';
+
+const adminNumber = "553284680116";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -25,16 +30,28 @@ export default async function handler(
       return res.status(200).json({ ok: true });
     }
 
+    const { db } = await connectToDatabase();
+    const tagsCollection = db.collection("tags");
+    const allTags = await tagsCollection.find().toArray() as unknown as Tag[];
+
     await Promise.all(
       messages.map(async (message: any) => {
-        const { type } = message;
+        const { type, from } = message;
+        if (from !== adminNumber) return;
 
         // ===== TEXTO =====
         if (type === "text") {
           const text = message.text?.body || "";
-          console.log("Texto recebido:", text);
 
-          // salva no banco, fila, etc
+          const taskDoc = await analyzeTextForTask(
+            text, // ou text puro
+            allTags,
+            "whatsapp",
+            message.id
+          );
+
+          // salva no Mongo
+          await db.collection("tasks").insertOne(taskDoc);
           return;
         }
 
@@ -42,8 +59,6 @@ export default async function handler(
         if (type === "voice" || type === "audio") {
           const audioUrl = message.audio?.link || message.voice?.link;
           if (!audioUrl) return;
-
-          console.log("Áudio recebido:", audioUrl);
 
           // 1️⃣ download do áudio
           const audioResp = await fetch(audioUrl);
@@ -65,9 +80,15 @@ export default async function handler(
               language: "pt",
             });
 
-            console.log("Transcrição:", transcription.text);
+            const taskDoc = await analyzeTextForTask(
+              transcription.text, // ou text puro
+              allTags,
+              "whatsapp",
+              message.id
+            );
 
-            // salva transcrição no banco / envia de volta para WhatsApp
+            // salva no Mongo
+            await db.collection("tasks").insertOne(taskDoc);
           } finally {
             // 5️⃣ remove o arquivo temporário sempre, sucesso ou erro
             try {

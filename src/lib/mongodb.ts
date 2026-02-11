@@ -1,33 +1,20 @@
-import { MongoClient } from 'mongodb';
+// lib/mongo.ts
+import { MongoClient, Db } from "mongodb";
 
 if (!process.env.MONGODB_URI) {
-  throw new Error('Por favor, adicione a variável MONGODB_URI no arquivo .env.local');
+  throw new Error("MONGODB_URI não está definida");
 }
 
-const uri = process.env.MONGODB_URI;
-const options = {};
+let cachedClient: MongoClient | null = null;
+let cachedDb: Db | null = null;
 
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
+export async function connectToDatabase() {
+  if (cachedDb && cachedClient) return { client: cachedClient, db: cachedDb };
 
-declare global {
-  var _mongoClientPromise: Promise<MongoClient> | undefined;
+  const client = new MongoClient(process.env.MONGODB_URI!);
+  await client.connect();
+  const db = client.db(); // usa o db default da URI
+  cachedClient = client;
+  cachedDb = db;
+  return { client, db };
 }
-
-/**
- * Cria e retorna uma conexão com o MongoDB
- * Utiliza cache em desenvolvimento para evitar múltiplas conexões
- */
-if (process.env.NODE_ENV === 'development') {
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options);
-    global._mongoClientPromise = client.connect();
-  }
-  clientPromise = global._mongoClientPromise;
-} else {
-  client = new MongoClient(uri, options);
-  clientPromise = client.connect();
-}
-
-export default clientPromise;
-
